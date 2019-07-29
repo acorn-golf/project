@@ -1,5 +1,7 @@
 package com.squirrel.service;
 
+import java.util.HashMap;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.squirrel.config.MySqlSessionFactory;
@@ -29,6 +31,17 @@ public class MemberService {
 			session.close();
 		}		
 		return confirm;
+	}
+
+	public MemberDTO login(HashMap<String, String> map) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		MemberDTO dto = null;
+		try {
+			dto = dao.login(session,map);
+		}finally {
+			session.close();
+		}		
+		return dto;
 	}
 
 }

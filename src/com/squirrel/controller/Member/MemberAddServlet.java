@@ -52,7 +52,7 @@ public class MemberAddServlet extends HttpServlet {
 		}else {
 		
 			HttpSession session = request.getSession();
-			session.setAttribute("dto", dto);			
+			session.setAttribute("login", dto);			
 			response.sendRedirect("member/memberWelcome.jsp");
 		}
 				

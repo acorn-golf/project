@@ -8,7 +8,6 @@
 	$(document).ready(function(){
 		
 		$("#repassword").on("keyup",function(){
-			console.log($("#password"),$("#repassword"));
 			if($("#password").val()==($("#repassword").val())){
 				$("#confirm").text("비밀번호 일치");
 			}else{

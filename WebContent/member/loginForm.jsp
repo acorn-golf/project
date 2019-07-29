@@ -6,10 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Squirrel Team Project</title>
+<title>로그인</title>
 </head>
 <body>
-<%@ include file="show/main.jsp" %>
+<%@ include file="../show/main.jsp" %>
 <hr>
+<%@ include file="sub/login.jsp" %>
 </body>
 </html>
