@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- jdbc.properties 등록 -->
+	<!-- dtd의 순서에 의해 envireoments태그 전에 기재 -->
+	<properties resource="com/squirrel/config/jdbc.properties"></properties>
+	
+	<typeAliases>
+		<typeAlias type="com.squirrel.dto.ProductDTO" alias="ProductDTO"/>
+		<typeAlias type="com.squirrel.dto.GolfCcDTO" alias="GolfccDTO"/>
+		<typeAlias type="com.squirrel.dto.LocationDTO" alias="LocationDTO"/>
+		<typeAlias type="com.squirrel.dto.MemberDTO" alias="MemberDTO"/>
+	</typeAliases>
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" /> <!-- 트랜잭션을 핸들링해주는 매니저 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${oracle.jdbc}" /> <!-- ${ 가져다 쓸 것 기재 } -->
+				<property name="url" value="${oracle.url}" />
+				<property name="username" value="${oracle.userid}" />
+				<property name="password" value="${oracle.passwd}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="com/squirrel/config/ProductMapper.xml" />
+		<mapper resource="com/squirrel/config/GolfccMapper.xml" />
+		<mapper resource="com/squirrel/config/LocationMapper.xml" />
+		<mapper resource="com/squirrel/config/MemberMapper.xml" />
+	</mappers>
+</configuration>

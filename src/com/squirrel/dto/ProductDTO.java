@@ -1,6 +1,6 @@
 package com.squirrel.dto;
 
-public class ProductListDTO {
+public class ProductDTO {
 
 //	p_id	varchar2(5 byte)
 //	p_pdate	date
@@ -29,11 +29,11 @@ public class ProductListDTO {
 	private int user_no;
 	private String cc_id;
 	private int p_vcount;
-	public ProductListDTO() {
+	public ProductDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ProductListDTO(String p_id, String p_pdate, String p_uploaddate, int p_maxpeople, int p_hole,
+	public ProductDTO(String p_id, String p_pdate, String p_uploaddate, int p_maxpeople, int p_hole,
 			String p_caddyyn, String p_babyn, String p_cartyn, int p_price, String p_content, int user_no, String cc_id,
 			int p_vcount) {
 		super();
