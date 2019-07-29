@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>workShop03_02</display-name>
+  <context-param>
+    <param-name>userid</param-name>
+    <param-value>test</param-value>
+  </context-param>
+  <context-param>
+    <param-name>userwd</param-name>
+    <param-value>1234</param-value>
+  </context-param>
+  <servlet>
+    <servlet-name>Workshop23</servlet-name>
+    <servlet-class>com.controller.TestWorkshop23Servlet</servlet-class>
+    <init-param>
+      <param-name>userid</param-name>
+      <param-value>test</param-value>
+    </init-param>
+    <init-param>
+      <param-name>userwd</param-name>
+      <param-value>1234</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <servlet-name>Workshop24</servlet-name>
+    <servlet-class>com.controller.Workshop24Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Workshop26</servlet-name>
+    <servlet-class>com.controller.Workshop26</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Workshop23</servlet-name>
+    <url-pattern>/test</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Workshop24</servlet-name>
+    <url-pattern>/test2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Workshop26</servlet-name>
+    <url-pattern>/Workshop26</url-pattern>
+  </servlet-mapping>
+</web-app>
