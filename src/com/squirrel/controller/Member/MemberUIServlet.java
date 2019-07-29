@@ -1,4 +1,4 @@
-package com.squirrel.service;
+package com.squirrel.controller.Member;
 
 import java.io.IOException;
 

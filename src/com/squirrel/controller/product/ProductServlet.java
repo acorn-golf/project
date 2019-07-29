@@ -1,4 +1,4 @@
-package com.squirrel.controller;
+package com.squirrel.controller.product;
 
 import java.io.IOException;
 import java.util.List;

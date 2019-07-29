@@ -1,4 +1,4 @@
-package com.squirrel.service;
+package com.squirrel.controller.Member;
 
 import java.io.IOException;
 
@@ -19,8 +19,8 @@ public class MemberAddServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String phone_id = request.getParameter("phone_id");
-		String userpw = request.getParameter("userpw");
+		String phone_id = request.getParameter("phoneid");
+		String userpw = request.getParameter("password");
 		String username = request.getParameter("username");
 		String nickname = request.getParameter("nickname");
 		String userssn = request.getParameter("userssn");
@@ -28,7 +28,7 @@ public class MemberAddServlet extends HttpServlet {
 		String emailid = request.getParameter("emailid");
 		String emailadd = request.getParameter("emailadd");
 		String s_emailadd = request.getParameter("S_emailadd");
-		String email = null;
+		String email;
 		
 		if(emailadd == ""){
 			email = emailid+"@"+s_emailadd;
@@ -44,12 +44,13 @@ public class MemberAddServlet extends HttpServlet {
 		MemberDTO dto = new MemberDTO(phone_id, userpw, username, nickname, userssn, gender, email);
 		
 		MemberService service = new MemberService();
-		int confirm = service.MemberAdd(dto);		
+		int confirm = service.MemberAdd(dto);
 		
 		if(confirm == 0) {
 			RequestDispatcher dis = request.getRequestDispatcher("memberForm.jsp");
 			dis.forward(request, response);
 		}else {
+		
 			request.setAttribute("dto", dto);
 			response.sendRedirect("memberWelcome.jsp");
 		}
