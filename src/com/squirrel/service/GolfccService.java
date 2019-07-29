@@ -5,15 +5,15 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.squirrel.config.MySqlSessionFactory;
-import com.squirrel.dao.SelectGolfccNameDAO;
+import com.squirrel.dao.GolfccDAO;
 import com.squirrel.dto.GolfCcDTO;
 
-public class SelectGolfccNameService {
+public class GolfccService {
 
 	public List<GolfCcDTO> selectGolfccName(String loc_id) {
 		List<GolfCcDTO> list = null;
 		SqlSession session = MySqlSessionFactory.getSession();
-		SelectGolfccNameDAO dao = new SelectGolfccNameDAO();
+		GolfccDAO dao = new GolfccDAO();
 		try {
 			list = dao.selectGolfccName(session,loc_id);
 		}finally {
