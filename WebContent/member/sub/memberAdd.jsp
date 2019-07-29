@@ -43,7 +43,7 @@
 <td><input class="inputmadd" type="password" id="repassword" name="repassword"><span id="confirm"></span></td>
 </tr>
 <tr>
-<th>이름:</th>
+<th>이름 test:</th>
 <td><input class="inputmadd" type="text" id="username" name="username"></td>
 </tr>
 <tr>
