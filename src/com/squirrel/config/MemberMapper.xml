@@ -3,10 +3,17 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MemberMapper">
-	<insert parameterType="MemberDTO" id="MemberAdd"> insert into
+	<insert parameterType="MemberDTO" id="MemberAdd"> 
+		insert into
 		memberList(user_no,phone_id,userpw,username,nickname,userssn,gender,
 		rating,rstartdate,renddate,email,email_chk)
 		values(user_no(),#{phone_id},#{userpw},#{username},#{nickname},#{userssn},
 		#{gender},'U',sysdate,null,#{email},'N') 
-		</insert>
+	</insert>
+	<select id="login" resultType="MemberDTO">
+		select user_no,phone_id,userpw,username,nickname,userssn,gender,
+		rating,rstartdate,renddate,email,email_chk 
+		from memberList 
+		where phone_id = #{phone_id} and userpw = #{userpw}	
+	</select>
 </mapper>

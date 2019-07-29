@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>환영합니다.^_^</title>
 </head>
 <body>
 <%@ include file="../show/main.jsp" %>
 <hr>
-<h1>${dto.nickname}님 가입을 축하드립니다.</h1>
+<h1>${login.nickname} 님 성공적으로 가입되셨습니다.</h1>
 <button onclick="location.href='../main.jsp'">확인</button>
 </body>
 </html>

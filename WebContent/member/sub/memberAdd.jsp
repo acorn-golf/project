@@ -8,7 +8,6 @@
 	$(document).ready(function(){
 		
 		$("#repassword").on("keyup",function(){
-			console.log($("#password"),$("#repassword"));
 			if($("#password").val()==($("#repassword").val())){
 				$("#confirm").text("비밀번호 일치");
 			}else{
@@ -43,7 +42,7 @@
 <td><input class="inputmadd" type="password" id="repassword" name="repassword"><span id="confirm"></span></td>
 </tr>
 <tr>
-<th>이름 test:</th>
+<th>이름:</th>
 <td><input class="inputmadd" type="text" id="username" name="username"></td>
 </tr>
 <tr>
