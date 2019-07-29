@@ -13,6 +13,7 @@
 		<typeAlias type="com.squirrel.dto.GolfCcDTO" alias="GolfccDTO"/>
 		<typeAlias type="com.squirrel.dto.LocationDTO" alias="LocationDTO"/>
 		<typeAlias type="com.squirrel.dto.MemberDTO" alias="MemberDTO"/>
+		<typeAlias type="com.squirrel.dto.NoticeListDTO" alias="NoticeListDTO"/>
 	</typeAliases>
 
 	<environments default="development">
@@ -31,5 +32,6 @@
 		<mapper resource="com/squirrel/config/GolfccMapper.xml" />
 		<mapper resource="com/squirrel/config/LocationMapper.xml" />
 		<mapper resource="com/squirrel/config/MemberMapper.xml" />
+		<mapper resource="com/squirrel/config/NoticeMapper.xml" />
 	</mappers>
 </configuration>
