@@ -1,31 +1,37 @@
 package com.squirrel.controller.product;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.squirrel.dto.LocationDTO;
-import com.squirrel.service.LocationService;
+import com.squirrel.dto.GolfCcDTO;
+import com.squirrel.service.SelectGolfccNameService;
 
-@WebServlet("/ProductServlet")
-public class ProductServlet extends HttpServlet {
+
+@WebServlet("/SelectGolfCCServlet")
+public class SelectGolfCCServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//세션처리작업 해야됨 : 로그인 세션확인 & 로그인 된 계정의 등급이 메니저여야됨
+		// 세션처리 필요
+		String loc_id = request.getParameter("loc_ID");
 		
-		LocationService service = new LocationService();
-		List<LocationDTO> list = service.locationList();
+		SelectGolfccNameService service = new SelectGolfccNameService();
+		List<GolfCcDTO> list = service.selectGolfccName(loc_id);
 		
-		request.setAttribute("LocationList", list);
-		request.getRequestDispatcher("product/product.jsp").forward(request, response);
+		String mesg = null;
+		response.setContentType("text/plain;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		for (GolfCcDTO g : list) {
+			mesg += "<option value='"+g.getCc_id()+"'>"+g.getCc_name()+"</option>";
+		}
+		out.print(mesg);
 		
 	}
 
