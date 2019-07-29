@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.squirrel.dto.ProductDTO;
+import com.squirrel.service.ProductService;
+
 @WebServlet("/ProductInsertServlet")
 public class ProductInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,40 +28,36 @@ public class ProductInsertServlet extends HttpServlet {
 //		USER_NO 유저id
 //		CC_ID 골프장 아이디
 //		P_VCOUNT 조회수(일반유저가 검색했을 때 넘버링)
-		String p_id = null; // pk 자동넘버링
-		String p_pdate = request.getParameter("date").concat(request.getParameter("time"));
-		String p_uploaddate = null; // default가 sysdate
-		String p_maxpeople = request.getParameter("p_maxpeople");
-		String p_hole = request.getParameter("p_hole");
-		String p_caddyyn = request.getParameter("p_caddyyn");
-		String p_bobyn = null;
+		String p_id = null; // 상품아이디, pk 자동넘버링
+		String p_pdate = request.getParameter("date").concat("/").concat(request.getParameter("time")); // 티업시간
+		String p_uploaddate = null; // 상품등록날짜, default가 sysdate
+		String p_maxpeople = request.getParameter("p_maxpeople"); // 최대인원, int로 형변환
+		String p_hole = request.getParameter("p_hole"); // 홀 수, int로 형변환
+		String p_caddyyn = request.getParameter("p_caddyyn"); // 캐디유무
+		String p_babyn = null; // 식사포함, 기본값 : N
 		if(request.getParameter("p_babyn")==null) {
-			p_bobyn = "N";
+			p_babyn = "N";
 		}else if(request.getParameter("p_babyn").equals("on")){
-			p_bobyn = "Y";
+			p_babyn = "Y";
 		}
-		String p_cartyn = null;
+		String p_cartyn = null; // 카트비포함, 기본값 : N
 		if(request.getParameter("p_cartyn")==null) {
 			p_cartyn = "N";
 		}else if(request.getParameter("p_cartyn").equals("on")){
 			p_cartyn = "Y";
 		}
-		String p_price = request.getParameter("p_price");
-		String p_content = request.getParameter("p_content");
-		//userid는 세션으로 따올거
-		String cc_id = request.getParameter("cc_id");
-		System.out.println(p_id); // null
-		System.out.println(p_pdate); // 2019~~~19:00
-		System.out.println(p_uploaddate); //null
-		System.out.println(p_maxpeople); //4
-		System.out.println(p_hole); //18
-		System.out.println(p_caddyyn); //N
-		// 체크박스 bob, cart 는 체크된상태로 넘어오면 on, 체크안된상태로 넘어오면 null
-		System.out.println(p_bobyn); // Y or N
-		System.out.println(p_cartyn); // Y or N
-		System.out.println(p_price); //5
-		System.out.println(p_content); // 내용 잘 나옴
-		System.out.println(cc_id); // cc_id 잘 나옴
+		String p_price = request.getParameter("p_price"); // 상품가격, int로 형변환
+		String p_content = request.getParameter("p_content"); // 상품내용
+		int user_no = 3; // 매니저 pk, 임의로 메니저의 pk를 넣을거다 => 원래는 세션의 로그인 정보 확인후 해당 세션의 pk검색해서 넣어야됨
+		String cc_id = request.getParameter("cc_id"); // 골프장 pk
+		int p_vcount=0; // 조회수, 사용자가 상품 조회시 자동 시퀀스 넘버링
+		
+		ProductDTO dto = new ProductDTO(p_id, p_pdate, p_uploaddate, Integer.parseInt(p_maxpeople), Integer.parseInt(p_hole), p_caddyyn, p_babyn, p_cartyn, Integer.parseInt(p_price), p_content, user_no, cc_id, p_vcount);
+		ProductService service = new ProductService();
+		service.productInsert(dto);
+		
+		response.sendRedirect("ProductServlet");
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

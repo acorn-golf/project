@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.squirrel.dto.GolfCcDTO;
-import com.squirrel.service.SelectGolfccNameService;
+import com.squirrel.service.GolfccService;
 
 
 @WebServlet("/SelectGolfCCServlet")
@@ -22,7 +22,7 @@ public class SelectGolfCCServlet extends HttpServlet {
 		// 세션처리 필요
 		String loc_id = request.getParameter("loc_ID");
 		
-		SelectGolfccNameService service = new SelectGolfccNameService();
+		GolfccService service = new GolfccService();
 		List<GolfCcDTO> list = service.selectGolfccName(loc_id);
 		
 		String mesg = null;

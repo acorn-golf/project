@@ -33,7 +33,7 @@
 </script>
 
 <form action="ProductInsertServlet" method="get">
-<!-- P_ID는 시퀀스로 자동 넘버링 -->
+<!-- 각각의 유효성 체크 해야한다 -->
 지역 : 
 <select id="loc">
 	<option selected="selected">지역선택</option>
@@ -42,7 +42,7 @@
 	</c:forEach>
 </select><br>
 골프장 : 
-<select name="cc_id" id="defaultgolf"> <!-- 지역을 선택할 때 마다 골프장select박스 내용이나온다, ProductInsertServlet서블릿에서 CC_NAME을 받아 CC_ID추출  -->
+<select name="cc_id" id="defaultgolf"> <!-- 지역을 선택할 때 마다 골프장select박스 내용이나온다, ajax : SelectGolfCCServlet CC_NAME을 받아 CC_ID추출  -->
 	<option>골프장선택</option>
 </select><br>
 티업일자 : <input type="text" name="date"><br>
@@ -63,7 +63,6 @@
 <input type="button" value="이전"><input type="submit" value="등록">
 <!-- 이전버튼 누를 시 전화면으로 돌아간다->자바스크립트로 찝어서 해당갈 곳으로 src 해주면 될듯 -->
 <!-- USER_NO는 form에서 보낼 때 해당 서블릿에서 세션으로 받을것 -->
-
 <!-- p_id - 시퀀스자동넘버링
 P_PDATE - 서블릿에서 date와 time을 합친다
 P_UPLOADDATE - default : sysdate
