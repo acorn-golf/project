@@ -15,7 +15,7 @@ public class MemberUIServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher dis = request.getRequestDispatcher("memberForm.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("member/memberForm.jsp");
 		dis.forward(request, response);
 	}
 

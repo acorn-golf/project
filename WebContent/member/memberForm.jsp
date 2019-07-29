@@ -8,11 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="show/main.jsp" %>
+<%@ include file="../show/main.jsp" %>
 <hr>
-<h1>#{dto.nickname}님 가입을 축하드립니다.</h1>
-<form action="main.jsp">
-<input type="submit" value="확인">
-</form>
+<%@ include file="sub/memberAdd.jsp" %>
 </body>
 </html>

@@ -47,12 +47,13 @@ public class MemberAddServlet extends HttpServlet {
 		int confirm = service.MemberAdd(dto);
 		
 		if(confirm == 0) {
-			RequestDispatcher dis = request.getRequestDispatcher("memberForm.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("member/memberForm.jsp");
 			dis.forward(request, response);
 		}else {
 		
-			request.setAttribute("dto", dto);
-			response.sendRedirect("memberWelcome.jsp");
+			HttpSession session = request.getSession();
+			session.setAttribute("dto", dto);			
+			response.sendRedirect("member/memberWelcome.jsp");
 		}
 				
 	}

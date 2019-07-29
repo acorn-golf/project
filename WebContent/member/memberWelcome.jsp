@@ -8,8 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="show/main.jsp" %>
+<%@ include file="../show/main.jsp" %>
 <hr>
-<%@ include file="member/memberAdd.jsp" %>
+<h1>${dto.nickname}님 가입을 축하드립니다.</h1>
+<button onclick="location.href='../main.jsp'">확인</button>
 </body>
 </html>
