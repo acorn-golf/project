@@ -23,7 +23,7 @@
 <style>
 
 </style>
-<form action="MemberAddServlet" method="get">
+<form action="MemberAddServlet" method="post">
 <input type="hidden" id="rating" name="rating">
 <input type="hidden" id="rstartdate" name="rstartdate">
 <input type="hidden" id="renddate" name="renddate">
