@@ -6,11 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 가입</title>
+<title>My Page</title>
 </head>
 <body>
 <jsp:include page="../show/main.jsp"/>
 <hr>
-<jsp:include page="sub/memberAdd.jsp"/>
+<jsp:include page="sub/myPage.jsp"/>
 </body>
 </html>

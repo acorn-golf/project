@@ -9,11 +9,14 @@
 		
 		$("#repassword").on("keyup",function(){
 			if($("#password").val()==($("#repassword").val())){
+				$("#font").attr("color","green");
 				$("#confirm").text("비밀번호 일치");
 			}else{
-			$("#confirm").text("비밀번호가 일치하지 않습니다.");
+				$("#font").attr("color","red");
+				$("#confirm").text("비밀번호 불일치");
 			};
 		});
+		
 		
 	});
 		
@@ -23,7 +26,7 @@
 <style>
 
 </style>
-<form action="MemberAddServlet" method="get">
+<form action="MemberAddServlet" method="post">
 <input type="hidden" id="rating" name="rating">
 <input type="hidden" id="rstartdate" name="rstartdate">
 <input type="hidden" id="renddate" name="renddate">
@@ -39,7 +42,7 @@
 </tr>
 <tr>
 <th>비밀번호확인:</th>
-<td><input class="inputmadd" type="password" id="repassword" name="repassword"><span id="confirm"></span></td>
+<td><input class="inputmadd" type="password" id="repassword" name="repassword"><font id="font"><span id="confirm"></span></font></td>
 </tr>
 <tr>
 <th>이름:</th>

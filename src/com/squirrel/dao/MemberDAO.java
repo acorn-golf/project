@@ -21,4 +21,17 @@ public class MemberDAO {
 		return dto;
 	}
 
+	public MemberDTO myPage(SqlSession session, String nickname) {
+		
+		MemberDTO dto = session.selectOne("MemberMapper.myPage", nickname);
+		return dto;
+	}
+
+	public int myPageUpdate(SqlSession session, MemberDTO dto) {
+		
+		int confirm = session.update("MemberMapper.myPageUpdate",dto);
+		
+		return confirm;
+	}
+
 }

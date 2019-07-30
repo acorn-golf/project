@@ -24,13 +24,13 @@ import com.squirrel.dto.MemberDTO;
 public class LoginChkFilter implements Filter {
 
 	private List<String> anonymousUrl;
-	
-    /**
-     * Default constructor. 
-     */
-    public LoginChkFilter() {
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * Default constructor.
+	 */
+	public LoginChkFilter() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Filter#destroy()
@@ -42,27 +42,27 @@ public class LoginChkFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
 
 		// pass the request along the filter chain
 		HttpServletRequest hreq = (HttpServletRequest) request;
-		HttpServletResponse hres = (HttpServletResponse)response;
-		
+		HttpServletResponse hres = (HttpServletResponse) response;
+
 		HttpSession session = hreq.getSession();
-		
-		if(anonymousUrl.contains(hreq.getServletPath()))
+
+		if (anonymousUrl.contains(hreq.getServletPath()))
 			chain.doFilter(request, response);
-		else
-		{
-			MemberDTO dto = (MemberDTO)(session.getAttribute("login"));
-			
-			if(dto==null) {
+		else {
+			MemberDTO dto = (MemberDTO) (session.getAttribute("login"));
+
+			if (dto == null) {
 				session.setAttribute("amesg", "로그인이 필요한 작업입니다.");
 				hres.sendRedirect("member/login.jsp");
 			}
-			
+
 		}
 	}
 
@@ -72,8 +72,8 @@ public class LoginChkFilter implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException {
 		// TODO Auto-generated method stub
 		String tmp = fConfig.getInitParameter("anonymousUrl");
-		if(tmp!=null)
-		anonymousUrl = Arrays.asList(tmp.split(","));
+		if (tmp != null)
+			anonymousUrl = Arrays.asList(tmp.split(","));
 	}
 
 }

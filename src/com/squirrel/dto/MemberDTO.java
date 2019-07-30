@@ -50,15 +50,23 @@ public class MemberDTO {
 	}
 
 	public MemberDTO(String phone_id, String userpw, String username, String nickname, String userssn,
-			String gender, String email) {
+			String gender, String rating, String email) {
+		super();
 		this.phone_id = phone_id;
 		this.userpw = userpw;
 		this.username = username;
 		this.nickname = nickname;
 		this.userssn = userssn;
 		this.gender = gender;
+		this.rating = rating;
 		this.email = email;
-		// TODO Auto-generated constructor stub
+	}
+
+	public MemberDTO(String phone_id, String userpw, String email) {
+		super();
+		this.phone_id = phone_id;
+		this.userpw = userpw;
+		this.email = email;
 	}
 
 	public int getUser_no() {

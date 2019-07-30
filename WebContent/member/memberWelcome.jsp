@@ -9,7 +9,7 @@
 <title>환영합니다.^_^</title>
 </head>
 <body>
-<%@ include file="../show/main.jsp" %>
+<jsp:include page="../show/main.jsp"/>
 <hr>
 <h1>${login.nickname} 님 성공적으로 가입되셨습니다.</h1>
 <button onclick="location.href='../main.jsp'">확인</button>
