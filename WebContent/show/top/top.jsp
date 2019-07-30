@@ -89,6 +89,7 @@ START MODULE AREA 2: Menu 1
 				<ul class="AP_Menu_List">
 				<!-- 반복 시작    -->
 				<!-- 로그인한 유저에 따라 보여줄 정보를 다르게 표기. 판단은    -->
+				
 					<li><a href="#" data-theme="_bgp">Menu Item</a></li>
 					<li><a href="#" data-theme="_bgp">Menu Item</a>
 						<ul>
