@@ -72,6 +72,7 @@ public class LoginChkFilter implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException {
 		// TODO Auto-generated method stub
 		String tmp = fConfig.getInitParameter("anonymousUrl");
+		if(tmp!=null)
 		anonymousUrl = Arrays.asList(tmp.split(","));
 	}
 
