@@ -16,14 +16,9 @@ import com.squirrel.dto.NoticeListDTO;
 import com.squirrel.service.MemberService;
 import com.squirrel.service.NoticeService;
 
-@WebServlet("/NoticeUIService")
-public class NoticeUIService extends HttpServlet {
+@WebServlet("/NoticeUIServlet")
+public class NoticeUIServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	public NoticeUIService() {
-		super();
-
-	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -43,11 +38,11 @@ public class NoticeUIService extends HttpServlet {
 		String note_title = request.getParameter("note_title");
 	
 		String notedate = request.getParameter("notedate");
-		String note_division = request.getParameter("note_division");
+		String note_division = request.getParameter("division");
 		String note_file = "";//request.getParameter("note_file");
 	
-		
-NoticeListDTO ndto = new NoticeListDTO(note_division, note_title, note_content);
+		System.out.println(note_division);
+NoticeListDTO ndto = new NoticeListDTO(note_content, note_title, note_division);
 
 ndto.setUser_no(dto.getUser_no());
 		

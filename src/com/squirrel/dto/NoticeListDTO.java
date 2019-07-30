@@ -26,7 +26,7 @@ public class NoticeListDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public NoticeListDTO(String note_content, String note_title, String notedate) {
+	public NoticeListDTO(String note_content, String note_title, String note_division) {
 		super();
 		this.note_content = note_content;
 		this.note_no = note_no;

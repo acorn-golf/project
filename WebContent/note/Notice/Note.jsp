@@ -23,9 +23,9 @@
 							<td><h1>공지사항</h1></td>
 
 						</tr>
-					</table> <select name="DIVISION">
+					</table> <select name="division" id="division">
 
-						<option value="공지">공지</option>
+						<option value="공지" selected>공지</option>
 
 						<option value="중요">중요</option>
 
@@ -42,11 +42,12 @@
 						</tr>
 						<tr>
 
-							<td>제목<input name="NOTE_TITLE" size="50" maxlength="100"></td>
+							<td>제목<input id="note_title"name="note_title" size="50" maxlength="100"></td>
 						</tr>
 						<tr>
 
-							<td><textarea name="NOTE_CONTENT" cols="50" rows="13"></textarea></td>
+							<td><textarea id="note_content" name="note_content" cols="50" rows="13"></textarea></td>
+							
 						</tr>
 					</table>
 

@@ -12,9 +12,9 @@ public class NoticeDAO {
 
 	
 		public void NoticeInsert(SqlSession session, NoticeListDTO ndto) {
-			System.out.println("note_content".toString());
+			System.out.println(ndto.getNote_content());
 			System.out.println("note_no".toString());
-			System.out.println("note_title".toString());
+			System.out.println(ndto.getNote_title());
 			System.out.println("user_no".toString());
 			System.out.println("notedate".toString());
 			System.out.println("note_division".toString());
