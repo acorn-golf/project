@@ -8,7 +8,7 @@
 		memberList(user_no,phone_id,userpw,username,nickname,userssn,gender,
 		rating,rstartdate,renddate,email,email_chk)
 		values(user_no(),#{phone_id},#{userpw},#{username},#{nickname},#{userssn},
-		#{gender},'U',sysdate,null,#{email},'N') 
+		#{gender},#{rating},sysdate,null,#{email},'N') 
 	</insert>
 	<select id="login" resultType="MemberDTO" parameterType="HashMap">
 		select user_no,phone_id,userpw,username,nickname,userssn,gender,
@@ -16,10 +16,15 @@
 		from memberList 
 		where phone_id = #{phone_id} and userpw = #{userpw}	
 	</select>
-	<select id="myPage" resultType="MemberDTO" parameterType="int">
+	<select id="myPage" resultType="MemberDTO" parameterType="String">
 		select user_no,phone_id,userpw,username,nickname,userssn,gender,
 		rating,rstartdate,renddate,email,email_chk 
 		from memberList 
-		where user_no = #{user_no}
+		where nickname = #{nickname}
 	</select>
+	<update id="myPageUpdate" parameterType="MemberDTO">
+		update memberList
+		set userpw = #{userpw}, email = #{email}
+		where phone_id = #{phone_id}
+	</update>
 </mapper>

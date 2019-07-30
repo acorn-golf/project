@@ -9,8 +9,8 @@
 <title>회원 가입</title>
 </head>
 <body>
-<%@ include file="../show/main.jsp" %>
+<jsp:include page="../show/main.jsp"/>
 <hr>
-<%@ include file="sub/memberAdd.jsp" %>
+<jsp:include page="sub/memberAdd.jsp"/>
 </body>
 </html>

@@ -9,8 +9,8 @@
 <title>My Page</title>
 </head>
 <body>
-<%@ include file="../show/main.jsp" %>
+<jsp:include page="../show/main.jsp"/>
 <hr>
-<%@ include file="sub/myPage.jsp" %>
+<jsp:include page="sub/myPage.jsp"/>
 </body>
 </html>

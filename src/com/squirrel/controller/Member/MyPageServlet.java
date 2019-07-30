@@ -24,13 +24,14 @@ public class MyPageServlet extends HttpServlet {
 			destination = "LoginUIServlet";
 			response.sendRedirect(destination);
 		}else {
-			int user_no = dto.getUser_no();
+			String nickname = dto.getNickname();
 			MemberService service = new MemberService();
-			dto = service.myPage(user_no);
-			destination = "member/myPage.jsp";
+			dto = service.myPage(nickname);
+			String [] email = dto.getEmail().split("@");
+			destination = "member/myPage.jsp";			
 			session.setAttribute("login", dto);
+			session.setAttribute("email", email);
 			request.getRequestDispatcher(destination).forward(request, response);
-			
 		}
 		
 	}

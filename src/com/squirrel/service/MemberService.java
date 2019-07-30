@@ -44,15 +44,31 @@ public class MemberService {
 		return dto;
 	}
 
-	public MemberDTO myPage(int user_no) {
+	public MemberDTO myPage(String nickname) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		MemberDTO dto = null;
 		try {
-			dto = dao.myPage(session,user_no);
+			dto = dao.myPage(session,nickname);
 		}finally {
 			session.close();
 		}
 		return dto;
+	}
+
+	public int myPageUpdate(MemberDTO dto) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int confirm = 0;
+		try {
+			confirm = dao.myPageUpdate(session,dto);
+			if(confirm != 0) {
+				session.commit();
+			}else {	
+				session.rollback();				
+			}
+		}finally {
+			session.close();
+		}		
+		return confirm;
 	}
 
 }
