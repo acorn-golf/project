@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml"%>
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -87,9 +90,33 @@ START MODULE AREA 2: Menu 1
         <rect y="12" width="30" height="6" />
       </svg>
 				<ul class="AP_Menu_List">
-				<!-- 반복 시작    -->
-				<!-- 로그인한 유저에 따라 보여줄 정보를 다르게 표기. 판단은    -->
-				
+					<!-- 반복 준비    -->
+					<c:import var="menuInfo" url="/show/top/sub/mainForminfo.xml" />
+					<x:parse xml="${menuInfo}" var="output" />
+					<!-- 로그인한 유저에 따라 보여줄 정보를 다르게 표기. 판단은   여기서 -->
+
+					<c:choose>
+						<c:when test="${login eq null}">
+						<c:set var="resultMenu" value="$output/not_login/Menu" />
+						</c:when>
+						<c:when test="${login.rating eq'U' }">
+							<c:set var="resultMenu" value="ratingUser" />
+						</c:when>
+						<c:when test="${login.rating eq'M' }">
+							<c:set var="resultMenu" value="ratingManager" />
+						</c:when>
+						<c:when test="${login.rating eq'A' }">
+							<c:set var="resultMenu" value="ratingAdmin" />
+						</c:when>
+						<c:otherwise>
+							<c:set var="resultMenu" value="not_login" />
+						</c:otherwise>
+					</c:choose>
+					<%System.out.println(request.getAttribute("resultMenu")); %>
+					<x:forEach select="'${resultMenu}'" var="aa" >
+						<x:out select="text()"/>
+					</x:forEach>
+
 					<li><a href="#" data-theme="_bgp">Menu Item</a></li>
 					<li><a href="#" data-theme="_bgp">Menu Item</a>
 						<ul>

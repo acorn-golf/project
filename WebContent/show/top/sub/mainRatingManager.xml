@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rating>
+	<ratingUser>
+		<Menu href="">
+			구매내역
+			<sub_Menu href="">
+				예약정보
+			</sub_Menu>
+			<sub_Menu href="">
+				완료된 구매내역
+			</sub_Menu>
+		</Menu>
+		<Menu href="">
+			전체상품
+			<sub_Menu href="">
+				경기 북부
+			</sub_Menu>
+			<sub_Menu href="">
+				경기 남부
+			</sub_Menu>
+			<sub_Menu href="">
+				충청도
+			</sub_Menu>
+			<sub_Menu href="">
+				강원도
+			</sub_Menu>
+			<sub_Menu href="">
+				경상도
+			</sub_Menu>
+		</Menu>
+		<Menu href="">
+			관심상품
+		</Menu>
+		<Menu href="">
+			평점게시판
+			<sub_Menu href="">
+				전체 보기
+			</sub_Menu>
+			<sub_Menu href="">
+				최신 리뷰 보기
+			</sub_Menu>
+			<sub_Menu href="">
+				리뷰 평점 남기기
+			</sub_Menu>
+			<sub_Menu href="">
+				관심골프장
+			</sub_Menu>
+		</Menu>
+		<Menu href="">
+			찜목록
+		</Menu>
+		<Menu href="">
+			공지사항
+			<sub_Menu>전체보기</sub_Menu>
+			<sub_Menu>공지사항</sub_Menu>
+			<sub_Menu>이벤트</sub_Menu>
+		</Menu>
+	</ratingUser>
+
+	<ratingManager>
+		<Menu href="">
+			거래내역
+		</Menu>
+		<Menu href="">
+			전체상품
+		</Menu>
+		<Menu href="">
+			관심상품
+		</Menu>
+		<Menu href="">
+			평점게시판
+		</Menu>
+		<Menu href="">
+			찜목록
+		</Menu>
+		<Menu href="">
+			공지사항
+		</Menu>
+	</ratingManager>
+
+	<ratingAdmin>
+		<menu href="">거래내역</menu>
+		<menu href="">전체상품</menu>
+		<menu href="">평점게시판</menu>
+		<menu href="">공지사항</menu>
+		<menu href="">사용자 관리</menu>
+	</ratingAdmin>
+
+	<not_login>
+		<Menu href="">
+			회원가입
+		</Menu>
+		<Menu href="">
+			로그인
+		</Menu>
+		<Menu href="">
+			전체상품
+		</Menu>
+		<Menu href="">
+			평점게시판
+		</Menu>
+		<Menu href="">
+			공지사항
+		</Menu>
+	</not_login>
+</rating>
