@@ -1,19 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<tmp>
-		<Menu href="">
-			회원가입
-		</Menu>
-		<Menu href="">
-			로그인
-		</Menu>
-		<Menu href="">
-			전체상품
-		</Menu>
-		<Menu href="">
-			평점게시판
-		</Menu>
-		<Menu href="">
-			공지사항
-		</Menu>
-</tmp>
+<Menus>
+	<Menu>
+		<name>회원가입</name>
+		<url></url>
+	</Menu>
+	<Menu>
+		<name>로그인</name>
+		<url></url>
+
+	</Menu>
+	<Menu>
+		<name>전체상품</name>
+		<url></url>
+		<sub_Menu>
+			<name>경기 북부</name>
+			<url></url>
+		</sub_Menu>
+		<sub_Menu>
+			<name>경기 남부</name>
+			<url></url>
+
+		</sub_Menu>
+		<sub_Menu>
+			<name>충청도</name>
+			<url></url>
+		</sub_Menu>
+		<sub_Menu>
+			<name>강원도</name>
+			<url></url>
+		</sub_Menu>
+		<sub_Menu>
+			<name>경상도</name>
+			<url></url>
+		</sub_Menu>
+	</Menu>
+	<Menu>
+		<name>평점게시판</name>
+		<url></url>
+	</Menu>
+	<Menu>
+		<name>공지사항</name>
+		<url></url>
+	</Menu>
+</Menus>
