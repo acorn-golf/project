@@ -1,6 +1,8 @@
 package com.squirrel.controller.Notice;
 
 import java.io.IOException;
+import java.util.HashMap;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,26 +11,36 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.squirrel.dto.MemberDTO;
-
+import com.squirrel.service.MemberService;
 
 @WebServlet("/NoticeUIService")
 public class NoticeUIService extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
-    public NoticeUIService() {
-        super();
-      
-    }
 
+	public NoticeUIService() {
+		super();
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	 HttpSession session =request.getSession();
-	 MemberDTO dto  = (MemberDTO)session.getAttribute("login");
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("phone_id", dto.getPhone_id());
+		map.put("userpw", dto.getUserpw());
+		
+		dto = new MemberService().login(map);
+		
+
+
+		
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 	}
 
 }
