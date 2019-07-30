@@ -4,12 +4,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="NoticeMapper">
 
-    <select id="goodsRetrieve" resultType="GoodsDTO" 
-	parameterType="string">
-	select gCode,gCategory,gName,gContent,gPrice,gImage
-	from goods
-	where gCode= #{gCode}
-	</select>
+   <insert id="NoticeInsert" parameterType="NoticeDTO">
+		insert into
+		NOTICELIST(NOTE_CONTENT,NOTE_NO,NOTE_TITLE,USER_NO,NOTEDATE,NOTE_DIVISION,NOTE_FILE)
+		values('p'||P_ID_SQ.nextval,to_date(#{p_pdate},'yyyy/MM/dd/HH24:mi'),#{p_maxpeople},#{p_hole},#{p_caddyyn},#{p_babyn},#{p_cartyn},#{p_price},#{p_content},#{user_no},#{cc_id},#{p_vcount})
+	</insert>
 	
 
 </mapper>
