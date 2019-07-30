@@ -7,6 +7,29 @@
 
 	$(document).ready(function(){
 		
+		$("#phoneid").on("keyup",function(){
+			$.ajax({
+				type:"post",
+				url:"IdCheckServlet",
+				data: {phoneid : $("#phoneid").val()},
+				dataType:"text",
+				success : function(data,status,xhr){	
+					if(data == 0){
+						$("#check").text("사용 가능").css("color","green");
+					}else{
+						$("#check").text("사용 불가").css("color","red");
+					}
+					
+				},
+				error : function(xhr,status,error){
+					console.log(xhr);
+					console.log(status);
+					console.log(error);
+					
+				}										
+			});				
+		});		
+		
 		$("#repassword").on("keyup",function(){
 			if($("#password").val()==($("#repassword").val())){
 				$("#font").attr("color","green");
@@ -15,8 +38,7 @@
 				$("#font").attr("color","red");
 				$("#confirm").text("비밀번호 불일치");
 			};
-		});
-		
+		});		
 		
 	});
 		
@@ -34,7 +56,7 @@
 <table>
 <tr>
 <th>아이디:</th>
-<td><input class="inputmadd" type="text" id="phoneid" name="phoneid" placeholder="휴대전화 번호를 입력하세요 -생략"></td>
+<td><input class="inputmadd" type="text" id="phoneid" name="phoneid" placeholder="휴대전화 번호를 입력하세요 -생략"><span id="check"></span></td>
 </tr>
 <tr>
 <th>비밀번호:</th>
