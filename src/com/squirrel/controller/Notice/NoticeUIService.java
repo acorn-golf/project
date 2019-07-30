@@ -31,9 +31,19 @@ public class NoticeUIService extends HttpServlet {
 		map.put("phone_id", dto.getPhone_id());
 		map.put("userpw", dto.getUserpw());
 		
+		
 		dto = new MemberService().login(map);
 		
-
+		// 여기서 부터 작성
+		String note_content = request.getParameter("note_content");
+		int note_no = Integer.parseInt(request.getParameter("note_no"));
+		String note_title = request.getParameter("note_title");
+		int user_no =  Integer.parseInt(request.getParameter("user_no"));
+		String notedate = request.getParameter("notedate");
+		String note_division = request.getParameter("note_division");
+		String note_file = request.getParameter("note_file");
+		String note_vcount = request.getParameter("note_vcount");
+		
 
 		
 	}

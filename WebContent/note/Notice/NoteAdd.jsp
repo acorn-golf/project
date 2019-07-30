@@ -8,6 +8,7 @@
 </head>
 <body>
 저장이 완료 되었습니다 
+<jsp:include page="Note.jsp"></jsp:include>
 <form action="NoticeList.jsp">
 <button>목록으로</button>
 </form>
