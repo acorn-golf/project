@@ -34,4 +34,11 @@ public class MemberDAO {
 		return confirm;
 	}
 
+	public int idCheck(SqlSession session, String phone_id) {
+
+		int confirm = session.selectOne("MemberMapper.idCheck",phone_id);
+		
+		return confirm;
+	}
+
 }

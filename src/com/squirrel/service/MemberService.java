@@ -71,4 +71,15 @@ public class MemberService {
 		return confirm;
 	}
 
+	public int idCheck(String phone_id) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int confirm;
+		try {
+			confirm = dao.idCheck(session,phone_id);
+		}finally {
+			session.close();
+		}
+		return confirm;
+	}
+
 }
