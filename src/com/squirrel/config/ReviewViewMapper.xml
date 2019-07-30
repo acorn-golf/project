@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ReviewViewMapper"> <!-- 알아서 유일값 주면 된다 -->
+	<select id="reviewList" parameterType="string"
+		resultType="ReviewListDTO">
+		SELECT g.CC_NAME cc_name,c.score score,c.RV_TITLE rv_title,m.NICKNAME nickname,c.SCORE_DATE score_date
+		FROM CCSCORE c join GOLFCC g on g.CC_ID = c.CC_ID join MEMBERLIST m on c.USER_NO=m.USER_NO
+		where g.CC_ID=#{cc_id}
+		order by c.SCORE_DATE desc
+	</select>
+	
+	<select id="totalRecord" resultType="int">
+		select count(*)
+		from CCSCORE c join GOLFCC g on g.CC_ID = c.CC_ID join MEMBERLIST m on c.USER_NO=m.USER_NO
+	</select>
+</mapper>

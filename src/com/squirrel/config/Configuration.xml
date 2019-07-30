@@ -14,6 +14,8 @@
 		<typeAlias type="com.squirrel.dto.LocationDTO" alias="LocationDTO"/>
 		<typeAlias type="com.squirrel.dto.MemberDTO" alias="MemberDTO"/>
 		<typeAlias type="com.squirrel.dto.NoticeListDTO" alias="NoticeListDTO"/>
+		<typeAlias type="com.squirrel.dto.ReviewDTO" alias="ReviewDTO"/>
+		<typeAlias type="com.squirrel.dto.view.ReviewListDTO" alias="ReviewListDTO"/>
 	</typeAliases>
 
 	<environments default="development">
@@ -33,5 +35,7 @@
 		<mapper resource="com/squirrel/config/LocationMapper.xml" />
 		<mapper resource="com/squirrel/config/MemberMapper.xml" />
 		<mapper resource="com/squirrel/config/NoticeMapper.xml" />
+		<mapper resource="com/squirrel/config/ReviewMapper.xml" />
+		<mapper resource="com/squirrel/config/ReviewViewMapper.xml" />
 	</mappers>
 </configuration>
