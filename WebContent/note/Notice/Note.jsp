@@ -23,7 +23,7 @@
 							<td><h1>공지사항</h1></td>
 
 						</tr>
-					</table> <select name="공지">
+					</table> <select name="DIVISION">
 
 						<option value=1>공지</option>
 

@@ -3,6 +3,7 @@ package com.squirrel.controller.Notice;
 import java.io.IOException;
 import java.util.HashMap;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.squirrel.dto.MemberDTO;
+import com.squirrel.dto.NoticeListDTO;
 import com.squirrel.service.MemberService;
+import com.squirrel.service.NoticeService;
 
 @WebServlet("/NoticeUIService")
 public class NoticeUIService extends HttpServlet {
@@ -42,9 +45,21 @@ public class NoticeUIService extends HttpServlet {
 		String notedate = request.getParameter("notedate");
 		String note_division = request.getParameter("note_division");
 		String note_file = request.getParameter("note_file");
-		String note_vcount = request.getParameter("note_vcount");
+		int note_vcount = Integer.parseInt(request.getParameter("note_vcount"));
 		
-
+NoticeListDTO ndto = new NoticeListDTO(note_division, note_title, note_content);
+		
+NoticeService service = new NoticeService();
+		int confirm = service.NoticeInsert(ndto);
+		
+		if(confirm == 0) {
+			RequestDispatcher dis = request.getRequestDispatcher("note/Notice/Note.jsp");
+			dis.forward(request, response);
+		}else {
+		
+			HttpSession session1 = request.getSession();
+			session1.setAttribute("login", dto);			
+			response.sendRedirect("note/Notice/Note.jsp");}
 		
 	}
 
