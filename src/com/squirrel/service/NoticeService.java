@@ -11,7 +11,7 @@ import com.squirrel.dto.ProductDTO;
 
 public class NoticeService {
 
-	public void NoticeInsert(NoticeListDTO ndto) {
+	public int NoticeInsert(NoticeListDTO ndto) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		NoticeDAO dao = new NoticeDAO();
 		try {
@@ -20,6 +20,7 @@ public class NoticeService {
 		}finally {
 			session.close();
 		}
+		return 0;
 	
 		
 	

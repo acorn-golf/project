@@ -25,11 +25,11 @@
 						</tr>
 					</table> <select name="DIVISION">
 
-						<option value=1>공지</option>
+						<option value="공지">공지</option>
 
-						<option value=2>중요</option>
+						<option value="중요">중요</option>
 
-						<option value=3>이벤트</option>
+						<option value="이벤트">이벤트</option>
 
 				</select>
 

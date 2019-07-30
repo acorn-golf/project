@@ -39,15 +39,17 @@ public class NoticeUIService extends HttpServlet {
 		
 		// 여기서 부터 작성
 		String note_content = request.getParameter("note_content");
-		int note_no = Integer.parseInt(request.getParameter("note_no"));
+	
 		String note_title = request.getParameter("note_title");
-		int user_no =  Integer.parseInt(request.getParameter("user_no"));
+	
 		String notedate = request.getParameter("notedate");
 		String note_division = request.getParameter("note_division");
-		String note_file = request.getParameter("note_file");
-		int note_vcount = Integer.parseInt(request.getParameter("note_vcount"));
+		String note_file = "";//request.getParameter("note_file");
+	
 		
 NoticeListDTO ndto = new NoticeListDTO(note_division, note_title, note_content);
+
+ndto.setUser_no(dto.getUser_no());
 		
 NoticeService service = new NoticeService();
 		int confirm = service.NoticeInsert(ndto);
