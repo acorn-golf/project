@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone='no'?>
+<Menus>
+	<Menu> <!-- 거래내역 -->
+		<name>거래내역</name>
+		<url></url>
+	</Menu>
+
+	<Menu> <!-- 전체상품 -->
+		<name>전체상품</name>
+		<url></url>
+	</Menu>
+
+	<Menu> <!-- 평점게시판 -->
+		<name>평점게시판</name>
+		<url></url>
+	</Menu>
+
+	<Menu> <!-- 공지사항 -->
+		<name>공지사항</name>
+		<url></url>
+
+		<sub_Menu>
+			<name>전체보기</name>
+			<url></url>
+		</sub_Menu>
+
+		<sub_Menu>
+			<name>공지사항 등록</name>
+			<url></url>
+		</sub_Menu>
+
+		<sub_Menu>
+			<name>공지사항 수정</name>
+			<url></url>
+		</sub_Menu>
+	</Menu>
+
+	<Menu> <!-- 사용자 관리 -->
+		<name>사용자 관리</name>
+		<url></url>
+	</Menu>
+</Menus>

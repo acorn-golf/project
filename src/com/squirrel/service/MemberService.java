@@ -44,4 +44,42 @@ public class MemberService {
 		return dto;
 	}
 
+	public MemberDTO myPage(String nickname) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		MemberDTO dto = null;
+		try {
+			dto = dao.myPage(session,nickname);
+		}finally {
+			session.close();
+		}
+		return dto;
+	}
+
+	public int myPageUpdate(MemberDTO dto) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int confirm = 0;
+		try {
+			confirm = dao.myPageUpdate(session,dto);
+			if(confirm != 0) {
+				session.commit();
+			}else {	
+				session.rollback();				
+			}
+		}finally {
+			session.close();
+		}		
+		return confirm;
+	}
+
+	public int idCheck(String phone_id) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int confirm;
+		try {
+			confirm = dao.idCheck(session,phone_id);
+		}finally {
+			session.close();
+		}
+		return confirm;
+	}
+
 }

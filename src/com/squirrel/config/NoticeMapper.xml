@@ -10,6 +10,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{note_content},NOTE_NO_SQ.nextval,#{note_title},#{user_no},#{note_division},
 		null,sysdate,0)
 	</insert>
-	
-
 </mapper>

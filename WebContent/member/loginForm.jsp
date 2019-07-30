@@ -9,8 +9,8 @@
 <title>로그인</title>
 </head>
 <body>
-<%@ include file="../show/main.jsp" %>
+<jsp:include page="../show/main.jsp"/>
 <hr>
-<%@ include file="sub/login.jsp" %>
+<jsp:include page="sub/login.jsp"/>
 </body>
 </html>

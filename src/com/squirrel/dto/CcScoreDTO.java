@@ -6,33 +6,35 @@ public class CcScoreDTO {
 //	cc_id	char(6 byte)
 //	score_date	date
 //	user_no	number(5,0)
-//	rv_no	varchar2(5 byte)
+//	RV_TITLE VARCHAR2(30 CHAR)
+//	RV_CONTENT VARCHAR2(400 CHAR)
+//	RV_VCOUNT NUMBER(7,0)
 	
 	private int score_no;
 	private int score;
 	private String cc_id;
 	private String score_date;
 	private int user_no;
-	private String rv_no;
+	private String rv_title;
+	private String rv_content;
+	private int rv_vcount;
 	
 	public CcScoreDTO() {
-		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
-	public CcScoreDTO(int score_no, int score, String cc_id, String score_date, int user_no, String rv_no) {
+	public CcScoreDTO(int score_no, int score, String cc_id, String score_date, int user_no, String rv_title,
+			String rv_content, int rv_vcount) {
 		super();
 		this.score_no = score_no;
 		this.score = score;
 		this.cc_id = cc_id;
 		this.score_date = score_date;
 		this.user_no = user_no;
-		this.rv_no = rv_no;
+		this.rv_title = rv_title;
+		this.rv_content = rv_content;
+		this.rv_vcount = rv_vcount;
 	}
-
-
 
 	public int getScore_no() {
 		return score_no;
@@ -74,14 +76,29 @@ public class CcScoreDTO {
 		this.user_no = user_no;
 	}
 
-	public String getRv_no() {
-		return rv_no;
+	public String getRv_title() {
+		return rv_title;
 	}
 
-	public void setRv_no(String rv_no) {
-		this.rv_no = rv_no;
+	public void setRv_title(String rv_title) {
+		this.rv_title = rv_title;
 	}
-	
+
+	public String getRv_content() {
+		return rv_content;
+	}
+
+	public void setRv_content(String rv_content) {
+		this.rv_content = rv_content;
+	}
+
+	public int getRv_vcount() {
+		return rv_vcount;
+	}
+
+	public void setRv_vcount(int rv_vcount) {
+		this.rv_vcount = rv_vcount;
+	}
 	
 	
 }
