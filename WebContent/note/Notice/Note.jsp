@@ -14,20 +14,6 @@
 <script type="text/javascript">
 
 	
-	$(document).ready(function(){
-	
-		$("#List").on("click",function(){
-			
-			this.action="NoticeListServlet";
-			
-			
-		});
-		
-		
-		
-	});
-	
-
 
 
 </script>
@@ -76,7 +62,7 @@
 					<table>
 						<tr>
 
-							<td><button id="List" >목록</button></td>
+							<td><button href="NoticeListServlet">목록</button></td>
 
 							<td><input type="submit" value="저장"></td>
 
