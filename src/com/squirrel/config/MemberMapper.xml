@@ -27,8 +27,13 @@
 		set userpw = #{userpw}, email = #{email}
 		where phone_id = #{phone_id}
 	</update>
-	<select id="idCheck" parameterType="String" resultType="int">
+	<select id="idCheck" parameterType="HashMap" resultType="int">
 		select count(*) from memberList 
+		<if test="phone_id != null">
 		where phone_id = #{phone_id}
+		</if>
+		<if test="nickname != null">
+		where nickname = #{nickname}
+		</if>
 	</select>
 </mapper>

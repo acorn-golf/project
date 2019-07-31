@@ -71,11 +71,11 @@ public class MemberService {
 		return confirm;
 	}
 
-	public int idCheck(String phone_id) {
+	public int idCheck(HashMap<String, String> map) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int confirm;
 		try {
-			confirm = dao.idCheck(session,phone_id);
+			confirm = dao.idCheck(session,map);
 		}finally {
 			session.close();
 		}

@@ -3,6 +3,7 @@ package com.squirrel.controller.Member;
 import java.awt.print.Printable;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,11 +20,13 @@ public class IdCheckServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String phone_id = request.getParameter("phoneid");
+		String nickname = request.getParameter("nickname");
 		
-		System.out.println(phone_id);
 		MemberService service = new MemberService();
-		int confirm = service.idCheck(phone_id);	
-		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("phone_id", phone_id);
+		map.put("nickname", nickname);
+		int confirm = service.idCheck(map);	
 		response.getWriter().print(confirm);;
 		
 	}
