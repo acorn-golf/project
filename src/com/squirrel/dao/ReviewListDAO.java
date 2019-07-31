@@ -1,5 +1,6 @@
 package com.squirrel.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
@@ -15,14 +16,14 @@ public class ReviewListDAO {
 		return session.selectOne("ReviewViewMapper.totalRecord");
 	}
 	
-	public PageDTO<ReviewListDTO> reviewList(SqlSession session, String cc_id, int curPage) {
+	public PageDTO<ReviewListDTO> reviewList(SqlSession session, HashMap<String, String> map, int curPage) {
 		PageDTO<ReviewListDTO> pDTO = new PageDTO<ReviewListDTO>();
 		pDTO.setPerPage(5);
 		int perPage = pDTO.getPerPage();
 		int offset = (curPage-1)*perPage;
 		int totalRecord = totalRecord(session);
-		List<ReviewListDTO> list = session.selectList("ReviewViewMapper.reviewList", cc_id,new RowBounds(offset, perPage));
-		
+		List<ReviewListDTO> list = session.selectList("ReviewViewMapper.reviewList", map,new RowBounds(offset, perPage));
+		System.out.println(list.size());
 		pDTO.setList(list);
 		pDTO.setCurPage(curPage);
 		pDTO.setTotalRecord(totalRecord);
@@ -42,6 +43,21 @@ public class ReviewListDAO {
 	
 	private void rv_vcount(SqlSession session, int score_no) {
 		session.update("ReviewMapper.rv_vcount", score_no);
+	}
+
+	public ReviewListDTO selectNickname(SqlSession session, int score_no) {
+		ReviewListDTO rdto = session.selectOne("ReviewViewMapper.selectNick", score_no);
+		return rdto;
+	}
+
+	public void updateReview(SqlSession session, CcScoreDTO cdto) {
+		session.update("ReviewMapper.updateReview", cdto);
+		
+	}
+
+	public void deleteReview(SqlSession session, int score_no) {
+		session.delete("ReviewMapper.deleteReview", score_no);
+		
 	}
 	
 }

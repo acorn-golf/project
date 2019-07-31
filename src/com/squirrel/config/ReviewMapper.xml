@@ -19,4 +19,15 @@
 		set rv_vcount = rv_vcount+1
 		where score_no=#{score_no}
 	</update>
+	
+	<update id="updateReview" parameterType="CcScoreDTO">
+		update CCSCORE
+		set score=#{score},rv_title=#{rv_title},rv_content=#{rv_content}
+		where score_no=#{score_no}
+	</update>
+	
+	<delete id="deleteReview">
+		delete from CCSCORE
+		where score_no=#{score_no}  
+	</delete>
 </mapper>

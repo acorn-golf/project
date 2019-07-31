@@ -22,8 +22,8 @@ public class ReviewListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 세션처리 및 골프장자세히보기에서 파라미터를 받아야 한다
-		// 골프장자세히보기에서 해당 골프장 cc_id를 받아 cc_name을 적는다
-		// score는 CCSCORE에서 찾아서 넣어야 한다
+		// 골프장자세히보기에서 해당 골프장 cc_id를 받는다
+		request.setCharacterEncoding("utf-8");
 		
 		String curPage = request.getParameter("curPage");
 		if(curPage==null) {
@@ -32,8 +32,19 @@ public class ReviewListServlet extends HttpServlet {
 		
 		String cc_id = "jj297 "; // 골프장 자세히 보기에서 받았다고 가정
 		
+		String searchName = request.getParameter("searchName");
+		String searchValue = request.getParameter("searchValue");
+		String orderby = request.getParameter("orderby");
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("cc_id", cc_id);
+		map.put("searchName", searchName);
+		map.put("searchValue", searchValue);
+		map.put("orderby", orderby);
+		
+		System.out.println(map.get("cc_id")+"\t"+map.get("searchName")+"\t"+map.get("searchValue")+"\t"+map.get("orderby"));
+		
 		ReviewListService service = new ReviewListService();
-		PageDTO<ReviewListDTO> pDTO = service.reviewList(cc_id,Integer.parseInt(curPage));
+		PageDTO<ReviewListDTO> pDTO = service.reviewList(map,Integer.parseInt(curPage));
 		List<ReviewListDTO> list = pDTO.getList();
 		
 		int perPage = pDTO.getPerPage();
