@@ -15,6 +15,7 @@
 		<typeAlias type="com.squirrel.dto.MemberDTO" alias="MemberDTO"/>
 		<typeAlias type="com.squirrel.dto.NoticeListDTO" alias="NoticeListDTO"/>
 		<typeAlias type="com.squirrel.dto.ReviewDTO" alias="ReviewDTO"/>
+		<typeAlias type="com.squirrel.dto.CcScoreDTO" alias="CcScoreDTO"/>
 		<typeAlias type="com.squirrel.dto.view.ReviewListDTO" alias="ReviewListDTO"/>
 	</typeAliases>
 

@@ -5,7 +5,7 @@
 <mapper namespace="ReviewViewMapper"> <!-- 알아서 유일값 주면 된다 -->
 	<select id="reviewList" parameterType="string"
 		resultType="ReviewListDTO">
-		SELECT g.CC_NAME cc_name,c.score score,c.RV_TITLE rv_title,m.NICKNAME nickname,c.SCORE_DATE score_date
+		SELECT g.CC_NAME cc_name,c.score score,c.RV_TITLE rv_title,m.NICKNAME nickname,c.SCORE_DATE score_date,c.SCORE_NO score_no,c.USER_NO user_no
 		FROM CCSCORE c join GOLFCC g on g.CC_ID = c.CC_ID join MEMBERLIST m on c.USER_NO=m.USER_NO
 		where g.CC_ID=#{cc_id}
 		order by c.SCORE_DATE desc

@@ -35,4 +35,17 @@ public class ReviewListService {
 		}
 	}
 
+	public CcScoreDTO selectDetail(int score_no) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		CcScoreDTO dto = null;
+		ReviewListDAO dao = new ReviewListDAO();
+		try {
+			dto = dao.selectDetail(session,score_no);
+			session.commit();
+		}finally {
+			session.close();
+		}
+		return dto;
+	}
+
 }

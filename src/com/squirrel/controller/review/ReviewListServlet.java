@@ -9,7 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.squirrel.dto.MemberDTO;
 import com.squirrel.dto.PageDTO;
 import com.squirrel.dto.view.ReviewListDTO;
 import com.squirrel.service.ReviewListService;
@@ -22,6 +24,7 @@ public class ReviewListServlet extends HttpServlet {
 		// 세션처리 및 골프장자세히보기에서 파라미터를 받아야 한다
 		// 골프장자세히보기에서 해당 골프장 cc_id를 받아 cc_name을 적는다
 		// score는 CCSCORE에서 찾아서 넣어야 한다
+		
 		String curPage = request.getParameter("curPage");
 		if(curPage==null) {
 			curPage="1";
@@ -32,6 +35,7 @@ public class ReviewListServlet extends HttpServlet {
 		ReviewListService service = new ReviewListService();
 		PageDTO<ReviewListDTO> pDTO = service.reviewList(cc_id,Integer.parseInt(curPage));
 		List<ReviewListDTO> list = pDTO.getList();
+		
 		int perPage = pDTO.getPerPage();
 		int totalRecord = pDTO.getTotalRecord();
 		int totalPage = totalRecord/perPage;

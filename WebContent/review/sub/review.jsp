@@ -22,7 +22,7 @@
 		<tr>
 			<td>${dto.cc_name}</td>
 			<td>${dto.score}</td>
-			<td><a href="#">${dto.rv_title}</a></td>
+			<td><a href="ReviewDetailServlet?score_no=${dto.score_no}&user_no=${dto.user_no}&nickname=${dto.nickname}">${dto.rv_title}</a></td>
 			<td>${dto.nickname}</td>
 			<td>${dto.score_date}</td>
 		</tr>
@@ -30,17 +30,33 @@
 	</c:forEach>
 	
 </table>
+<c:choose>
+	<c:when test="${curPage eq 1}">
+		◀
+	</c:when>
+	<c:when test="${curPage != 1}">
+		<a href="ReviewListServlet?curPage=1">◀</a>
+	</c:when>
+</c:choose>&nbsp;&nbsp;
 <c:forEach var="i" begin="1" end="${totalPage}" step="1">
 	<c:choose>
 		<c:when test="${curPage eq i}">
 			${i}
 		</c:when>
 		<c:when test="${curPage != i}">
-			<a href="ReviewListServlet?curPage=${i}">${i}</a>
+			<a href="ReviewListServlet?curPage=${i}">${i}</a>&nbsp;
 		</c:when>
-	</c:choose>
-	
-</c:forEach>
+	</c:choose>	
+</c:forEach>&nbsp;
+<c:choose>
+	<c:when test="${curPage eq totalPage}">
+		▶
+	</c:when>
+	<c:when test="${curPage != totalPage}">
+		<a href="ReviewListServlet?curPage=${totalPage}">▶</a>
+	</c:when>
+</c:choose>
+
 <br>
 <input type="submit" value="글쓰기">
 </form>
