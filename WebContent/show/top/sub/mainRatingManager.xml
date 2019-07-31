@@ -7,7 +7,7 @@
 
 		<sub_Menu>
 			<name>상품 등록</name>
-			<url></url>
+			<url>/teamSquirrel/ProductServlet</url>
 		</sub_Menu>
 
 		<sub_Menu>
@@ -58,7 +58,17 @@
 
 	<Menu> <!-- 평점게시판 -->
 		<name>평점게시판</name>
-		<url></url>
+		<url>/teamSquirrel/ReviewListServlet</url>
+
+		<sub_Menu>
+			<name>전체 보기</name>
+			<url>/teamSquirrel/ReviewListServlet</url>
+		</sub_Menu>
+
+		<sub_Menu>
+			<name>평점 남기기</name>
+			<url>/teamSquirrel/InsertReviewServlet</url>
+		</sub_Menu>
 	</Menu>
 
 	<Menu> <!-- 찜목록 -->
