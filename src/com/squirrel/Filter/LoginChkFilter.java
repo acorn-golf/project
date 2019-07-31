@@ -66,8 +66,8 @@ public class LoginChkFilter implements Filter {
 				System.out.println("걸림"+hreq.getServletPath());
 				session.setAttribute("amesg", "로그인이 필요한 작업입니다.");
 				hres.sendRedirect("/teamSquirrel/LoginUIServlet");
-			}
-
+			}else
+				chain.doFilter(request, response);
 		}
 	}
 

@@ -19,6 +19,8 @@
 			<url>/teamSquirrel/ReviewListServlet</url>
 		</sub_Menu>
 
+
+
 		<sub_Menu>
 			<name>평점남기기</name>
 			<url>/teamSquirrel/InsertReviewServlet</url>
@@ -36,7 +38,7 @@
 
 		<sub_Menu>
 			<name>공지사항 등록</name>
-			<url>/teamSquirrel/NoticeUIServlet</url>
+			<url>/teamSquirrel/note/Notice/Note.jsp</url>
 		</sub_Menu>
 
 		<sub_Menu>
@@ -48,5 +50,11 @@
 	<Menu> <!-- 사용자 관리 -->
 		<name>사용자 관리</name>
 		<url></url>
+
+		<sub_Menu>
+			<name>로그아웃</name>
+			<url></url>
+		</sub_Menu>
+
 	</Menu>
 </Menus>
