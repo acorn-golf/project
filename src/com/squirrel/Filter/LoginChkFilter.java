@@ -2,8 +2,10 @@
 package com.squirrel.Filter;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -21,10 +23,10 @@ import com.squirrel.dto.MemberDTO;
 /**
  * Servlet Filter implementation class LoginChkFilter
  */
-@WebFilter("/LoginChkFilter")
+
 public class LoginChkFilter implements Filter {
 
-	private List<String> anonymousUrl;
+	private List<String> anonymousUrl = new ArrayList<String>();
 
 	/**
 	 * Default constructor.
@@ -53,6 +55,7 @@ public class LoginChkFilter implements Filter {
 		HttpServletResponse hres = (HttpServletResponse) response;
 
 		HttpSession session = hreq.getSession();
+		
 
 		if (anonymousUrl.contains(hreq.getServletPath()))
 			chain.doFilter(request, response);
@@ -60,10 +63,11 @@ public class LoginChkFilter implements Filter {
 			MemberDTO dto = (MemberDTO) (session.getAttribute("login"));
 
 			if (dto == null) {
+				System.out.println("걸림"+hreq.getServletPath());
 				session.setAttribute("amesg", "로그인이 필요한 작업입니다.");
-				hres.sendRedirect("member/login.jsp");
-			}
-
+				hres.sendRedirect("/teamSquirrel/LoginUIServlet");
+			}else
+				chain.doFilter(request, response);
 		}
 	}
 
@@ -73,8 +77,17 @@ public class LoginChkFilter implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException {
 		// TODO Auto-generated method stub
 		String tmp = fConfig.getInitParameter("anonymousUrl");
-		if (tmp != null)
-			anonymousUrl = Arrays.asList(tmp.split(","));
+		StringTokenizer tokenizer = new StringTokenizer(tmp,",\n");
+		
+		 while(tokenizer.hasMoreElements())
+		 {
+			 anonymousUrl.add(tokenizer.nextToken());
+		 }
+		 
+		 for (String string : anonymousUrl) {
+			System.out.println(string);
+		}
+				 
 	}
 
 }

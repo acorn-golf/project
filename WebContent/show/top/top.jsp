@@ -11,8 +11,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>golf-hi</title>
 
-<link rel="stylesheet" href="assets/css/style.min.css">
-<link rel="stylesheet" href="assets/css/modules.css">
+<link rel="stylesheet" href="/teamSquirrel/show/top/assets/css/style.min.css">
+<link rel="stylesheet" href="/teamSquirrel/show/top/assets/css/modules.css">
 
 <!-- Canonical URL usage -->
 <link rel="canonical" href="https://aperitif.io/">
@@ -67,7 +67,11 @@ START MODULE AREA 1: header1
 		<div data-layout="_r">
 			<div data-layout="al16 de10" class="MOD_HEADER1_Title">
 				<h1 class="MOD_HEADER1_TextLogo">GolfHi</h1>
-				<p class="MOD_HEADER1_Slogan">너무 졸리다</p>
+				<p class="MOD_HEADER1_Slogan"> 
+				<c:if test="${login != null}">
+				안녕하세요 ${login.nickname} 님
+				</c:if>
+				</p>
 			</div>
 		</div>
 	</header>
