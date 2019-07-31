@@ -8,13 +8,13 @@
 </c:if>
 <c:if test="${login.rating=='U'}">
 안녕하세요 ${login.nickname} 님<br>
-<a href="MyPageServlet">My Page</a>
-<a href="LoginOutServlet">로그아웃</a>
+<a href="/teamSquirrel/MyPageServlet">My Page</a>
+<a href="LogoutServlet">로그아웃</a>
 </c:if>
 <c:if test="${login.rating=='M'}">
 안녕하세요 ${login.nickname} 님<br>
-<a href="MyPageServlet">My Page</a>
-<a href="LoginOutServlet">로그 아웃</a>
+<a href="/teamSquirrel/MyPageServlet">My Page</a>
+<a href="LogoutServlet">로그 아웃</a>
 <a href="ProductServlet">상품 등록</a>
 <a href="note/Notice/Note.jsp">게시판등록</a>
 </c:if>
@@ -26,4 +26,5 @@
 <a href="">상품 등록</a>
 <a href="">상품 보기</a>
 <a href="note/Notice/Note.jsp">게시판등록</a>
+
 </c:if>

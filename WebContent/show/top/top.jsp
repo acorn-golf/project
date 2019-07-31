@@ -1,5 +1,9 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml"%>
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -87,26 +91,45 @@ START MODULE AREA 2: Menu 1
         <rect y="12" width="30" height="6" />
       </svg>
 				<ul class="AP_Menu_List">
-				<!-- 반복 시작    -->
-				<!-- 로그인한 유저에 따라 보여줄 정보를 다르게 표기. 판단은    -->
-					<li><a href="#" data-theme="_bgp">Menu Item</a></li>
-					<li><a href="#" data-theme="_bgp">Menu Item</a>
-						<ul>
-							<li><a href="#" data-theme="_bgpd">Sub-Menu Item</a></li>
-							<li><a href="#" data-theme="_bgpd">Sub-Menu Item long
-									title</a></li>
-							<li><a href="#" data-theme="_bgpd">Sub-Menu Item</a></li>
-						</ul></li>
-					<li><a href="#" data-theme="_bgp">Menu Item</a></li>
-					<li><a href="#" data-theme="_bgp">Menu Item</a></li>
-					<li><a href="#" data-theme="_bgp">Menu Item</a></li>
-					<li><a href="#" data-theme="_bgp">Menu Item</a>
-						<ul>
-							<li><a href="#" data-theme="_bgpd">Sub-Menu Item</a></li>
-							<li><a href="#" data-theme="_bgpd">Sub-Menu Item long
-									title</a></li>
-							<li><a href="#" data-theme="_bgpd">Sub-Menu Item</a></li>
-						</ul></li>
+
+					<!-- 반복 준비    -->
+					<c:choose>
+						<c:when test="${empty login}">
+							<c:import var="menuInfo" url="/show/top/sub/mainNot_login.xml"
+								charEncoding="UTF-8" />
+						</c:when>
+						<c:when test="${login.rating eq'U'}">
+							<c:import var="menuInfo" url="/show/top/sub/mainRatingUser.xml"
+								charEncoding="UTF-8" />
+						</c:when>
+						<c:when test="${login.rating eq'M'}">
+							<c:import var="menuInfo"
+								url="/show/top/sub/mainRatingManager.xml" charEncoding="UTF-8" />
+						</c:when>
+						<c:when test="${login.rating eq'A'}">
+							<c:import var="menuInfo" url="/show/top/sub/mainRatingAdmin.xml"
+								charEncoding="UTF-8" />
+						</c:when>
+					</c:choose>
+					<!-- 로그인한 유저에 따라 보여줄 정보를 다르게 표기. 판단은   여기서 -->
+
+
+					<x:parse xml="${menuInfo}" var="output" />
+
+					<x:forEach select="$output//Menu" var='Menu'>
+						<li><a href='<x:out select="url"/>' data-theme="_bgp"><x:out
+									select="name" /></a> <x:set var="test"
+								select="string($Menu/sub_Menu)" /> <c:if
+								test="${not empty test}">
+								<ul>
+
+									<x:forEach select="$Menu/sub_Menu" var='sub'>
+										<li><a href='<x:out select="url"/>' data-theme="_bgpd"><x:out
+													select="name" /> </a></li>
+									</x:forEach>
+								</ul>
+							</c:if></li>
+					</x:forEach>
 				</ul>
 			</nav>
 		</div>

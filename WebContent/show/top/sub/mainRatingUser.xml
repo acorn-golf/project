@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Menus>
+
+	<Menu> <!-- 구매내역 -->
+		<name>구매내역</name>
+		<url></url>
+		
+		<sub_Menu>
+			<name>예약정보</name>
+			<url></url>
+		</sub_Menu>
+		
+		<sub_Menu>
+			<name>완료된 구매내역</name>
+			<url></url>
+		</sub_Menu>
+	</Menu>
+	
+	<Menu> <!-- 전체상품 -->
+		<name>전체상품</name>
+		<url></url>
+		
+		<sub_Menu>
+			<name>경기 북부</name>
+			<url></url>
+		</sub_Menu>
+		
+		<sub_Menu>
+			<name>경기 남부</name>
+			<url></url>
+		</sub_Menu>
+		
+		<sub_Menu>
+			<name>충청도</name>
+			<url></url>
+		</sub_Menu>
+		
+		<sub_Menu>
+			<name>강원도</name>
+			<url></url>
+		</sub_Menu>
+		
+		<sub_Menu>
+			<name>경상도</name>
+			<url></url>
+		</sub_Menu>
+	</Menu>
+	
+	<Menu> <!-- 관심상품 -->
+		<name>관심상품</name>
+		<url></url>
+	</Menu>
+	
+	<Menu> <!-- 평점게시판 -->
+		<name>평점게시판</name>
+		<url></url>
+		
+		<sub_Menu>
+			<name>전체 보기</name>
+			<url></url>
+		</sub_Menu>
+		
+		<sub_Menu>
+			<name>최신 리뷰 보기</name>
+			<url></url>
+		</sub_Menu>
+		
+		<sub_Menu>
+			<name>리뷰 평점 남기기</name>
+			<url></url>
+		</sub_Menu>
+		
+		<sub_Menu>
+			<name>관심골프장</name>
+			<url></url>
+		</sub_Menu>
+	</Menu>
+	
+	<Menu> <!-- 찜목록 -->
+		<name>찜목록</name>
+		<url></url>
+	</Menu>
+	
+	<Menu> <!-- 공지사항 -->
+		<name>공지사항</name>
+		<url></url>
+		
+		<sub_Menu>
+			<name>전체보기</name>
+			<url></url>
+		</sub_Menu>
+		
+		<sub_Menu>
+			<name>공지사항</name>
+			<url></url>
+		</sub_Menu>
+		
+		<sub_Menu>
+			<name>이벤트</name>
+			<url></url>
+		</sub_Menu>
+	</Menu>
+	
+</Menus>

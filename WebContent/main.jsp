@@ -9,7 +9,7 @@
 <title>Squirrel Team Project</title>
 </head>
 <body>
-<%@ include file="show/main.jsp" %>
+<jsp:include page="show/main.jsp"/>
 <hr>
 </body>
 </html>

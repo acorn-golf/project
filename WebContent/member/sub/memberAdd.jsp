@@ -7,13 +7,38 @@
 
 	$(document).ready(function(){
 		
+		$("#phoneid").on("keyup",function(){
+			$.ajax({
+				type:"post",
+				url:"IdCheckServlet",
+				data: {phoneid : $("#phoneid").val()},
+				dataType:"text",
+				success : function(data,status,xhr){	
+					if(data == 0){
+						$("#check").text("사용 가능").css("color","green");
+					}else{
+						$("#check").text("사용 불가").css("color","red");
+					}
+					
+				},
+				error : function(xhr,status,error){
+					console.log(xhr);
+					console.log(status);
+					console.log(error);
+					
+				}										
+			});				
+		});		
+		
 		$("#repassword").on("keyup",function(){
 			if($("#password").val()==($("#repassword").val())){
+				$("#font").attr("color","green");
 				$("#confirm").text("비밀번호 일치");
 			}else{
-			$("#confirm").text("비밀번호가 일치하지 않습니다.");
+				$("#font").attr("color","red");
+				$("#confirm").text("비밀번호 불일치");
 			};
-		});
+		});		
 		
 	});
 		
@@ -23,7 +48,7 @@
 <style>
 
 </style>
-<form action="MemberAddServlet" method="get">
+<form action="MemberAddServlet" method="post">
 <input type="hidden" id="rating" name="rating">
 <input type="hidden" id="rstartdate" name="rstartdate">
 <input type="hidden" id="renddate" name="renddate">
@@ -31,7 +56,7 @@
 <table>
 <tr>
 <th>아이디:</th>
-<td><input class="inputmadd" type="text" id="phoneid" name="phoneid" placeholder="휴대전화 번호를 입력하세요 -생략"></td>
+<td><input class="inputmadd" type="text" id="phoneid" name="phoneid" placeholder="휴대전화 번호를 입력하세요 -생략"><span id="check"></span></td>
 </tr>
 <tr>
 <th>비밀번호:</th>
@@ -39,7 +64,7 @@
 </tr>
 <tr>
 <th>비밀번호확인:</th>
-<td><input class="inputmadd" type="password" id="repassword" name="repassword"><span id="confirm"></span></td>
+<td><input class="inputmadd" type="password" id="repassword" name="repassword"><font id="font"><span id="confirm"></span></font></td>
 </tr>
 <tr>
 <th>이름:</th>
