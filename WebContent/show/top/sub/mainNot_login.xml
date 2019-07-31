@@ -3,11 +3,11 @@
 <Menus>
 	<Menu>
 		<name>회원가입</name>
-		<url></url>
+		<url>/teamSquirrel/MemberUIServlet</url>
 	</Menu>
 	<Menu>
 		<name>로그인</name>
-		<url></url>
+		<url>/teamSquirrel/LoginUIServlet</url>
 
 	</Menu>
 	<Menu>
@@ -37,7 +37,13 @@
 	</Menu>
 	<Menu>
 		<name>평점게시판</name>
-		<url></url>
+		<url>/teamSquirrel/ReviewListServlet</url>
+
+		<sub_Menu>
+			<name>전체 보기</name>
+			<url>/teamSquirrel/ReviewListServlet</url>
+		</sub_Menu>
+
 	</Menu>
 	<Menu>
 		<name>공지사항</name>
