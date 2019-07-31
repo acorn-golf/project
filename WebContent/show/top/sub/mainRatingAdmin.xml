@@ -53,7 +53,7 @@
 
 		<sub_Menu>
 			<name>로그아웃</name>
-			<url></url>
+			<url>/teamSquirrel/LogoutServlet</url>
 		</sub_Menu>
 
 	</Menu>
