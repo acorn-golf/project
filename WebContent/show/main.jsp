@@ -13,8 +13,8 @@
 </c:if>
 <c:if test="${login.rating=='u'}">
 안녕하세요 ${login.nickname} 님<br>
-<a href="/teamsquirrel/mypageservlet">my page</a>
-<a href="logoutservlet">로그아웃</a>
+<a href="/teamSquirrel/MyPageServlet">My Page</a>
+<a href="/teamSquirrel/LogoutServlet">로그아웃</a>
 </c:if>
 <c:if test="${login.rating=='m'}">
 안녕하세요 ${login.nickname} 님<br>

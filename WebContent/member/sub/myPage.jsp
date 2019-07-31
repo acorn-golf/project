@@ -87,7 +87,7 @@
 </select></td>
 </tr>
 <tr>
-<td colspan="2" style="height:30px"></td>
+<th colspan="2" style="height:30px"><font id="star">*</font> 은 수정가능</th>
 </tr>
 <tr>
 <td colspan="2" style="text-align: center"><input type="submit" value="수정 하기"><input type="reset" value="다시 작성"></td>
