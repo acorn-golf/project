@@ -9,15 +9,24 @@
 		$("#insertReview").on("click",function(){
 			$("form").attr({"action":"InsertReviewFormServlet","method":"post"});
 		});
+		/* $(".radio").on("click",function(){
+			$(".radio").each(function(idx,ele){
+				//location.href="ReviewListServlet?orderby="+$(ele).val();
+				var ${orderby} = String.valueOf(${orderby});
+				if($(ele).val()==${orderby}){
+					console.log("hi");
+				}
+			});
+		}); */
 	});
 </script>
 
 <form name="ReviewListForm" action="ReviewListServlet" method="post">
 <input type="hidden" name="cc_id" value="${cc_id}"> <!-- 후기글쓰기 할 때 갖고갈 파라미터 -->
 
-<input type="radio" name="orderby" value="score_date">최신순&nbsp;&nbsp;
-<input type="radio" name="orderby" value="score">평점순<br>
-<table border="1"><!-- 검색기능 추가해야됨 -->
+<input type="radio" name="orderby" value="score_date" class="radio">최신순&nbsp;&nbsp;
+<input type="radio" name="orderby" value="score" class="radio">평점순<br>
+<table border="1">
 	<tr>
 		<td colspan="5">
 			<select name="searchName">
@@ -48,27 +57,30 @@
 
 <tr>
 <td align="center" colspan="5">
+<c:set var="curPage" value="${curPage+1}"/> <%-- 1 --%>
+<c:set var="maxBlock" value="${maxBlock}"/> 
+<c:set var="minBlock" value="${minBlock+1}"/> 
 <c:choose>
 	<c:when test="${curPage eq 1}">
-		◀
 	</c:when>
 	<c:when test="${curPage != 1}">
-		<a href="ReviewListServlet?curPage=1">◀</a>
+		<a href="ReviewListServlet?curPage=1">◀</a>&nbsp;&nbsp;
 	</c:when>
 </c:choose>&nbsp;&nbsp;
-<c:forEach var="i" begin="1" end="${totalPage}" step="1">
+
+<c:forEach var="i" begin="${minBlock}" end="${maxBlock}" step="1">
 	<c:choose>
 		<c:when test="${curPage eq i}">
-			${i}
+			<span style="color:red">${i}</span>
 		</c:when>
 		<c:when test="${curPage != i}">
 			<a href="ReviewListServlet?curPage=${i}">${i}</a>&nbsp;
 		</c:when>
 	</c:choose>	
 </c:forEach>&nbsp;
+
 <c:choose>
 	<c:when test="${curPage eq totalPage}">
-		▶
 	</c:when>
 	<c:when test="${curPage != totalPage}">
 		<a href="ReviewListServlet?curPage=${totalPage}">▶</a>

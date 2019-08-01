@@ -10,7 +10,8 @@ public class ReviewListDTO {
 	private String score_date;
 	private int score_no;
 	private int user_no;
-	
+
+
 	public ReviewListDTO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -82,7 +83,8 @@ public class ReviewListDTO {
 	public void setUser_no(int user_no) {
 		this.user_no = user_no;
 	}
-
+	
+	
 	@Override
 	public String toString() {
 		return "ReviewListDTO [cc_name=" + cc_name + ", score=" + score + ", rv_title=" + rv_title + ", nickname="

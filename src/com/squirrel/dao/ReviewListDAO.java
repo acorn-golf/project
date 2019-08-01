@@ -12,18 +12,18 @@ import com.squirrel.dto.view.ReviewListDTO;
 
 public class ReviewListDAO {
 	
-	private int totalRecord(SqlSession session) {
-		return session.selectOne("ReviewViewMapper.totalRecord");
+	private int totalRecord(SqlSession session, HashMap<String, String> map) {
+		return session.selectOne("ReviewViewMapper.totalRecord",map);
 	}
 	
 	public PageDTO<ReviewListDTO> reviewList(SqlSession session, HashMap<String, String> map, int curPage) {
 		PageDTO<ReviewListDTO> pDTO = new PageDTO<ReviewListDTO>();
-		pDTO.setPerPage(5);
+		pDTO.setPerPage(10);
 		int perPage = pDTO.getPerPage();
-		int offset = (curPage-1)*perPage;
-		int totalRecord = totalRecord(session);
+		int offset = (curPage)*perPage;
+		int totalRecord = totalRecord(session,map);
 		List<ReviewListDTO> list = session.selectList("ReviewViewMapper.reviewList", map,new RowBounds(offset, perPage));
-		System.out.println(list.size());
+		
 		pDTO.setList(list);
 		pDTO.setCurPage(curPage);
 		pDTO.setTotalRecord(totalRecord);

@@ -12,11 +12,11 @@
 			<when test="searchName != null">
 				<if test="searchValue != null">
 					<choose>
-						<when test="searchName.equals(rv_title)"> <!-- 이거 적용해보자 -->
-							and c.#{searchName} like '%'||#{searchValue}||'%'
+						<when test='searchName.equals("rv_title")'> <!-- 이거 적용해보자 -->
+							and rv_title like '%'||#{searchValue}||'%'
 						</when>
-						<when test="searchName == nickname">
-							and m.#{searchName} like '%'||#{searchValue}||'%'
+						<when test='searchName.equals("nickname")'>
+							and nickname like '%'||#{searchValue}||'%'
 						</when>
 					</choose>
 				</if>
@@ -24,7 +24,14 @@
 		</choose>
 		<choose>
 			<when test="orderby != null">
-				order by #{orderby} desc
+				<choose>
+					<when test='orderby.equals("score_date")'>
+						order by score_date desc
+					</when>
+					<when test='orderby.equals("score")'>
+						order by score desc
+					</when>
+				</choose>
 			</when>
 			<otherwise>
 				order by score_date desc
@@ -32,9 +39,24 @@
 		</choose>
 	</select>
 	
-	<select id="totalRecord" resultType="int">
+	<select id="totalRecord" resultType="int" parameterType="hashmap">
 		select count(*)
-		from CCSCORE c join GOLFCC g on g.CC_ID = c.CC_ID join MEMBERLIST m on c.USER_NO=m.USER_NO
+		from ccscore c join golfcc g on g.cc_id = c.cc_id join memberlist m on c.user_no=m.user_no
+		where g.cc_id=#{cc_id}
+		<choose>
+			<when test="searchName != null">
+				<if test="searchValue != null">
+					<choose>
+						<when test='searchName.equals("rv_title")'> <!-- 이거 적용해보자 -->
+							and rv_title like '%'||#{searchValue}||'%'
+						</when>
+						<when test='searchName.equals("nickname")'>
+							and nickname like '%'||#{searchValue}||'%'
+						</when>
+					</choose>
+				</if>
+			</when>
+		</choose>
 	</select>
 	
 	<select id="selectNick" resultType="ReviewListDTO" parameterType="int">
