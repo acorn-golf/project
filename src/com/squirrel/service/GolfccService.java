@@ -1,5 +1,6 @@
 package com.squirrel.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -7,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.squirrel.config.MySqlSessionFactory;
 import com.squirrel.dao.GolfccDAO;
 import com.squirrel.dto.GolfCcDTO;
+import com.squirrel.dto.view.CcGolfScoreDTO;
 
 public class GolfccService {
 
@@ -20,6 +22,20 @@ public class GolfccService {
 			session.close();
 		}
 		return list;
+	}
+	
+	public List<CcGolfScoreDTO> ccGolfScoreList(HashMap<String, Object> searchVal ) {
+		List<CcGolfScoreDTO> result = null;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			result = new GolfccDAO().ccGolfScoreList(session,searchVal);
+		} finally {
+			// TODO: handle finally clause
+			session.close();
+		}
+		
+		
+		return result;
 	}
 
 }

@@ -4,14 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰게시판</title>
+<title>리뷰자세히보기</title>
 </head>
 <body>
 <%-- <jsp:include page="common/top.jsp" flush="true" /><br>
 <jsp:include page="common/menu.jsp" flush="true" /> --%>
-<jsp:include page="/show/main.jsp" flush="false"/>
-
-<jsp:include page="sub/review.jsp" flush="true" />
-<jsp:include page="/GOLFCC/sub/ccListGrid.jsp" flush="false"/>
+고정페이지~~
+<hr>
+<jsp:include page="sub/reviewDetail.jsp" flush="true" />
 </body>
 </html>

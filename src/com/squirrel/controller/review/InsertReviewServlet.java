@@ -20,7 +20,7 @@ public class InsertReviewServlet extends HttpServlet {
 		String score = request.getParameter("score"); // int로 형변환
 		String cc_id = request.getParameter("cc_id");
 		String score_date = null; // default가 sysdate라서 mapper에서 적용 안함
-		int user_no = 3; // 세션에서 받아와야됨
+		int user_no = 3; // 세션에서 받아와야됨 : session.getAttribute("login").user_no
 		String rv_content = request.getParameter("rv_content");
 		String rv_title = request.getParameter("rv_title");
 		int rv_vcount = 0; // 조회수 이므로 insert할 때 적용 안함 -> mapper에서 적용 안한다

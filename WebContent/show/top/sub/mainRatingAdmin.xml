@@ -19,8 +19,6 @@
 			<url>/teamSquirrel/ReviewListServlet</url>
 		</sub_Menu>
 
-
-
 		<sub_Menu>
 			<name>평점남기기</name>
 			<url>/teamSquirrel/InsertReviewServlet</url>

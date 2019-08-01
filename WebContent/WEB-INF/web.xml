@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>workShop03_02</display-name>
+
 <filter>
 <filter-name>LoginChkF</filter-name>
 <filter-class>com.squirrel.Filter.LoginChkFilter</filter-class>
@@ -12,27 +13,25 @@
 <!--로그인 -->
 /MemberUIServlet,/LoginUIServlet,/LoginServlet,/MultiCheckServlet,/MemberAddServlet,/AdminPageUIServlet
 
-<!-- 상품 -->
 /ProductServlet
 
-<!-- 리뷰 -->
+
 /ReviewListServlet
 
-<!-- 메인 -->
+
 /main.jsp
+
 
 <!-- 기타 에셋 -->
 /show/top/assets/js/index.js
 
-<!-- 임시 -->
+
 /show/top/assets/css/modules.css,/show/top/assets/css/style.min.css
 </param-value>
-</init-param>
-</filter>
-
-
-<filter-mapping>
-<filter-name>LoginChkF</filter-name>
-<url-pattern>/*</url-pattern>
-</filter-mapping>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginChkF</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 </web-app>
