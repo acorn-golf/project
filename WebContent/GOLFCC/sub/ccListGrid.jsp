@@ -30,7 +30,7 @@
 									<td><a href="GoodsRetrieveServlet?gCode=${Golfcc.cc_id}">
 											<c:if test="${Golfcc.cc_img != null}">
 												<img
-													src="/teamSquirrel/GOLFCC/${Golfcc.loc_id}/${Golfcc.cc_img}.jpg"
+													src="/teamSquirrel/GOLFCC/${Golfcc.loc_id}/${Golfcc.cc_img}"
 													border="0" align="center" width="200">
 											</c:if> <c:if test="${empty Golfcc.cc_img}">
 												<img

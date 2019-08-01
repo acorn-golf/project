@@ -13,7 +13,7 @@ import com.squirrel.service.GolfccService;
 
 public class GetccList {
 
-	protected List<CcGolfScoreDTO> CclistGetScore(String cc_name,List<String> loc_list,String orderVal,String descChk ,HttpSession session) 
+	public List<CcGolfScoreDTO> CclistGetScore(String cc_name,List<String> loc_list,String orderVal,String descChk ,HttpSession session) 
 	{
 		List<CcGolfScoreDTO> list = null;
 		HashMap<String, Object> searchVal = new HashMap<String, Object>();

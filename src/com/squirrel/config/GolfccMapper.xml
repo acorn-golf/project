@@ -22,7 +22,7 @@
 		on cc.CC_ID =sc.CC_ID
 		where cc.CC_ID is not null
 		<if test="cc_name != null">
-			and cc.CC_NAME like '%'||#{cc_id}||'%'
+			and '1'='1'
 		</if>
 		<if test="loc_list !=null">
 			and cc.LOC_ID in

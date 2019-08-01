@@ -15,6 +15,7 @@ import com.squirrel.dto.MemberDTO;
 import com.squirrel.dto.PageDTO;
 import com.squirrel.dto.view.ReviewListDTO;
 import com.squirrel.service.ReviewListService;
+import com.squirrel.util.golfcc.GetccList;
 
 @WebServlet("/ReviewListServlet")
 public class ReviewListServlet extends HttpServlet {
@@ -100,7 +101,8 @@ public class ReviewListServlet extends HttpServlet {
 		request.setAttribute("totalPage", totalPage);
 		request.setAttribute("curPage", curPage);
 		request.setAttribute("cc_id", cc_id);
-
+		
+		request.setAttribute("CcGolfScoreList",new GetccList().CclistGetScore(null, null, null, null, session));
 		request.getRequestDispatcher("review/review.jsp").forward(request, response);
 
 	}
