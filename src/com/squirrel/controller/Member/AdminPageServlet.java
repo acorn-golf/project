@@ -1,6 +1,8 @@
 package com.squirrel.controller.Member;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,8 +13,8 @@ import javax.servlet.http.HttpSession;
 import com.squirrel.dto.MemberDTO;
 import com.squirrel.service.MemberService;
 
-@WebServlet("/MyPageServlet")
-public class MyPageServlet extends HttpServlet {
+@WebServlet("/AdminPageServlet")
+public class AdminPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,7 +29,14 @@ public class MyPageServlet extends HttpServlet {
 			String nickname = dto.getNickname();
 			MemberService service = new MemberService();
 			dto = service.myPage(nickname);
-			destination = "member/myPage.jsp";			
+			String member = request.getParameter("member");
+			List<MemberDTO> list = null;
+			if( member.equals("memberAll")) {
+			list = service.memberSelect();
+			}
+			System.out.println(list);
+			session.setAttribute("list", list);
+			destination = "member/sub/adminPageResult.jsp";			
 			session.setAttribute("login", dto);
 			request.getRequestDispatcher(destination).forward(request, response);
 		}

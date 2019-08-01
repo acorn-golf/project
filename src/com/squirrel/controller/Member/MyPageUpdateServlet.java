@@ -21,16 +21,8 @@ public class MyPageUpdateServlet extends HttpServlet {
 		
 		String phone_id = request.getParameter("phoneid");
 		String userpw = request.getParameter("password");
-		String emailid = request.getParameter("emailid");
-		String emailadd = request.getParameter("emailadd");
-		String s_emailadd = request.getParameter("S_emailadd");
-		String email;		
-	
-		if(emailadd == ""){
-			email = emailid+"@"+s_emailadd;
-		}else {
-			email = emailid+"@"+emailadd;
-		}		
+		String email = request.getParameter("email");		
+		
 		HttpSession session = request.getSession();
 		MemberDTO dto = new MemberDTO(phone_id, userpw, email);
 		MemberService service = new MemberService();
@@ -44,13 +36,10 @@ public class MyPageUpdateServlet extends HttpServlet {
 		}else {
 			dto = (MemberDTO)session.getAttribute("login");
 			String nickname = dto.getNickname();
-			System.out.println(nickname);
 			dto = service.myPage(nickname);
 			session.setAttribute("login", dto);
 			response.sendRedirect(destination);
 		}
-		
-		
 	
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

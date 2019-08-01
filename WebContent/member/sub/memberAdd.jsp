@@ -5,14 +5,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-var idchk = true;
-var nickchk = true;
+var multichk = true;
+
 
 	$(document).ready(function(){
 		
-		var RegexEmailId = /\w/; 
-		var RegexEmailAdd = /\w+\.[a-zA-Z\.]{2,5}$/; 
-		var RegexName = /^[가-힣]{2,4}$/; 
+		
+		var RegexEmail = /\w+\@\w+\.[a-zA-Z\.]{2,5}$/; 
+		var RegexName = /^(가|간|갈|감|강|견|경|계|고|곡|공|곽|관|교|구|국|궉|권|근|금|기|길|김|나|난|남|남궁|낭|내|노|뇌|다|단|담|당|대|도|독|독고|돈|동|동방|두|등|등정|라|란|랑|려|로|뢰|류|리|림|마|만|망절|매|맹|명|모|목|묘|무|무본|묵|문|미|민|박|반|방|배|백|번|범|변|보|복|봉|부|비|빈|빙|사|사공|산|삼|상|서|서문|석|선우|설|섭|성|소|손|송|수|순|승|시|신|심|아|안|애|야|양|어|어금|엄|여|연|염|엽|영|예|오|옥|온|옹|완|왕|요|용|우|운|원|위|유|육|윤|은|음|이|인|임|자|장|전|점|정|제|제갈|조|종|좌|주|증|지|진|차|창|채|천|초|총|최|추|탁|탄|탕|태|판|팽|편|평|포|표|풍|피|필|하|학|한|함|해|허|현|형|호|홍|화|황|황목|황보|후)[가-힣]{1,4}$/; 
 		var RegexNick = /^[a-zA-Z0-9가-힣_-]{2,16}$/; 
 		var RegexPhone = /^(010|011|016|017|018|019|070)[0-9]{8}$/;
 		var RegexPassword = /[a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\<\>\?\.]{7,20}/;
@@ -34,7 +34,7 @@ var nickchk = true;
 					
 				}else if( !RegexPhone.test($.trim($("#phoneid").val())) ){
 					
-					alert("아이디 형식이 잘못되었습니다.");					
+					alert("아이디형식 오류");					
 					$("#phoneid").val("");
 					$("#phoneid").focus();
 					return false;
@@ -46,7 +46,8 @@ var nickchk = true;
 					return false;
 					
 				}else if ( !RegexPassword.test($.trim($("#password").val())) ){
-					alert("비밀번호 오류");
+					
+					alert("비밀번호형식 오류");
 					$("#password").val("");
 					$("#password").focus();
 					return false;
@@ -66,7 +67,7 @@ var nickchk = true;
 					
 				}else if ( !RegexName.test($.trim($("#username").val())) ){
 					
-					alert("이름 오류");
+					alert("이름형식 오류");
 					$("#username").focus();
 					return false;
 					
@@ -78,7 +79,7 @@ var nickchk = true;
 
 				}else if ( !RegexNick.test($.trim($("#nickname").val())) ){
 
-					alert("별명 오류");
+					alert("별명형식 오류");
 					$("#nickname").focus();
 					return false;
 				}else if ( $("#userssn").val() == ""){
@@ -89,69 +90,72 @@ var nickchk = true;
 					
 				}else if ( !RegexBirth.test($.trim($("#userssn").val())) ){
 					
-					alert("생년월일 오류");					
+					alert("생년월일형식 오류");					
 					$("#userssn").val("");
 					$("#userssn").focus();
-					return false;					
+					return false;	
 					
-				}else if ( $("#emailid").val() == ""){
+				}else if ( $(":radio[name='gender']:checked").length < 1 ){
 					
-					alert("Email을 입력해주세요.");
-					$("#emailid").focus();
-					return false;
-
-				}else if ( !RegexEmailId.test($.trim($("#emailid").val())) ){
-					
-					alert("Email 오류");					
-					$("#emailid").val("");
-					$("#emailid").focus();
-					return false;
+					alert("성별을을 입력해주세요");
+					return false;	
 				
-				}else if ( $("#emailadd").val() == ""){
+					
+				}else if ( $("#email").val() == ""){
 					
 					alert("Email을 입력해주세요.");
-					$("#emailadd").focus();
+					$("#email").focus();
 					return false;
 
-				}else if ( !RegexEmailAdd.test($.trim($("#emailadd").val())) ){
+				}else if ( !RegexEmail.test($.trim($("#email").val())) ){
 					
-					alert("Email 오류");					
-					$("#emailadd").val("");
-					$("#emailadd").focus();
-					return false;
+					alert("email형식 오류");					
+					$("#email").val("");
+					$("#email").focus();
+					return false;	
+					
 				}
+					
 					this.action="/teamSquirrel/MemberAddServlet";
 							 
 		});
 		
+		$("#password").on("keyup",function(){
+			if($("#password").val().length < 7){
+				$("#confirmpw").text("사용 불가").css("color","red");
+			}else{
+				$("#confirmpw").text("사용 가능").css("color","green");
+			}
+		});
+		
 		$("#repassword").on("keyup",function(){
 			if($("#password").val()==($("#repassword").val())){				
-				$("#confirm").text("비밀번호 일치").css("color","green");
+				$("#matchedpw").text("비밀번호 일치").css("color","green");
 			}else{
-				$("#confirm").text("비밀번호 불일치").css("color","red");
+				$("#matchedpw").text("비밀번호 불일치").css("color","red");
 			};
 		});		
 		
 		$("#phoneid").on("keyup",function(){
 			$.ajax({
 				type:"post",
-				url:"IdCheckServlet",
+				url:"MultiCheckServlet",
 				data: { phoneid : $("#phoneid").val()},				
 				dataType:"text",
 				success : function(data,status,xhr){	
 					if(data == 0){
-						$("#idcheck").text("사용 가능").css("color","green");
-						idchk = true;
+						$("#idchk").text("사용 가능").css("color","green");
+						multichk = true;
 					}else{
-						idchk = false;
-						$("#idcheck").text("사용 불가").css("color","red");
+						multichk = false;
+						$("#idchk").text("사용 불가").css("color","red");
 							$("form").on("submit",function(event){							
-								if(!idchk){
+								if(!multichk){
 									alert("아이디가 중복입니다.");
 									event.preventDefault();
 									$("#phoneid").val("");
 									$("#phoneid").focus();
-									$("#idcheck").text("<--");
+									$("#idchk").text("<--");
 								}					
 							});
 						}					
@@ -167,23 +171,24 @@ var nickchk = true;
 		$("#nickname").on("keyup",function(event){
 			$.ajax({
 				type:"post",
-				url:"IdCheckServlet",
+				url:"MultiCheckServlet",
 				data: {nickname : $("#nickname").val()},
 				dataType:"text",
 				success : function(data,status,xhr){	
-					if(data == 0){
-						$("#nickcheck").text("사용 가능").css("color","green");
-						nickchk=true;
+					if(data == 0){						
+						$("#nickchk").text("사용 가능").css("color","green");
+						multichk = true;
 					}else{
-						nickchk=false;
-						$("#nickcheck").text("사용 불가").css("color","red");
-							$("form").on("submit",function(event){
-								if(!nickchk){									
-									event.preventDefault();
+						multichk = false;
+						$("#nickchk").text("사용 불가").css("color","red");
+							$("form").on("submit",function(event){							
+								if(!multichk){
 									alert("별명이 중복입니다.");
+									event.preventDefault();
 									$("#nickname").val("");
 									$("#nickname").focus();
-									$("#nickcheck").text("<--");
+									$("#nickchk").text("<--");
+									
 								}							
 							});
 						}					
@@ -196,70 +201,106 @@ var nickchk = true;
 			});				
 		});	
 		
-		$("#S_emailadd").on("focus change",function(){
-			$("#emailadd").val($("#S_emailadd").val());
-			$(this).html(`<option>다시 선택</option>
-			<option>naver.com</option>
-			<option>hotmail.com</option>
-			<option>daum.net</option>
-			<option>hanmail.co.kr</option>
-			<option>gmail.com</option>`);
-		});	
-
+		$("#email").on("keyup",function(){
+			$.ajax({
+				type:"post",
+				url:"MultiCheckServlet",
+				data: { email : $("#email").val()},				
+				dataType:"text",
+				success : function(data,status,xhr){	
+					if(data == 0){
+						$("#emailchk").text("사용 가능").css("color","green");
+						multichk = true;
+					}else{
+						multichk = false;
+						$("#emailchk").text("사용 불가").css("color","red");
+							$("form").on("submit",function(event){							
+								if(!multichk){
+									alert("email이 중복입니다.");
+									event.preventDefault();
+									$("#email").val("");
+									$("#email").focus();
+									$("#emailchk").text("<--");
+								}					
+							});
+						}					
+					},
+				error : function(xhr,status,error){
+					console.log(xhr);
+					console.log(status);
+					console.log(error);					
+				}										
+			});				
+		});		
 	});
 
 </script>
 <style>
 
 </style>
-<form method="post">
+<form method="post" class="form_main">
 <input type="hidden" id="rating" name="rating" value="U">
 <table>
 <tr>
 <th>아이디:</th>
-<td><input class="inputmadd" type="text" id="phoneid" name="phoneid" placeholder="핸드폰 번호를 입력하세요 -생략"><span id="idcheck"></span></td>
+<td><input class="inputmadd" type="text" id="phoneid" name="phoneid"></td>
+<td class="confirm"><span id="idchk"></span></td>
+</tr>
+<tr>
+<td></td><td class="text_left"><font class="red">핸드폰 번호를 입력하세요 ( - ) 없이</font></td><td></td>
+</tr>
+<tr>
+<td colspan="3" class="m_space"></td>
 </tr>
 <tr>
 <th>비밀번호:</th>
 <td><input class="inputmadd" type="password" id="password" name="password"></td>
+<td class="confirm"><span id="confirmpw"></span></td>
 </tr>
 <tr>
 <th>비밀번호확인:</th>
-<td><input class="inputmadd" type="password" id="repassword" name="repassword"><span id="confirm"></span></td>
+<td><input class="inputmadd" type="password" id="repassword" name="repassword"></td>
+<td class="confirm"><span id="matchedpw"></span></td>
+</tr>
+<tr>
+<td></td><td class="text_left"><font class="red">7자리이상 입력하셔야합니다.</font></td><td></td>
+</tr>
+<tr>
+<td colspan="3" class="m_space"></td>
 </tr>
 <tr>
 <th>이름:</th>
 <td><input class="inputmadd" type="text" id="username" name="username"></td>
 </tr>
 <tr>
-<th>별명:</th>
-<td><input class="inputmadd" type="text" id="nickname" name="nickname" placeholder="앱 이용시 사용하실 이름"><span id="nickcheck"></span></td>
+<th>닉네임:</th>
+<td><input class="inputmadd" type="text" id="nickname" name="nickname"></td>
+<td class="confirm"><span id="nickchk"></span></td>
+</tr>
+<tr>
+<td></td><td class="text_left"><font class="red">앱에서 사용하실 닉네임</font></td><td></td>
+</tr>
+<tr>
+<td colspan="3" class="m_space"></td>
 </tr>
 <tr>
 <th>생년월일:</th>
 <td><input class="inputmadd" type="text" id="userssn" name="userssn" placeholder="20190101"></td>
 </tr>
 <tr>
-<th style="text-align: right">남<input type="radio" id="male" value="male" name="gender" checked></th>
-<th style="text-align: left">여<input type="radio" id="female" value="female" name="gender"></th>
+<th class="text_right">남<input type="radio" id="male" value="male" name="gender"></th>
+<th class="text_left">여<input type="radio" id="female" value="female" name="gender"></th>
 </tr>
 <tr>
 <th>e-mail:</th>
-<td><input class="inputmadd" style="width:80px" type="text" id="emailid" name="emailid" placeholder="인증시 필요">
-@ <input class="inputmadd" style="width:80px" type="text" id="emailadd" name="emailadd" placeholder="직접 입력">
-<select id="S_emailadd" name="S_emailadd">
-<option>naver.com</option>
-<option>hotmail.com</option>
-<option>daum.net</option>
-<option>hanmail.co.kr</option>
-<option>gmail.com</option>
-</select></td>
+<td><input class="inputmadd" type="email" id="email" name="email" placeholder="인증시 필요"></td>
+<td class="confirm"><span id="emailchk"></span></td>
 </tr>
 <tr>
-<td colspan="2" style="height:30px"></td>
+<td colspan="2" class="m_space"></td>
 </tr>
 <tr>
-<td colspan="2" style="text-align: center"><input type="submit" value="가입하기"><input type="reset" value="다시 작성"></td>
+<td colspan="2" class="text_center"><input class="m_sub_re" type="submit" value="가입하기">&nbsp;&nbsp;<input class="m_sub_re"  type="reset" value="다시 작성"></td>
 </tr>
 </table>
 </form>
