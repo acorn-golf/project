@@ -16,6 +16,7 @@
 		<typeAlias type="com.squirrel.dto.NoticeListDTO" alias="NoticeListDTO"/>
 		<typeAlias type="com.squirrel.dto.ReviewDTO" alias="ReviewDTO"/>
 		<typeAlias type="com.squirrel.dto.view.ReviewListDTO" alias="ReviewListDTO"/>
+		<typeAlias type="com.squirrel.dto.view.CcGolfScoreDTO" alias="CcGolfScoreDTO"/>
 	</typeAliases>
 
 	<environments default="development">

@@ -3,9 +3,37 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="GolfccMapper"> <!-- 알아서 유일값 주면 된다 -->
-	<select id="selectCCname" resultType="GolfCcDTO" parameterType="string">
+	<select id="selectCCname" resultType="GolfCcDTO"
+		parameterType="string">
 		select cc_id,cc_name
 		from golfcc
 		where loc_id=#{loc_id}
+	</select>
+
+	<select id="ccGolfScoreList" resultType="CcGolfScoreDTO"
+		parameterType="HashMap">
+		SELECT cc.*,sc."score" ,sc."count"
+		FROM GOLFCC cc
+		left join
+		(SELECT
+		CC_ID,CEIL(avg(SCORE)*2)/2 "score",count(*) "count" from CCSCORE
+		GROUP
+		by CC_ID) sc
+		on cc.CC_ID =sc.CC_ID
+		where cc.CC_ID is not null
+		<if test="cc_name != null">
+			and cc.CC_NAME like '%'||#{cc_id}||'%'
+		</if>
+		<if test="loc_list !=null">
+			and cc.LOC_ID in
+			<foreach item="item" index="index" collection="loc_list"
+				open="(" close=")" separator=",">
+				#{item.value}
+			</foreach>
+		</if>
+		<if test="orderVal != null">
+		order by ${orderVal}  <if test="descChk != null">desc</if>
+		</if>
+
 	</select>
 </mapper>
