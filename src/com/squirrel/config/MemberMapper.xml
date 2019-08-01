@@ -27,7 +27,7 @@
 		set userpw = #{userpw}, email = #{email}
 		where phone_id = #{phone_id}
 	</update>
-	<select id="idCheck" parameterType="HashMap" resultType="int">
+	<select id="multiCheck" parameterType="HashMap" resultType="int">
 		select count(*) from memberList 
 		<if test="phone_id != null">
 		where phone_id = #{phone_id}
@@ -35,5 +35,13 @@
 		<if test="nickname != null">
 		where nickname = #{nickname}
 		</if>
+		<if test="email != null">
+		where email = #{email}
+		</if>
+	</select>
+	<select id="memberSelect" resultType="MemberDTO">
+		select user_no,phone_id,userpw,username,nickname,userssn,gender,
+		rating,rstartdate,renddate,email,email_chk 
+		from memberList
 	</select>
 </mapper>

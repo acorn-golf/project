@@ -30,17 +30,10 @@ public class MemberAddServlet extends HttpServlet {
 		String nickname = request.getParameter("nickname");
 		String userssn = request.getParameter("userssn");
 		String gender = request.getParameter("gender");
-		String emailid = request.getParameter("emailid");
-		String emailadd = request.getParameter("emailadd");
-		String s_emailadd = request.getParameter("S_emailadd");
+		String email = request.getParameter("email");
 		String rating = request.getParameter("rating");
-		String email;
+		
 
-		if(emailadd == ""){
-			email = emailid+"@"+s_emailadd;
-		}else {
-			email = emailid+"@"+emailadd;
-		}			
 		if(gender.equals("male")) {
 			gender = "1";
 		}else {

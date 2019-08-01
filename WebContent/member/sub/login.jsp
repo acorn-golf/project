@@ -18,20 +18,24 @@
 		
 	});
 </script>
-<form method="post">
+<form method="post" class="form_login">
 <table>
 <tr>
-<th>아이디:</th>
+<th> 아이디: </th>
 <td><input type="text" class="login" id="phoneid" name="phoneid" placeholder="핸드폰번호 일껄요?"></td>
+<td class="confirm"><span id="idchk"></span></td>
 </tr>
 <tr>
-<th>비밀번호:</th>
+<th> 비밀번호: </th>
 <td><input type="password" class="login" id="password" name="password"></td>
+<td class="confirm"><span id="pwchk"></span></td>
 </tr>
 <tr>
-<td colspan="2" style="text-align: center">
-<input type="submit" value="로그인">
-<input type="reset" value="다시입력"></td>
+<td colspan="3" class="m_space"></td>
+</tr>
+<tr>
+<td colspan="2" class="text_center">
+<input class="m_sub_re" type="submit" value="로그인">&nbsp;&nbsp;<input class="m_sub_re" type="reset" value="다시입력"></td>
 </tr>
 </table>
 </form>

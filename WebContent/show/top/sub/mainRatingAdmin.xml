@@ -55,8 +55,8 @@
 		</sub_Menu>
 
 		<sub_Menu>
-			<name>마이페이지</name>
-			<url>/teamSquirrel/MyPageServlet</url>
+			<name>Admin Page</name>
+			<url>/teamSquirrel/AdminPageUIServlet</url>
 		</sub_Menu>
 
 	</Menu>

@@ -11,20 +11,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.squirrel.service.MemberService;
 
-@WebServlet("/IdCheckServlet")
-public class IdCheckServlet extends HttpServlet {
+@WebServlet("/MultiCheckServlet")
+public class MultiCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String phone_id = request.getParameter("phoneid");
 		String nickname = request.getParameter("nickname");
+		String email = request.getParameter("email");
 		
 		MemberService service = new MemberService();
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("phone_id", phone_id);
 		map.put("nickname", nickname);
-		int confirm = service.idCheck(map);	
+		map.put("email", email);		
+		int confirm = service.multiCheck(map);	
 		response.getWriter().print(confirm);;
 		
 	}
