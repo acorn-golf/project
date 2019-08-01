@@ -56,5 +56,10 @@
 			<url>/teamSquirrel/LogoutServlet</url>
 		</sub_Menu>
 
+		<sub_Menu>
+			<name>마이페이지</name>
+			<url>/teamSquirrel/MyPageServlet</url>
+		</sub_Menu>
+
 	</Menu>
 </Menus>

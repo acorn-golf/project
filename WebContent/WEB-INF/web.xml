@@ -10,7 +10,7 @@
 <!-- 세션 비체크 목록 -->
 
 <!--로그인 -->
-/MemberUIServlet,/LoginUIServlet,/LoginServlet
+/MemberUIServlet,/LoginUIServlet,/LoginServlet,/IdCheckServlet
 
 <!-- 상품 -->
 /ProductServlet
@@ -23,6 +23,9 @@
 
 <!-- 기타 에셋 -->
 /assets/js/index.js
+
+<!-- 임시 -->
+/show/top/assets/css/modules.css,/show/top/assets/css/style.min.css
 </param-value>
 </init-param>
 </filter>

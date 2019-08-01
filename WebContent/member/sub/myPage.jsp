@@ -40,7 +40,7 @@
 	color:red;
 }
 </style>
-<form method="post">
+<form method="post" style="margin-left: 200px">
 <input type="hidden" id="rating" name="rating" value="${login.rating}">
 <input type="hidden" id="rstartdate" name="rstartdate" value="${login.rstartdate}">
 <input type="hidden" id="renddate" name="renddate" value="${login.renddate}">
@@ -72,19 +72,12 @@
 <td><input class="myupdate" type="text" id="userssn" name="userssn" value="${login.userssn}" readonly></td>
 </tr>
 <tr>
-<th style="text-align: right">남<input type="radio" id="male" value="male" name="gender"></th>
-<th style="text-align: left">여<input type="radio" id="female" value="female" name="gender"></th>
+<th style="text-align: right;">남<input type="radio" id="male" value="male" name="gender"></th>
+<th style="text-align: left;">여<input type="radio" id="female" value="female" name="gender"></th>
 </tr>
 <tr>
 <th><font id="star">*</font>e-mail:</th>
-<td><input class="myupdate" style="width:85px" type="text" id="emailid" name="emailid" value="${email[0]}">
-@ <input style="width:85px" type="text" id="emailadd" name="emailadd" value="${email[1]}">
-<select id="S_emailadd" name="S_emailadd">
-<option>naver.com</option>
-<option>hotmail.com</option>
-<option>hanmail.net</option>
-<option>gmail.com</option>
-</select></td>
+<td><input class="myupdate" type="email" id="emailid" name="emailid" value="${email[0]}"></td>
 </tr>
 <tr>
 <th colspan="2" style="height:30px"><font id="star">*</font> 은 수정가능</th>

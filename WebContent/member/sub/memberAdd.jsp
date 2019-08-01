@@ -240,20 +240,12 @@ var nickchk = true;
 <td><input class="inputmadd" type="text" id="userssn" name="userssn" placeholder="20190101"></td>
 </tr>
 <tr>
-<th style="text-align: right">남<input type="radio" id="male" value="male" name="gender" checked></th>
-<th style="text-align: left">여<input type="radio" id="female" value="female" name="gender"></th>
+<th style="text-align: right;">남<input type="radio" style="max-width: 1em;" id="male" value="male" name="gender"></th>
+<th style="text-align: left;">여<input type="radio" style="max-width: 1em;" id="female" value="female" name="gender"></th>
 </tr>
 <tr>
 <th>e-mail:</th>
-<td><input class="inputmadd" style="width:80px" type="text" id="emailid" name="emailid" placeholder="인증시 필요">
-@ <input class="inputmadd" style="width:80px" type="text" id="emailadd" name="emailadd" placeholder="직접 입력">
-<select id="S_emailadd" name="S_emailadd">
-<option>naver.com</option>
-<option>hotmail.com</option>
-<option>daum.net</option>
-<option>hanmail.co.kr</option>
-<option>gmail.com</option>
-</select></td>
+<td><input class="inputmadd" type="email" id="email" name="email" placeholder="인증시 필요"></td>
 </tr>
 <tr>
 <td colspan="2" style="height:30px"></td>

@@ -1,8 +1,6 @@
 package com.squirrel.controller.Member;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.squirrel.dto.MemberDTO;
 import com.squirrel.service.MemberService;
 
-import jdk.nashorn.api.scripting.JSObject;
+
 
 @WebServlet("/MemberAddServlet")
 public class MemberAddServlet extends HttpServlet {

@@ -287,9 +287,12 @@ label {
 }
 input {
   width: 100%;
-  max-width: 18rem;
+  max-width: 18em;
   font-size: 1em;
   font-family: sans-serif;
+}
+[type=radio] {
+	max-width: 1em;
 }
 
 textarea {
