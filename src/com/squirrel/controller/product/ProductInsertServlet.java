@@ -6,7 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.squirrel.dto.MemberDTO;
 import com.squirrel.dto.ProductDTO;
 import com.squirrel.service.ProductService;
 
@@ -26,6 +28,8 @@ public class ProductInsertServlet extends HttpServlet {
 //		P_PRICE 상품가격
 //		P_CONTENT 상품 내용
 //		USER_NO 유저id
+		HttpSession session = request.getSession();
+		MemberDTO loginInfo = (MemberDTO)session.getAttribute("login");
 //		CC_ID 골프장 아이디
 //		P_VCOUNT 조회수(일반유저가 검색했을 때 넘버링)
 		String p_id = null; // 상품아이디, pk 자동넘버링
@@ -48,7 +52,7 @@ public class ProductInsertServlet extends HttpServlet {
 		}
 		String p_price = request.getParameter("p_price"); // 상품가격, int로 형변환
 		String p_content = request.getParameter("p_content"); // 상품내용
-		int user_no = 3; // 매니저 pk, 임의로 메니저의 pk를 넣을거다 => 원래는 세션의 로그인 정보 확인후 해당 세션의 pk검색해서 넣어야됨
+		int user_no = loginInfo.getUser_no(); // 매니저 pk
 		String cc_id = request.getParameter("cc_id"); // 골프장 pk
 		int p_vcount=0; // 조회수, 사용자가 상품 조회시 자동 시퀀스 넘버링
 		

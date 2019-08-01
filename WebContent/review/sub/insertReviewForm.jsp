@@ -7,7 +7,8 @@
 <script>
 	$(document).ready(function(){
 		$("#cancle").on("click",function(){
-			$("form").attr("action","../ReviewListServlet"); // 아마 골프장 자세히보기로 가야되지 싶다
+			/* $("form").attr("action","ReviewListServlet"); // 아마 골프장 자세히보기로 가야되지 싶다 */
+			location.href="ReviewListServlet";
 		});
 	});
 </script>
@@ -34,7 +35,7 @@
 			<td><textarea rows="20" cols="30" name="rv_content" id="rv_content"></textarea></td>
 		</tr>
 		<tr>
-			<td colspan="2" align="right"><button id="cancle">취소</button>&nbsp;
+			<td colspan="2" align="right"><input type="button" id="cancle" value="취소">&nbsp;
 			<input type="submit" value="등록"></td>
 		</tr>
 	</table>

@@ -5,12 +5,38 @@
 
 <script type="text/javascript" src="/teamSquirrel/jquery-3.4.1.js"></script> 
 <script>
-	
+	$(document).ready(function(){
+		$("#insertReview").on("click",function(){
+			$("form").attr({"action":"InsertReviewFormServlet","method":"post"});
+		});
+		/* $(".radio").on("click",function(){
+			$(".radio").each(function(idx,ele){
+				//location.href="ReviewListServlet?orderby="+$(ele).val();
+				var ${orderby} = String.valueOf(${orderby});
+				if($(ele).val()==${orderby}){
+					console.log("hi");
+				}
+			});
+		}); */
+	});
 </script>
 
-<form name="ReviewListForm" action="InsertReviewFormServlet" method="get">
+<form name="ReviewListForm" action="ReviewListServlet" method="post">
 <input type="hidden" name="cc_id" value="${cc_id}"> <!-- 후기글쓰기 할 때 갖고갈 파라미터 -->
-<table border="1"><!-- 검색기능 추가해야됨 -->
+
+<input type="radio" name="orderby" value="score_date" class="radio">최신순&nbsp;&nbsp;
+<input type="radio" name="orderby" value="score" class="radio">평점순<br>
+<table border="1">
+	<tr>
+		<td colspan="5">
+			<select name="searchName">
+				<option value="rv_title">제목</option>
+				<option value="nickname">작성자</option>
+			</select>
+			<input type="text" name="searchValue" size="40">
+			<input type="submit" value="검색">
+		</td>
+	</tr>
 	<tr>
 		<th>골프장</th>
 		<th>평점</th>
@@ -22,25 +48,46 @@
 		<tr>
 			<td>${dto.cc_name}</td>
 			<td>${dto.score}</td>
-			<td><a href="#">${dto.rv_title}</a></td>
+			<td><a href="ReviewDetailServlet?score_no=${dto.score_no}&user_no=${dto.user_no}">${dto.rv_title}</a></td>
 			<td>${dto.nickname}</td>
 			<td>${dto.score_date}</td>
 		</tr>
 		
 	</c:forEach>
-	
-</table>
-<c:forEach var="i" begin="1" end="${totalPage}" step="1">
+
+<tr>
+<td align="center" colspan="5">
+<c:set var="curPage" value="${curPage+1}"/> <%-- 1 --%>
+<c:set var="maxBlock" value="${maxBlock}"/> 
+<c:set var="minBlock" value="${minBlock+1}"/> 
+<c:choose>
+	<c:when test="${curPage eq 1}">
+	</c:when>
+	<c:when test="${curPage != 1}">
+		<a href="ReviewListServlet?curPage=1">◀</a>&nbsp;&nbsp;
+	</c:when>
+</c:choose>&nbsp;&nbsp;
+
+<c:forEach var="i" begin="${minBlock}" end="${maxBlock}" step="1">
 	<c:choose>
 		<c:when test="${curPage eq i}">
-			${i}
+			<span style="color:red">${i}</span>
 		</c:when>
 		<c:when test="${curPage != i}">
-			<a href="ReviewListServlet?curPage=${i}">${i}</a>
+			<a href="ReviewListServlet?curPage=${i}">${i}</a>&nbsp;
 		</c:when>
-	</c:choose>
-	
-</c:forEach>
-<br>
-<input type="submit" value="글쓰기">
+	</c:choose>	
+</c:forEach>&nbsp;
+
+<c:choose>
+	<c:when test="${curPage eq totalPage}">
+	</c:when>
+	<c:when test="${curPage != totalPage}">
+		<a href="ReviewListServlet?curPage=${totalPage}">▶</a>
+	</c:when>
+</c:choose>
+</td>
+</tr>
+</table>
+<button id="insertReview">글쓰기</button>
 </form>
