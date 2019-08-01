@@ -142,7 +142,7 @@ START MODULE AREA 2: Menu 1
 END MODULE AREA 2: Menu 1
 -->
 
-	<script src="assets/js/index.js"></script>
+	<script src="/teamSquirrel/show/top/assets/js/index.js"></script>
 </body>
 
 </html>

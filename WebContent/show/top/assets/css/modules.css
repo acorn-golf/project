@@ -262,8 +262,8 @@ figure {
 }
 
 /* Forms Generic */
-input[type=search], input[type=text], input[type=email], input[type=tel] {
-  padding: 0.4em;
+input[type=search], input[type=text], input[type=email], input[type=tel], input[type=password] {
+  padding: 0.2em;
 }
 
 textarea {
@@ -290,9 +290,6 @@ input {
   max-width: 18em;
   font-size: 1em;
   font-family: sans-serif;
-}
-[type=radio] {
-	max-width: 1em;
 }
 
 textarea {
@@ -1657,4 +1654,38 @@ body .MOD_IMPACTSTRIP4_Txt p {
   .MOD_ARTICLEBLOCKS2_BlockSmall .MOD_ARTICLEBLOCKS2_Title {
     font-size: 1.5em;
   }
+}
+
+/* khs style */
+[type=radio] {
+	max-width: 1em;
+}
+.red {
+	color : red;
+	font-size: 13px;
+}
+.confirm {
+	width : 150px;
+}
+.text_left {
+	text-align: left;	
+}
+.text_right {
+	text-align: right;
+}
+.text_center {
+	text-align: center;
+}
+.m_sub_re {
+	max-width: 6em;
+}
+.m_space {
+	height: 10px;
+}
+.form_main{
+	margin-left: 200px; 
+	margin-top: 15px;
+}
+.form_login{
+	margin: 200px;
 }

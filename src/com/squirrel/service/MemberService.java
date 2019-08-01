@@ -1,6 +1,7 @@
 package com.squirrel.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -71,15 +72,26 @@ public class MemberService {
 		return confirm;
 	}
 
-	public int idCheck(HashMap<String, String> map) {
+	public int multiCheck(HashMap<String, String> map) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int confirm;
 		try {
-			confirm = dao.idCheck(session,map);
+			confirm = dao.multiCheck(session,map);
 		}finally {
 			session.close();
 		}
 		return confirm;
+	}
+
+	public List<MemberDTO> memberSelect() {
+		SqlSession session = MySqlSessionFactory.getSession();
+		List<MemberDTO> list = null;
+		try {
+			list = dao.memberSelect(session);
+		}finally {
+			session.close();
+		}		
+		return list;
 	}
 
 }

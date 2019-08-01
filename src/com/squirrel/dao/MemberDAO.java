@@ -1,6 +1,7 @@
 package com.squirrel.dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -34,11 +35,18 @@ public class MemberDAO {
 		return confirm;
 	}
 
-	public int idCheck(SqlSession session, HashMap<String, String> map) {
+	public int multiCheck(SqlSession session, HashMap<String, String> map) {
 
-		int confirm = session.selectOne("MemberMapper.idCheck",map);
+		int confirm = session.selectOne("MemberMapper.multiCheck",map);
 		
 		return confirm;
+	}
+
+	public List<MemberDTO> memberSelect(SqlSession session) {
+		
+		List<MemberDTO> list = session.selectList("MemberMapper.memberSelect");
+		
+		return list;
 	}
 
 }

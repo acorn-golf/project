@@ -11,8 +11,8 @@ import javax.servlet.http.HttpSession;
 import com.squirrel.dto.MemberDTO;
 import com.squirrel.service.MemberService;
 
-@WebServlet("/MyPageServlet")
-public class MyPageServlet extends HttpServlet {
+@WebServlet("/AdminPageUIServlet")
+public class AdminPageUIServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,7 +27,7 @@ public class MyPageServlet extends HttpServlet {
 			String nickname = dto.getNickname();
 			MemberService service = new MemberService();
 			dto = service.myPage(nickname);
-			destination = "member/myPage.jsp";			
+			destination = "member/adminPage.jsp";			
 			session.setAttribute("login", dto);
 			request.getRequestDispatcher(destination).forward(request, response);
 		}
