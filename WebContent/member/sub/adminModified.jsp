@@ -62,79 +62,59 @@
 				$("#matchedpw").text("비밀번호 불일치").css("color","red");
 			};
 		});
-		$("form").on("click",function(event){
+		$("#adminModified").on("click",function(event){
 			
 			if($("#repassword").val()==""&&$("#password").val()==""){
 				event.preventDefault();
 			}else{
-				this.action="/teamSquirrel/MyPageUpdateServlet";
+				this.action="/teamSquirrel/AdminModifiedServlet";
 			}
 		});
-		if(${login.gender} == 1){
-			$("#male").attr("checked","checked");
-		}else{
-			$("#female").attr("checked","checked");
-		}
-		$("[type='radio']").attr("disabled","true");
-		
+
 	});
 
 </script>
 
-<form method="post" class="form_main">
-<input type="hidden" id="rating" name="rating" value="${login.rating}">
-<input type="hidden" id="rstartdate" name="rstartdate" value="${login.rstartdate}">
-<input type="hidden" id="renddate" name="renddate" value="${login.renddate}">
-<input type="hidden" id="email_check" name="email_check" value="${login.email_chk}">
-<input type="hidden" id="gender" name="gender" value="${login.gender}">
+<form id="adminModified" method="post" class="form_main">
 <table>
 <tr>
 <th>아이디:</th>
-<td><input class="myupdate" type="text" id="phoneid" name="phoneid" value="${login.phone_id}" readonly></td>
+<td><input class="myupdate" type="text" id="phoneid" name="phoneid" value="${userinfo.phone_id}"></td>
 <td class="confirm"><span id="idchk"></span></td>
-</tr>
-<tr>
-<th><font class="red">*</font>비밀번호:</th>
-<td><input class="myupdate" type="password" id="password" name="password"></td>
-<td class="confirm"><span id="confirmpw"></span></td>
-</tr>
-<tr>
-<th><font class="red">*</font>비밀번호확인:</th>
-<td><input class="myupdate" type="password" id="repassword" name="repassword"></td>
-<td class="confirm"><span id="matchedpw"></span></td>
-</tr>
-<tr>
-<td></td><td class="text_left"><font class="red">7자리이상 입력하셔야합니다.</font></td><td></td>
 </tr>
 <tr>
 <td colspan="3" class="m_space"></td>
 </tr>
 <tr>
 <th>이름:</th>
-<td><input class="myupdate" type="text" id="username" name="username" value="${login.username}" readonly></td>
+<td><input class="myupdate" type="text" id="username" name="username" value="${userinfo.username}"></td>
 </tr>
 <tr>
 <th>닉네임:</th>
-<td><input class="myupdate" type="text" id="nickname" name="nickname" value="${login.nickname}" readonly></td>
+<td><input class="myupdate" type="text" id="nickname" name="nickname" value="${userinfo.nickname}"></td>
 </tr>
 <tr>
-<th>생년월일:</th>
-<td><input class="myupdate" type="text" id="userssn" name="userssn" value="${login.userssn}" readonly></td>
+<th>등급:</th>
+<td><input class="myupdate" type="text" id="nickname" name="nickname" value="${userinfo.rating}"></td>
 </tr>
 <tr>
-<th style="text-align: right;">남<input type="radio" id="male" value="male" name="gender"></th>
-<th style="text-align: left;">여<input type="radio" id="female" value="female" name="gender"></th>
+<th>등급 시작일:</th>
+<td><input class="myupdate" type="text" id="nickname" name="nickname" value="${userinfo.rstartdate}"></td>
 </tr>
 <tr>
-<th><font class="red">*</font>e-mail:</th>
-<td><input class="myupdate" type="email" id="email" name="email" value="${login.email}"></td>
+<th>등급 종료일:</th>
+<td><input class="myupdate" type="text" id="nickname" name="nickname" value="${userinfo.renddate}"></td>
+</tr>
+<tr>
+<th>e-mail:</th>
+<td><input class="myupdate" type="email" id="email" name="email" value="${userinfo.email}"></td>
 <td class="confirm"><span id="emailchk"></span></td>
 </tr>
 <tr>
-<th colspan="2" class="m_space"><font class="red">*</font> 은 수정가능</th>
+<td colspan="2" class="m_space"></td>
 </tr>
 <tr>
-<td colspan="2" class="text_center"><input class="m_sub_re" type="submit" value="수정 하기">&nbsp;&nbsp;<input class="m_sub_re" type="reset" value="다시 작성"></td>
+<td colspan="2" class="text_center"><input class="m_sub_re" type="submit" value="수정 하기">&nbsp;&nbsp;<input class="m_sub_re" type="button" value="취소"></td>
 </tr>
 </table>
 </form>

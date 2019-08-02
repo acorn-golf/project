@@ -12,7 +12,7 @@
 
 <!--로그인 -->
 /MemberUIServlet,/LoginUIServlet,/LoginServlet,/MultiCheckServlet,/MemberAddServlet,/AdminPageUIServlet
-
+/AdminModifiedUIServlet
 
 /ProductServlet
 
