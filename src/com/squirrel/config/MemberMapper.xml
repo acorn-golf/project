@@ -40,8 +40,7 @@
 		</if>
 	</select>
 	<select id="memberSelect" resultType="MemberDTO">
-		select user_no,phone_id,userpw,username,nickname,userssn,gender,
-		rating,rstartdate,renddate,email,email_chk 
-		from memberList
+		select phone_id, username, nickname, rating, email
+		from memberList order by username
 	</select>
 </mapper>
