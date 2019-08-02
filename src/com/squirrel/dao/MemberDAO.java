@@ -42,10 +42,10 @@ public class MemberDAO {
 		return confirm;
 	}
 
-	public List<MemberDTO> memberSelect(SqlSession session) {
-		
-		List<MemberDTO> list = session.selectList("MemberMapper.memberSelect");
-		
+	public List<MemberDTO> adminMemberSelect(SqlSession session, HashMap<String, String> map) {
+			
+		List<MemberDTO> list = session.selectList("MemberMapper.adminMemberSelect",map);
+		System.out.println(list);
 		return list;
 	}
 

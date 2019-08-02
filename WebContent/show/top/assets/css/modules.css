@@ -1689,3 +1689,11 @@ body .MOD_IMPACTSTRIP4_Txt p {
 .form_login{
 	margin: 200px;
 }
+.line_table {
+   border-top: 1px solid #444444;
+   border-collapse: collapse;
+}
+.line_th, .line_td {
+   border-bottom: 1px solid #444444;
+   padding: 10px;
+}

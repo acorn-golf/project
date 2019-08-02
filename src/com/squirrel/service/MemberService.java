@@ -83,11 +83,11 @@ public class MemberService {
 		return confirm;
 	}
 
-	public List<MemberDTO> memberSelect() {
+	public List<MemberDTO> adminMemberSelect(HashMap<String, String> map) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		List<MemberDTO> list = null;
 		try {
-			list = dao.memberSelect(session);
+			list = dao.adminMemberSelect(session,map);
 		}finally {
 			session.close();
 		}		
