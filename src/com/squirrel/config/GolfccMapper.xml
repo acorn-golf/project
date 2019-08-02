@@ -20,9 +20,9 @@
 		GROUP
 		by CC_ID) sc
 		on cc.CC_ID =sc.CC_ID
-		where cc.CC_ID is not null
+		where '1'='1'
 		<if test="cc_name != null">
-			and '1'='1'
+			and cc.CC_name = #{cc_name}
 		</if>
 		<if test="loc_list !=null">
 			and cc.LOC_ID in
@@ -32,8 +32,29 @@
 			</foreach>
 		</if>
 		<if test="orderVal != null">
-		order by ${orderVal}  <if test="descChk != null">desc</if>
+			order by ${orderVal}
+			<if test="descChk != null">desc</if>
 		</if>
 
 	</select>
+
+	<select id="ccGolfScoreListCount" resultType="int"
+		parameterType="HashMap">
+		SELECT count(*)
+		FROM GOLFCC
+		where '1'='1'
+		<if test="cc_name != null">
+			and cc.CC_name = #{cc_name}
+		</if>
+		<if test="loc_list !=null">
+			and cc.LOC_ID in
+			<foreach item="item" index="index" collection="loc_list"
+				open="(" close=")" separator=",">
+				#{item.value}
+			</foreach>
+		</if>
+
+	</select>
+
+
 </mapper>

@@ -22,6 +22,7 @@
 				</tr>
 
 				<tr>
+				<c:set var="CcGolfScoreList" value="${CcGolfScoreListPage.list}"/>
 
 					<c:forEach items="${CcGolfScoreList}" var="Golfcc" varStatus="status">
 						<td>
@@ -72,6 +73,13 @@
 
 					</c:forEach>
 					<!-- 반복끝-->
+				</tr>
+				<tr>
+				${CcGolfScoreListPage.curPage}
+				<c:set var="minpage" value="${CcGolfScoreListPage.curPage/10}"/>
+				<c:set var="maxpage" value="${CcGolfScoreListPage.curPage/10}" />
+				<c:forEach var="i" begin="${CcGolfScoreListPage.curPage/10}" end="${maxBlock}" step="1">
+				</c:forEach>
 				</tr>
 			</table>
 		</td>

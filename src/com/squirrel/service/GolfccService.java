@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.squirrel.config.MySqlSessionFactory;
 import com.squirrel.dao.GolfccDAO;
 import com.squirrel.dto.GolfCcDTO;
+import com.squirrel.dto.PageDTO;
 import com.squirrel.dto.view.CcGolfScoreDTO;
 
 public class GolfccService {
@@ -36,6 +37,20 @@ public class GolfccService {
 		
 		
 		return result;
+	}
+
+	public PageDTO<List<CcGolfScoreDTO>> ccGolfScoreList(HashMap<String, Object> searchVal, PageDTO<List<CcGolfScoreDTO>> pageDto) {
+		// TODO Auto-generated method stub
+		SqlSession session = MySqlSessionFactory.getSession();
+		GolfccDAO dao = new GolfccDAO();
+		try {
+			pageDto.setTotalRecord(dao.ccGolfScoreListCount(session, searchVal));
+			pageDto = dao.ccGolfScoreList(session,searchVal,pageDto);
+		} finally {
+			// TODO: handle finally clause
+			session.close();
+		}
+		return pageDto;
 	}
 
 }
