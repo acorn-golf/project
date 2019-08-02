@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>workShop03_02</display-name>
+  <filter>
+    <filter-name>LoginChkF</filter-name>
+    <filter-class>com.squirrel.Filter.LoginChkFilter</filter-class>
+    <init-param>
+      <param-name>anonymousUrl</param-name>
+      <param-value>
 
-<filter>
-<filter-name>LoginChkF</filter-name>
-<filter-class>com.squirrel.Filter.LoginChkFilter</filter-class>
-<init-param>
-<param-name>anonymousUrl</param-name>
-<param-value>
-<!-- 세션 비체크 목록 -->
 
-<!--로그인 -->
+
 /MemberUIServlet,/LoginUIServlet,/LoginServlet,/MultiCheckServlet,/MemberAddServlet,/AdminPageUIServlet
 
 
@@ -23,11 +22,11 @@
 /main.jsp
 
 
-<!-- 기타 에셋 -->
+
 /show/top/assets/js/index.js
 
 
-<!-- 확장자 -->
+
 .css
 .jpg
 .js

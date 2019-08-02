@@ -83,7 +83,7 @@ public class ReviewListServlet extends HttpServlet {
 		int showBlock = 5; // 보여줄 페이지 1,2,3,4,5 // 6,7,8,9,10
 		int minBlock = (curPage / (showBlock)) * showBlock;
 		int maxBlock = 0;
-		System.out.println("토탈"+totalPage+"  min:"+minBlock+"  showBlock:"+showBlock);
+		//System.out.println("토탈"+totalPage+"  min:"+minBlock+"  showBlock:"+showBlock);
 		if (curPage == totalPage || totalPage < minBlock+showBlock) {
 			maxBlock = totalPage;
 		} else if (curPage < totalPage) {
