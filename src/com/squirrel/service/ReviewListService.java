@@ -83,4 +83,15 @@ public class ReviewListService {
 		}
 	}
 
+	public void rv_vcount(int score_no) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		ReviewListDAO dao = new ReviewListDAO();
+		try {
+			dao.rv_vcount(session, score_no);
+			session.commit();
+		}finally {
+			session.close();
+		}
+	}
+
 }

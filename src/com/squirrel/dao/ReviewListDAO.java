@@ -36,12 +36,11 @@ public class ReviewListDAO {
 	}
 
 	public CcScoreDTO selectDetail(SqlSession session, int score_no) {
-		rv_vcount(session, score_no);
 		CcScoreDTO dto = session.selectOne("ReviewMapper.selectDetail", score_no);
 		return dto;
 	}
 	
-	private void rv_vcount(SqlSession session, int score_no) {
+	public void rv_vcount(SqlSession session, int score_no) {
 		session.update("ReviewMapper.rv_vcount", score_no);
 	}
 

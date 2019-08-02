@@ -6,8 +6,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import com.squirrel.dto.CcScoreDTO;
+import com.squirrel.dto.MemberDTO;
 import com.squirrel.service.ReviewListService;
 
 @WebServlet("/InsertReviewServlet")
@@ -16,11 +19,13 @@ public class InsertReviewServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 세션처리 및 세션의 유저pk usern_no 갖고와야됨
+		HttpSession session = request.getSession();
+		MemberDTO user = (MemberDTO)session.getAttribute("login");
 		int score_no = 0; // mapper에서 시퀀스 준다
 		String score = request.getParameter("score"); // int로 형변환
 		String cc_id = request.getParameter("cc_id");
 		String score_date = null; // default가 sysdate라서 mapper에서 적용 안함
-		int user_no = 3; // 세션에서 받아와야됨 : session.getAttribute("login").user_no
+		int user_no = user.getUser_no(); // 세션에서 받아와야됨 : session.getAttribute("login").user_no
 		String rv_content = request.getParameter("rv_content");
 		String rv_title = request.getParameter("rv_title");
 		int rv_vcount = 0; // 조회수 이므로 insert할 때 적용 안함 -> mapper에서 적용 안한다

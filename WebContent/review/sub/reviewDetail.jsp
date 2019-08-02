@@ -12,6 +12,9 @@
 		$("#deleteReviewDeatil").on("click",function(){
 			$("form").attr({"action":"DeleteReviewDeatilServlet","method":"post"});
 		});
+		$("#ReviewList").on("click",function(){
+			location.href="ReviewListServlet";
+		});
 	});
 </script>
 
@@ -42,7 +45,7 @@
 			</tr>
 </table>
 <c:choose>
-	<c:when test="${user_no eq 3 || login.rating eq 'A'}"> <%-- 3이아니라 로그인 세션의 유저pk로 비교해야함, 세션의 등급확인(관리자)  --%>
+	<c:when test="${user_no eq login.user_no || login.rating eq 'A'}"> <%-- 3이아니라 로그인 세션의 유저pk로 비교해야함, 세션의 등급확인(관리자)  --%>
 		<button id="updateReviewDeatil">수정</button>&nbsp;<button id="deleteReviewDeatil">삭제</button>
 	</c:when>
 </c:choose>
