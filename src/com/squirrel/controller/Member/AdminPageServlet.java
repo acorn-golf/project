@@ -36,7 +36,7 @@ public class AdminPageServlet extends HttpServlet {
 			}
 			System.out.println(list);
 			session.setAttribute("list", list);
-			destination = "member/sub/adminPageResult.jsp";			
+			destination = "member/adminPage.jsp";			
 			session.setAttribute("login", dto);
 			request.getRequestDispatcher(destination).forward(request, response);
 		}

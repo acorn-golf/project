@@ -44,20 +44,4 @@
 <tr id="memberSelect">
 </tr>
 </table>
-<table border="1" class="form_main">
-<c:forEach var="member" items="${list}">
-<tr>
-<td>${member.phone_id}</td>
-<td>${member.userpw}</td>
-<td>${member.username}</td>
-<td>${member.nickname}</td>
-<td>${member.gender}</td>
-<td>${member.rating}</td>
-<td>${member.rstartdate}</td>
-<td>${member.renddate}</td>
-<td>${member.email}</td>
-<td>${member.email_chk}</td>
-<tr>
-</c:forEach>
-</table>
 </form>
