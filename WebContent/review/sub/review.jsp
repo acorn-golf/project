@@ -60,13 +60,13 @@
 <c:set var="curPage" value="${curPage+1}"/> <%-- 1 --%>
 <c:set var="maxBlock" value="${maxBlock}"/> 
 <c:set var="minBlock" value="${minBlock+1}"/> 
-<c:choose>
-	<c:when test="${curPage eq 1}">
-	</c:when>
-	<c:when test="${curPage != 1}">
-		<a href="ReviewListServlet?curPage=1">◀</a>&nbsp;&nbsp;
-	</c:when>
-</c:choose>&nbsp;&nbsp;
+
+
+<c:if test="${curPage != 1}">
+	<a href="ReviewListServlet?curPage=1">◀◀</a>&nbsp;&nbsp;
+	<c:if test="${curPage>showBlock}"><a href="ReviewListServlet?curPage=${minBlock-1}">◁</a>&nbsp;&nbsp;</c:if>
+</c:if>
+&nbsp;&nbsp;
 
 <c:forEach var="i" begin="${minBlock}" end="${maxBlock}" step="1">
 	<c:choose>
@@ -79,13 +79,10 @@
 	</c:choose>	
 </c:forEach>&nbsp;
 
-<c:choose>
-	<c:when test="${curPage eq totalPage}">
-	</c:when>
-	<c:when test="${curPage != totalPage}">
-		<a href="ReviewListServlet?curPage=${totalPage}">▶</a>
-	</c:when>
-</c:choose>
+<c:if test="${curPage != totalPage}">
+	<c:if test="${curPage<=totalPage-showBlock&&curPage<=maxBlock}"><a href="ReviewListServlet?curPage=${maxBlock+1}">▷</a></c:if>
+	<a href="ReviewListServlet?curPage=${totalPage}">▶▶</a>
+</c:if>
 </td>
 </tr>
 </table>

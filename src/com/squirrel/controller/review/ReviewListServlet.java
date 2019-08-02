@@ -38,7 +38,7 @@ public class ReviewListServlet extends HttpServlet {
 			}else
 				curPage=Integer.parseInt(curPageStr)-1;
 		}
-		String cc_id = "jj297 "; // 골프장 자세히 보기에서 받았다고 가정
+		String cc_id = null; // 골프장 자세히 보기에서 받았다고 가정
 
 		String searchName = request.getParameter("searchName");
 		String searchValue = request.getParameter("searchValue");
@@ -75,28 +75,24 @@ public class ReviewListServlet extends HttpServlet {
 		int perPage = pDTO.getPerPage();
 		int totalRecord = pDTO.getTotalRecord();
 		int totalPage = totalRecord / perPage;
-		System.out.println("totalRecord: "+totalRecord);
-		System.out.println("perPage: "+perPage);
-		System.out.println("totalPage: "+totalPage);
+
 		if (totalRecord % (float)perPage != 0) {
 			totalPage++;
 		}
-		System.out.println("!_#!)(#! totalPage: "+totalPage);
+
 		int showBlock = 5; // 보여줄 페이지 1,2,3,4,5 // 6,7,8,9,10
 		int minBlock = (curPage / (showBlock)) * showBlock;
 		int maxBlock = 0;
 		System.out.println("토탈"+totalPage+"  min:"+minBlock+"  showBlock:"+showBlock);
 		if (curPage == totalPage || totalPage < minBlock+showBlock) {
 			maxBlock = totalPage;
-			System.out.println("집");
 		} else if (curPage < totalPage) {
 			maxBlock = minBlock + showBlock;
-			System.out.println("가고싶다");
 		}
-		System.out.println(maxBlock);
+		
 		request.setAttribute("minBlock", minBlock);
 		request.setAttribute("maxBlock", maxBlock);
-
+		request.setAttribute("showBlock", showBlock);
 		request.setAttribute("reviewList", list);
 		request.setAttribute("totalPage", totalPage);
 		request.setAttribute("curPage", curPage);
