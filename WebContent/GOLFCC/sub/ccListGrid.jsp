@@ -77,7 +77,9 @@
 				<tr>
 				${CcGolfScoreListPage.curPage}
 				<c:set var="minpage" value="${CcGolfScoreListPage.curPage/10}"/>
-				<c:set var="maxpage" value="${CcGolfScoreListPage.curPage/10}" />
+				<c:set var="maxpage" value="${minpage+10}" />
+				<c:if test="${CcGolfScoreListPage.totalRecord/CcGolfScoreListPage.perPage}"></c:if>
+				
 				<c:forEach var="i" begin="${CcGolfScoreListPage.curPage/10}" end="${maxBlock}" step="1">
 				</c:forEach>
 				</tr>
