@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.function.Predicate;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -57,7 +58,11 @@ public class LoginChkFilter implements Filter {
 		HttpSession session = hreq.getSession();
 		
 
-		if (anonymousUrl.contains(hreq.getServletPath()))
+//		if (anonymousUrl.contains(hreq.getServletPath()))
+//			chain.doFilter(request, response);
+		System.out.println(anonymousUrl.stream().anyMatch((url)->!(hreq.getServletPath().indexOf(url)==-1)));
+		
+		if(anonymousUrl.stream().anyMatch((url)->!(hreq.getServletPath().indexOf(url)==-1))) 
 			chain.doFilter(request, response);
 		else {
 			MemberDTO dto = (MemberDTO) (session.getAttribute("login"));

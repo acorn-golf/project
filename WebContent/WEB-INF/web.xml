@@ -26,7 +26,10 @@
 /show/top/assets/js/index.js
 
 
-/show/top/assets/css/modules.css,/show/top/assets/css/style.min.css
+<!-- 확장자 -->
+.css
+.jpg
+.js
 </param-value>
     </init-param>
   </filter>
