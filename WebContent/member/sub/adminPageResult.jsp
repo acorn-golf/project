@@ -3,9 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-<form class="form_main">
+
+<form method="get" class="form_main">
 <table class="line_table">
-<c:forEach var="member" begin="0" items="${list}" varStatus="status">
+<c:forEach var="member" items="${list}" varStatus="status">
 <c:if test="${status.first}">
 <tr>
 <th class="line_th">아이디</th>
@@ -16,9 +17,9 @@
 </tr>
 </c:if>
 <tr>
-<td class="line_td">${member.phone_id}</td>
+<td class="line_td"><a href="/teamSquirrel/AdminModifiedUIServlet">${member.phone_id}</a></td>
 <td class="line_td">${member.username}</td>
-<td class="line_td">${member.nickname}</td>
+<td class="line_td"><a href="/teamSquirrel/AdminModifiedUIServlet?nickname=${member.nickname}">${member.nickname}</a></td>
 <td class="text_center line_td">${member.rating}</td>
 <td class="line_td">${member.email}</td>
 </tr>

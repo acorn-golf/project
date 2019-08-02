@@ -8,7 +8,7 @@
 	$(document).ready(function(){		
 
 		$("select").on("click",function(){
-			if( $(this).val() == "member" ){
+			if( $(this).val() == "member" ){				
 				$("#memberSelect").html(`
 				<td style="width: 80px;">아이디<input type="radio" id="memberId" name="member" value="phone_id"></td>
 				<td style="width: 80px;">이름<input type="radio" id="memberName" name="member" value="username"></td>
@@ -17,13 +17,13 @@
 			} 
 		
 		});
-		$("form").on("click",function(){
+		$("#adminPage").on("click",function(){
 			
 			this.action="/teamSquirrel/AdminPageServlet";
 		});
 	});
 </script>
-<form method="get">
+<form id="adminPage" method="post">
 <table border="1" class="form_main">
 <tr>
 <th>
