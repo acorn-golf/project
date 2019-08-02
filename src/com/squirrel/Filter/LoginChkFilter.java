@@ -60,7 +60,6 @@ public class LoginChkFilter implements Filter {
 
 //		if (anonymousUrl.contains(hreq.getServletPath()))
 //			chain.doFilter(request, response);
-		System.out.println(anonymousUrl.stream().anyMatch((url)->!(hreq.getServletPath().indexOf(url)==-1)));
 		
 		if(anonymousUrl.stream().anyMatch((url)->!(hreq.getServletPath().indexOf(url)==-1))) 
 			chain.doFilter(request, response);

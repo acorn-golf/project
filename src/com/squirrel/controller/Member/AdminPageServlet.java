@@ -1,6 +1,7 @@
 package com.squirrel.controller.Member;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.squirrel.dto.MemberDTO;
 import com.squirrel.service.MemberService;
+import com.squirrel.service.ProductService;
 
 @WebServlet("/AdminPageServlet")
 public class AdminPageServlet extends HttpServlet {
@@ -28,13 +30,22 @@ public class AdminPageServlet extends HttpServlet {
 		}else {
 			String nickname = dto.getNickname();
 			MemberService service = new MemberService();
+			ProductService pService = new ProductService();
 			dto = service.myPage(nickname);
+			String adminSelect = request.getParameter("adminSelect");
+			String adminSearch = request.getParameter("adminSearch");
 			String member = request.getParameter("member");
+			
 			List<MemberDTO> list = null;
-			if( member.equals("memberAll")) {
-			list = service.memberSelect();
+			HashMap<String, String> map = new HashMap<String, String>();
+			if( adminSelect.equals("member") ){				
+				map.put("adminSearch",adminSearch);
+				map.put("member",member);
+				list = service.adminMemberSelect(map);	
+			}else if( adminSelect.equals("product") ){
+				
 			}
-			System.out.println(list);
+			
 			session.setAttribute("list", list);
 			destination = "member/adminPage.jsp";			
 			session.setAttribute("login", dto);
