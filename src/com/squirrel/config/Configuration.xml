@@ -16,6 +16,7 @@
 		<typeAlias type="com.squirrel.dto.NoticeListDTO" alias="NoticeListDTO"/>
 		<typeAlias type="com.squirrel.dto.ReviewDTO" alias="ReviewDTO"/>
 		<typeAlias type="com.squirrel.dto.CcScoreDTO" alias="CcScoreDTO"/>
+		<typeAlias type="com.squirrel.dto.ReCommentDTO" alias="ReCommentDTO"/>
 		<typeAlias type="com.squirrel.dto.view.ReviewListDTO" alias="ReviewListDTO"/>
 		<typeAlias type="com.squirrel.dto.view.CcGolfScoreDTO" alias="CcGolfScoreDTO"/>
 		<typeAlias type="com.squirrel.dto.view.ProductListDTO" alias="ProductListDTO"/>
@@ -40,5 +41,6 @@
 		<mapper resource="com/squirrel/config/NoticeMapper.xml" />
 		<mapper resource="com/squirrel/config/ReviewMapper.xml" />
 		<mapper resource="com/squirrel/config/ReviewViewMapper.xml" />
+		<mapper resource="com/squirrel/config/ReCommentMapper.xml" />
 	</mappers>
 </configuration>
