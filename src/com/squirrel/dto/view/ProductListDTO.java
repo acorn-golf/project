@@ -31,14 +31,16 @@ public class ProductListDTO {
 	private int user_no;
 	private int p_vcount;
 	private String nickname;
+	private String loc_name;
+	private String loc_id;
 	
 	public ProductListDTO() {
 		
 	}
-
+	
 	public ProductListDTO(String cc_name, String cc_img, String p_id, String p_pdate, String p_uploaddate,
 			int p_maxpeople, int p_hole, String p_caddyyn, String p_babyn, String p_cartyn, int p_price,
-			String p_content, int user_no, int p_vcount, String nickname) {
+			String p_content, int user_no, int p_vcount, String nickname, String loc_name, String loc_id) {
 		super();
 		this.cc_name = cc_name;
 		this.cc_img = cc_img;
@@ -55,6 +57,26 @@ public class ProductListDTO {
 		this.user_no = user_no;
 		this.p_vcount = p_vcount;
 		this.nickname = nickname;
+		this.loc_name = loc_name;
+		this.loc_id = loc_id;
+	}
+	
+	
+	
+	public String getLoc_name() {
+		return loc_name;
+	}
+
+	public void setLoc_name(String loc_name) {
+		this.loc_name = loc_name;
+	}
+
+	public String getLoc_id() {
+		return loc_id;
+	}
+
+	public void setLoc_id(String loc_id) {
+		this.loc_id = loc_id;
 	}
 
 	public String getCc_name() {

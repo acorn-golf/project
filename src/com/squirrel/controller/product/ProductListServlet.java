@@ -34,13 +34,14 @@ public class ProductListServlet extends HttpServlet {
 				curPage=Integer.parseInt(curPageStr)-1;
 		}
 		
+		String loc_id = request.getParameter("loc_id");
 		String productDivision = request.getParameter("productDivision"); // 검색구분
 		String productValue = request.getParameter("productValue"); // 검색값
 		String productOrderby = request.getParameter("productOrderby"); // 정렬
 		
 		if (productOrderby != null) { // 정렬값 재세팅
 			if (!productOrderby.equals((String) session.getAttribute("productOrderby"))) {
-				session.setAttribute("orderby", productOrderby);
+				session.setAttribute("productOrderby", productOrderby);
 			}
 		}
 		
@@ -54,9 +55,16 @@ public class ProductListServlet extends HttpServlet {
 				session.setAttribute("productDivision", productDivision);
 				session.setAttribute("productValue", productValue);
 			}
+			if(loc_id==null||loc_id.equals("all")) { // 지역별 재세팅
+				session.removeAttribute("loc_id");
+			}else {
+				session.setAttribute("loc_id", loc_id);
+			}
 		}
 		
 		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("loc_id", (String)session.getAttribute("loc_id"));
 		map.put("productDivision", (String)session.getAttribute("productDivision"));
 		map.put("productValue", (String)session.getAttribute("productValue"));
 		map.put("productOrderby", (String)session.getAttribute("productOrderby"));
@@ -82,11 +90,6 @@ public class ProductListServlet extends HttpServlet {
 		} else if (curPage < totalPage) {
 			maxBlock = minBlock + showBlock;
 		}
-		
-		for (ProductListDTO p : list) {
-			System.out.println(p.getCc_name()+"\t"+p.getP_content()+"\t"+p.getNickname());
-		}
-		
 		request.setAttribute("minBlock", minBlock);
 		request.setAttribute("maxBlock", maxBlock);
 		request.setAttribute("showBlock", showBlock);
@@ -94,7 +97,7 @@ public class ProductListServlet extends HttpServlet {
 		request.setAttribute("totalPage", totalPage);
 		request.setAttribute("curPage", curPage);
 		
-		request.getRequestDispatcher("review/productList.jsp").forward(request, response);
+		request.getRequestDispatcher("product/productList.jsp").forward(request, response);
 		
 	}
 

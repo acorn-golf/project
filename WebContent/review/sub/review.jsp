@@ -79,8 +79,9 @@
 	</c:choose>	
 </c:forEach>&nbsp;
 
+<c:set var="i" value="${Math.floor(totalPage/showBlock)}"/>
 <c:if test="${curPage != totalPage}">
-	<c:if test="${curPage<=totalPage-showBlock&&curPage<=maxBlock}"><a href="ReviewListServlet?curPage=${maxBlock+1}">▷</a></c:if>
+	<c:if test="${curPage<=showBlock*i}"><a href="ReviewListServlet?curPage=${maxBlock+1}">▷</a></c:if>
 	<a href="ReviewListServlet?curPage=${totalPage}">▶▶</a>
 </c:if>
 </td>
