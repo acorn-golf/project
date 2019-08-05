@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <table width="100%" cellspacing="0" cellpadding="0">
@@ -22,9 +23,10 @@
 				</tr>
 
 				<tr>
-				<c:set var="CcGolfScoreList" value="${CcGolfScoreListPage.list}"/>
+					<c:set var="CcGolfScoreList" value="${CcGolfScoreListPage.list}" />
 
-					<c:forEach items="${CcGolfScoreList}" var="Golfcc" varStatus="status">
+					<c:forEach items="${CcGolfScoreList}" var="Golfcc"
+						varStatus="status">
 						<td>
 							<table style='padding: 15px'>
 								<tr>
@@ -34,9 +36,8 @@
 													src="/teamSquirrel/GOLFCC/${Golfcc.loc_id}/${Golfcc.cc_img}"
 													border="0" align="center" width="200">
 											</c:if> <c:if test="${empty Golfcc.cc_img}">
-												<img
-													src="/teamSquirrel/GOLFCC/noimg.jpg"
-													border="0" align="center" width="200">
+												<img src="/teamSquirrel/GOLFCC/noimg.jpg" border="0"
+													align="center" width="200">
 											</c:if>
 									</a></td>
 								</tr>
@@ -75,13 +76,38 @@
 					<!-- 반복끝-->
 				</tr>
 				<tr>
-				${CcGolfScoreListPage.curPage}
-				<c:set var="minpage" value="${CcGolfScoreListPage.curPage/10}"/>
-				<c:set var="maxpage" value="${minpage+10}" />
-				<c:if test="${CcGolfScoreListPage.totalRecord/CcGolfScoreListPage.perPage}"></c:if>
-				
-				<c:forEach var="i" begin="${CcGolfScoreListPage.curPage/10}" end="${maxBlock}" step="1">
-				</c:forEach>
+
+					<c:if test="${CCminBlock != 0}">
+						<a href="ReviewListServlet?GolfCCcurPage=0"> ◀◀ </a>
+						<a href="ReviewListServlet?GolfCCcurPage<fmt:formatNumber value="${minpage -10}" type="number"
+							maxFractionDigits="0" />"> ◀ </a>
+					</c:if>
+
+
+					<c:forEach var="i" begin="${CCminBlock}" end="${CCmaxBlock-1}" step="1">
+						<c:choose>
+							<c:when test="${CcGolfScoreListPage.curPage eq i}">
+								<a> ${i+1} </a>
+							</c:when>
+							<c:otherwise>
+								<a href="ReviewListServlet?GolfCCcurPage=${i}"> ${i+1} </a>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+
+					<c:if
+						test="${CcGolfScoreListPage.totalRecord/CcGolfScoreListPage.perPage>CCmaxBlock}">
+						<a
+							href="ReviewListServlet?GolfCCcurPage=${CCmaxBlock}"> ▶ </a>
+						<c:set var="realmaxpage"
+							value="${CcGolfScoreListPage.totalRecord/CcGolfScoreListPage.perPage}" />
+						
+						<a
+							href="ReviewListServlet?GolfCCcurPage=<fmt:formatNumber value="${realmaxpage}" type="number"
+							maxFractionDigits="0" />">
+							▶▶ </a>
+					</c:if>
+
 				</tr>
 			</table>
 		</td>
