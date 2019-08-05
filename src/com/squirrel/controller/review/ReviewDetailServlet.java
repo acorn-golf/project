@@ -1,6 +1,8 @@
 package com.squirrel.controller.review;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -10,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.squirrel.dto.CcScoreDTO;
+import com.squirrel.dto.view.RecommentViewDTO;
 import com.squirrel.dto.view.ReviewListDTO;
+import com.squirrel.service.ReCommentService;
 import com.squirrel.service.ReviewListService;
 
 @WebServlet("/ReviewDetailServlet")
@@ -21,6 +25,9 @@ public class ReviewDetailServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String score_no = request.getParameter("score_no");
 		String user_no = request.getParameter("user_no");
+		if(score_no==null && user_no==null) {
+			
+		}
 		ReviewListService service = new ReviewListService();
 		CcScoreDTO dto = service.selectDetail(Integer.parseInt(score_no));
 		
@@ -46,8 +53,12 @@ public class ReviewDetailServlet extends HttpServlet {
 		ReviewListDTO rdto = service.selectNickname(Integer.parseInt(score_no));
 		String nickname = rdto.getNickname();
 		
+		ReCommentService service2 = new ReCommentService();
+		List<RecommentViewDTO> list = service2.selectRecomment(Integer.parseInt(score_no));
+		
 		request.setAttribute("reviewdetail", dto);
-		request.setAttribute("user_no", Integer.parseInt(user_no)); // 글 내용 작성자와 로그인 한 사람 비교를 위해 넘김
+		request.setAttribute("recommentList", list);
+		//request.setAttribute("user_no", Integer.parseInt(user_no)); // 글 내용 작성자와 로그인 한 사람 비교를 위해 넘김
 		request.setAttribute("nickname", nickname);
 		
 		request.getRequestDispatcher("review/reviewDetail.jsp").forward(request, response);

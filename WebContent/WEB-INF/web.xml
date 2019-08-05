@@ -16,10 +16,12 @@
 /ProductServlet
 
 
-/ReviewListServlet
+/ReviewListServlet,/ReCommentViewServlet
 
 
 /main.jsp
+
+
 
 
 
