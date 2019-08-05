@@ -39,7 +39,7 @@ public class GolfccService {
 		return result;
 	}
 
-	public PageDTO<List<CcGolfScoreDTO>> ccGolfScoreList(HashMap<String, Object> searchVal, PageDTO<List<CcGolfScoreDTO>> pageDto) {
+	public PageDTO<CcGolfScoreDTO> ccGolfScoreList(HashMap<String, Object> searchVal, PageDTO<CcGolfScoreDTO> pageDto) {
 		// TODO Auto-generated method stub
 		SqlSession session = MySqlSessionFactory.getSession();
 		GolfccDAO dao = new GolfccDAO();
