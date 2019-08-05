@@ -37,4 +37,9 @@ public class GolfccDAO {
 		return session.selectOne("GolfccMapper.ccGolfScoreListCount",searchVal);
 	}
 
+	public CcGolfScoreDTO getGolfccScoreOne(SqlSession session, String cc_id) {
+		// TODO Auto-generated method stub
+		return session.selectOne("GolfccMapper.getGolfccScoreOne",cc_id);
+	}
+
 }

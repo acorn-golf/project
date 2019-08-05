@@ -19,5 +19,23 @@ public class ProductService {
 		}
 		
 	}
+	
+	
+	
+	
+	public ProductDTO productRetrieve(String p_id) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		ProductDAO dao = new ProductDAO();
+		ProductDTO dto = null;
+		try {
+			dto = dao.productRetrieve(session,p_id);
+			session.commit();
+		}finally {
+			session.close();
+		}
+		
+		return dto;
+		
+	}
 
 }
