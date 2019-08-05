@@ -53,4 +53,19 @@ public class GolfccService {
 		return pageDto;
 	}
 
+	public CcGolfScoreDTO getGolfccScoreOne(String cc_id) {
+		// TODO Auto-generated method stub
+		CcGolfScoreDTO result = null;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			result = new GolfccDAO().getGolfccScoreOne(session,cc_id);
+		} finally {
+			// TODO: handle finally clause
+			session.close();
+		}
+		
+		
+		return result;
+	}
+
 }
