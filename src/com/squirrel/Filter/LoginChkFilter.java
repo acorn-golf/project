@@ -53,7 +53,7 @@ public class LoginChkFilter implements Filter {
 
 		// pass the request along the filter chain
 		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=UTF-8");
+
 		
 		HttpServletRequest hreq = (HttpServletRequest) request;
 		HttpServletResponse hres = (HttpServletResponse) response;

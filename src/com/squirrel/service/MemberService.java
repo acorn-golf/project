@@ -94,4 +94,22 @@ public class MemberService {
 		return list;
 	}
 
+	public int adminModified(MemberDTO userdto) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int confirm = 0;
+		try {
+			confirm = dao.adminModified(session,userdto);
+			if(confirm != 0) {
+				session.commit();
+			}else {	
+				session.rollback();				
+			}
+		}finally {
+			session.close();
+		}		
+		return confirm;
+	}
+	
+	
+	
 }

@@ -62,52 +62,60 @@
 				$("#matchedpw").text("비밀번호 불일치").css("color","red");
 			};
 		});
-		$("#adminModified").on("click",function(event){
+		$("[type='button']").on("click",function(event){
+
+				location.href="/teamSquirrel/AdminPageUIServlet";
 			
-			if($("#repassword").val()==""&&$("#password").val()==""){
-				event.preventDefault();
-			}else{
+		});
+		$("#adminModified").click(function(){
+			
 				this.action="/teamSquirrel/AdminModifiedServlet";
-			}
 		});
 
 	});
 
 </script>
 
-<form id="adminModified" method="post" class="form_main">
+<form id="adminModified" method="get" class="form_main">
 <table>
 <tr>
 <th>아이디:</th>
-<td><input class="myupdate" type="text" id="phoneid" name="phoneid" value="${userinfo.phone_id}"></td>
+<td><input class="adminupdate" type="text" id="phoneid" name="phoneid" value="${userinfo.phone_id}" readonly></td>
 <td class="confirm"><span id="idchk"></span></td>
 </tr>
 <tr>
-<td colspan="3" class="m_space"></td>
-</tr>
-<tr>
 <th>이름:</th>
-<td><input class="myupdate" type="text" id="username" name="username" value="${userinfo.username}"></td>
+<td><input class="adminupdate" type="text" id="username" name="username" value="${userinfo.username}"></td>
 </tr>
 <tr>
 <th>닉네임:</th>
-<td><input class="myupdate" type="text" id="nickname" name="nickname" value="${userinfo.nickname}"></td>
+<td><input class="adminupdate" type="text" id="nickname" name="nickname" value="${userinfo.nickname}"></td>
 </tr>
 <tr>
 <th>등급:</th>
-<td><input class="myupdate" type="text" id="nickname" name="nickname" value="${userinfo.rating}"></td>
+<td><input class="adminupdate" type="text" id="rating" name="rating" value="${userinfo.rating}"></td>
 </tr>
 <tr>
 <th>등급 시작일:</th>
-<td><input class="myupdate" type="text" id="nickname" name="nickname" value="${userinfo.rstartdate}"></td>
+<td><input class="adminupdate" type="text" id="rstartdate" name="rstartdate" value="${userinfo.rstartdate}"></td>
+</tr>
+<tr>
+<th>추가 :</th> 
+<td>
+<select class="text_center" id="Srenddate" name="Srenddate">
+<c:forEach var="month" begin="1" end="12">
+<option>${month} 개월</option>
+</c:forEach>
+</select>
+</td>
 </tr>
 <tr>
 <th>등급 종료일:</th>
-<td><input class="myupdate" type="text" id="nickname" name="nickname" value="${userinfo.renddate}"></td>
+<td><input class="adminupdate" type="text" id="renddate" name="renddate" value="${userinfo.renddate}"></td>
 </tr>
 <tr>
 <th>e-mail:</th>
-<td><input class="myupdate" type="email" id="email" name="email" value="${userinfo.email}"></td>
+<td><input class="adminupdate" type="email" id="email" name="email" value="${userinfo.email}"></td>
 <td class="confirm"><span id="emailchk"></span></td>
 </tr>
 <tr>

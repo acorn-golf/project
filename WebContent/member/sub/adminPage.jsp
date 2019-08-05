@@ -7,13 +7,17 @@
 
 	$(document).ready(function(){		
 
-		$("select").on("click",function(){
-			if( $(this).val() == "member" ){				
+		$("#adminSelect, #adminSearch").on("click",function(){
+			if( $("select").val() == "member" ){				
 				$("#memberSelect").html(`
 				<td style="width: 80px;">아이디<input type="radio" id="memberId" name="member" value="phone_id"></td>
 				<td style="width: 80px;">이름<input type="radio" id="memberName" name="member" value="username"></td>
-				<td style="width: 80px;">닉네임<input type="radio" id="memberNick" name="member" value="nickname"></td>
-				<td style="width: 90px;">주민번호<input type="radio" id="memberSsn" name="member" value="userSsn"></td>`);
+				<td style="width: 80px;">닉네임<input type="radio" id="memberNick" name="member" value="nickname"></td>`);
+			}else if( $("select").val() == "product" ){
+				$("#memberSelect").html(`
+				<td style="width: 80px;">골프장<input type="radio" id="memberId" name="member" value="phone_id"></td>
+				<td style="width: 80px;">날짜<input type="radio" id="memberName" name="member" value="username"></td>
+				<td style="width: 80px;">가격<input type="radio" id="memberNick" name="member" value="nickname"></td>`);
 			} 
 		
 		});
@@ -23,7 +27,7 @@
 		});
 	});
 </script>
-<form id="adminPage" method="post">
+<form id="adminPage" method="get">
 <table border="1" class="form_main">
 <tr>
 <th>

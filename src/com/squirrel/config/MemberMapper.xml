@@ -18,8 +18,8 @@
 	</select>
 	<select id="myPage" resultType="MemberDTO" parameterType="String">
 		select user_no,phone_id,userpw,username,nickname,userssn,gender,
-		rating,to_char(rstartdate,'yyyy/MM/dd') rstartdate,renddate,email,email_chk 
-		from memberList 
+		rating,to_char(rstartdate,'yyyy/MM/dd') rstartdate, to_char(renddate,'yyyy/MM/dd') renddate,
+		email,email_chk from memberList 
 		where nickname = #{nickname}
 	</select>
 	<update id="myPageUpdate" parameterType="MemberDTO">
@@ -41,10 +41,16 @@
 	</select>
 	<select id="adminMemberSelect" resultType="MemberDTO" parameterType="HashMap">
 		select user_no,phone_id,userpw,username,nickname,userssn,gender,
-		rating,to_char(rstartdate,'yyyy/MM/dd') rstartdate,renddate,email,email_chk
-		from memberList 
-		<if test="adminSearch != ''">
+		rating,to_char(rstartdate,'yyyy/MM/dd') rstartdate, to_char(renddate,'yyyy/MM/dd') renddate,
+		email,email_chk	from memberList 
+		<if test="member != null">
 		where ${member} like '%'||#{adminSearch}
 		</if>
 	</select>
+	<update id="adminModified" parameterType="MemberDTO">
+		update memberList
+		set username = #{username}, nickname = #{nickname}, rating = #{rating}, 
+			rstartdate = sysdate, renddate = add_months(sysdate, #{renddate}), email = #{email}
+		where phone_id = #{phone_id}
+	</update>
 </mapper>

@@ -31,16 +31,23 @@ public class AdminModifiedServlet extends HttpServlet {
 			String nickname = dto.getNickname();
 			MemberService service = new MemberService();
 			dto = service.myPage(nickname);
+			
 			String phone_id = request.getParameter("phoneid");
 			String username = request.getParameter("username");
 			String usernick = request.getParameter("nickname");
-			String userssn = request.getParameter("userssn");
 			String rating = request.getParameter("rating");
 			String rstartdate = request.getParameter("rstartdate");
-			String renddate = request.getParameter("renddate");
+			String Srenddate = request.getParameter("Srenddate");
 			String email = request.getParameter("email");
+			String renddate = Srenddate.replace("개월", "").trim();
 			
-			destination = "member/adminPage.jsp";			
+			MemberDTO userdto = new MemberDTO(phone_id, username, usernick, rating, rstartdate, renddate, email);
+			int confirm = service.adminModified(userdto);
+			
+			userdto = service.myPage(usernick);
+			
+			request.setAttribute("userinfo", userdto);
+			destination = "member/adminModified.jsp";			
 			session.setAttribute("login", dto);
 			request.getRequestDispatcher(destination).forward(request, response);
 		}

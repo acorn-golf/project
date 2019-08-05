@@ -49,4 +49,11 @@ public class MemberDAO {
 		return list;
 	}
 
+	public int adminModified(SqlSession session, MemberDTO userdto) {
+		
+		int confirm = session.update("MemberMapper.adminModified",userdto);
+		
+		return confirm;
+	}
+
 }
