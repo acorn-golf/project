@@ -10,7 +10,7 @@
 
 
 /MemberUIServlet,/LoginUIServlet,/LoginServlet,/MultiCheckServlet,/MemberAddServlet,/AdminPageUIServlet
-/AdminModifiedUIServlet,/AdminModifiedServlet
+/AdminModifiedUIServlet,/AdminModifiedServlet,/captcha,/CaptchaServlet
         
         
 /ProductServlet
@@ -40,4 +40,15 @@
     <filter-name>LoginChkF</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  
+  <servlet>
+    <servlet-name>CaptchaServlet</servlet-name>
+    <servlet-class>com.squirrel.controller.Member.CaptchaServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>CaptchaServlet</servlet-name>
+    <url-pattern>/captcha</url-pattern>
+  </servlet-mapping>
 </web-app>
