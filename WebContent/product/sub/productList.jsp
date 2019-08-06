@@ -12,6 +12,10 @@
 		$("#location").on("change",function(){
 			location.href="ProductListServlet?loc_id="+${loc_id};
 		}); */
+		if(${emergency != null}){
+			$("input[type='checkbox']").attr("checked","checked");
+		}
+		
 	});
 </script>
 
@@ -27,7 +31,8 @@
 	<option value="jj" class="loc">제주</option>
 </select>&nbsp;
 <input type="radio" name="productOrderby" value="p_pdate" class="radio">티업시간 순&nbsp;&nbsp;
-<input type="radio" name="productOrderby" value="cc_name" class="radio">골프장 이름순&nbsp;&nbsp;<br>
+<input type="radio" name="productOrderby" value="cc_name" class="radio">골프장 이름순&nbsp;&nbsp;
+<input type="checkbox" name="emergency" value="p_pdate-sysdate" class="radio">긴급상품&nbsp;&nbsp;<br>
 <table border="1">
 	<tr>
 		<td colspan="4">
@@ -43,6 +48,7 @@
 		<th>티업시간</th>
 		<th>그린피</th>
 	</tr>
+	
 	<c:forEach var="pList" items="${productList}">
 	<tr>
 		<td width="120"><img src="GOLFCC/${pList.loc_id}/${pList.cc_img}" border="0" align="middle" width="120" height="80" />
@@ -60,7 +66,9 @@
 		</table>
 		</td>
 		<td><b>${pList.p_pdate}</b><br>${pList.nickname}</td>
-		<td>${pList.p_price} 만원</td>
+		<td align="center">${pList.p_price} 만원<br>
+		<c:if test="${pList.emergency eq '긴급'}">
+		<b style="color:red">[${pList.emergency}]</b></c:if></td>
 	</tr>
 	</c:forEach>
 	
