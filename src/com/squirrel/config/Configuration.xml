@@ -17,10 +17,12 @@
 		<typeAlias type="com.squirrel.dto.ReviewDTO" alias="ReviewDTO"/>
 		<typeAlias type="com.squirrel.dto.CcScoreDTO" alias="CcScoreDTO"/>
 		<typeAlias type="com.squirrel.dto.ReCommentDTO" alias="ReCommentDTO"/>
+		<typeAlias type="com.squirrel.dto.PickListDTO" alias="PickListDTO"/>
 		<typeAlias type="com.squirrel.dto.view.ReviewListDTO" alias="ReviewListDTO"/>
 		<typeAlias type="com.squirrel.dto.view.CcGolfScoreDTO" alias="CcGolfScoreDTO"/>
 		<typeAlias type="com.squirrel.dto.view.ProductListDTO" alias="ProductListDTO"/>
 		<typeAlias type="com.squirrel.dto.view.RecommentViewDTO" alias="RecommentViewDTO"/>
+		<typeAlias type="com.squirrel.dto.view.PickListviewDTO" alias="PickListviewDTO"/>
 	</typeAliases>
 
 	<environments default="development">
@@ -43,5 +45,6 @@
 		<mapper resource="com/squirrel/config/ReviewMapper.xml" />
 		<mapper resource="com/squirrel/config/ReviewViewMapper.xml" />
 		<mapper resource="com/squirrel/config/ReCommentMapper.xml" />
+		<mapper resource="com/squirrel/config/PickListMapper.xml" />
 	</mappers>
 </configuration>
