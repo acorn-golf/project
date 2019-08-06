@@ -53,4 +53,12 @@
 			rstartdate = sysdate, renddate = add_months(sysdate, #{renddate}), email = #{email}
 		where phone_id = #{phone_id}
 	</update>
+	<select id="getMemberInfo" resultType="MemberDTO" parameterType="int">
+	select user_no,phone_id,username,nickname,gender,
+		rating,rstartdate,renddate,email 
+		from memberList 
+		where user_no = #{value}
+	</select>
+	
+	
 </mapper>

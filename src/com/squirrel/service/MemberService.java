@@ -109,6 +109,18 @@ public class MemberService {
 		}		
 		return confirm;
 	}
+
+	public MemberDTO getMemberInfo(int user_no) {
+		// TODO Auto-generated method stub
+		SqlSession session = MySqlSessionFactory.getSession();
+		MemberDTO dto = null;
+		try {
+			dto = dao.getMemberInfo(session,user_no);
+		}finally {
+			session.close();
+		}		
+		return dto;
+	}
 	
 	
 	

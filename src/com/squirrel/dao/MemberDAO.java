@@ -56,4 +56,10 @@ public class MemberDAO {
 		return confirm;
 	}
 
+	public MemberDTO getMemberInfo(SqlSession session, int user_no) {
+		// TODO Auto-generated method stub
+		MemberDTO dto = session.selectOne("MemberMapper.getMemberInfo", user_no);
+		return dto;
+	}
+
 }
