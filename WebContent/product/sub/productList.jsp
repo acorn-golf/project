@@ -65,7 +65,7 @@
 			</tr>
 		</table>
 		</td>
-		<td><b>${pList.p_pdate}</b><br>${pList.nickname}</td>
+		<td><b>${pList.p_pdate}</b><br>${pList.nickname} ☎${pList.phone_id}</td>
 		<td align="center">${pList.p_price} 만원<br>
 		<c:if test="${pList.emergency eq '긴급'}">
 		<b style="color:red">[${pList.emergency}]</b></c:if></td>
