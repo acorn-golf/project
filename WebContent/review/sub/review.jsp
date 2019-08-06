@@ -26,9 +26,9 @@
 
 <input type="radio" name="orderby" value="score_date" class="radio">최신순&nbsp;&nbsp;
 <input type="radio" name="orderby" value="score" class="radio">평점순<br>
-<table border="1">
+<table class="line_table">
 	<tr>
-		<td colspan="5">
+		<td colspan="5" class="line_th">
 			<select name="searchName">
 				<option value="rv_title">제목</option>
 				<option value="nickname">작성자</option>
@@ -38,19 +38,19 @@
 		</td>
 	</tr>
 	<tr>
-		<th>골프장</th>
-		<th>평점</th>
-		<th>제목</th>
-		<th>작성자</th>
-		<th>작성일</th>
+		<th class="line_th">골프장</th>
+		<th class="line_th">평점</th>
+		<th class="line_th">제목</th>
+		<th class="line_th">작성자</th>
+		<th class="line_th">작성일</th>
 	</tr>
 	<c:forEach var="dto" items="${reviewList}" varStatus="status" >
 		<tr>
-			<td>${dto.cc_name}</td>
-			<td>${dto.score}</td>
-			<td><a href="ReviewDetailServlet?score_no=${dto.score_no}&user_no=${dto.user_no}">${dto.rv_title}</a></td>
-			<td>${dto.nickname}</td>
-			<td>${dto.score_date}</td>
+			<td class="line_td">${dto.cc_name}</td>
+			<td class="line_td">${dto.score}</td>
+			<td class="line_td"><a href="ReviewDetailServlet?score_no=${dto.score_no}&user_no=${dto.user_no}">${dto.rv_title}</a></td>
+			<td class="line_td">${dto.nickname}</td>
+			<td class="line_td">${dto.score_date}</td>
 		</tr>
 		
 	</c:forEach>
@@ -79,8 +79,9 @@
 	</c:choose>	
 </c:forEach>&nbsp;
 
+<c:set var="i" value="${Math.floor(totalPage/showBlock)}"/>
 <c:if test="${curPage != totalPage}">
-	<c:if test="${curPage<=totalPage-showBlock&&curPage<=maxBlock}"><a href="ReviewListServlet?curPage=${maxBlock+1}">▷</a></c:if>
+	<c:if test="${curPage<=showBlock*perBlock}"><a href="ReviewListServlet?curPage=${maxBlock+1}">▷</a></c:if>
 	<a href="ReviewListServlet?curPage=${totalPage}">▶▶</a>
 </c:if>
 </td>
