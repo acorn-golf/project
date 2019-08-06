@@ -9,17 +9,20 @@
       <param-value>
 
 
-
 /MemberUIServlet,/LoginUIServlet,/LoginServlet,/MultiCheckServlet,/MemberAddServlet,/AdminPageUIServlet
 /AdminModifiedUIServlet,/AdminModifiedServlet
-
+        
+        
 /ProductServlet
 
 
-/ReviewListServlet
+
+/ReviewListServlet,/ReCommentViewServlet
+/ProductRetrieveServlet
 
 
 /main.jsp
+
 
 
 

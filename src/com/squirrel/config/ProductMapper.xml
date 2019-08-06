@@ -8,4 +8,56 @@
 		product(p_id,p_pdate,p_maxpeople,p_hole,p_caddyyn,p_babyn,p_cartyn,p_price,p_content,user_no,cc_id,p_vcount)
 		values('p'||P_ID_SQ.nextval,to_date(#{p_pdate},'yyyy/MM/dd/HH24:mi'),#{p_maxpeople},#{p_hole},#{p_caddyyn},#{p_babyn},#{p_cartyn},#{p_price},#{p_content},#{user_no},#{cc_id},#{p_vcount})
 	</insert>
+	
+
+	<select id="totalRecord" parameterType="hashmap" resultType="int">
+		select count(*)
+		from PRODUCT p join GOLFCC g on p.CC_ID = g.CC_ID join MEMBERLIST m on p.USER_NO = m.USER_NO  JOIN LOCATION l on l.LOC_ID = g.LOC_ID
+		where '1'='1'
+		<if test="loc_id != null">
+			<choose>
+				<when test='loc_id.equals("all")'></when>
+				<when test='!loc_id.equals("all")'>
+					and g.loc_id = #{loc_id}
+				</when>
+			</choose>
+		</if>
+		<if test="productDivision != null">
+			<if test="productValue != null">
+				and ${productDivision} like '%'||#{productValue}||'%'
+			</if>
+		</if>
+	</select>
+	
+	<select id="selectProduct" parameterType="hashmap" resultType="ProductListDTO">
+		SELECT CC_NAME,CC_IMG,P_ID,P_PDATE,P_UPLOADDATE,P_MAXPEOPLE,P_HOLE,P_CADDYYN,P_BABYN,P_CARTYN,P_PRICE,P_CONTENT,m.USER_NO user_no,P_VCOUNT,NICKNAME,LOC_NAME,g.LOC_ID loc_id
+		FROM PRODUCT p join GOLFCC g on p.CC_ID = g.CC_ID join MEMBERLIST m on p.USER_NO = m.USER_NO JOIN LOCATION l on l.LOC_ID = g.LOC_ID
+		where '1'='1'
+		<if test="loc_id != null">
+			<choose>
+				<when test='loc_id.equals("all")'></when>
+				<when test='!loc_id.equals("all")'>
+					and g.loc_id = #{loc_id}
+				</when>
+			</choose>
+		</if>
+		<if test="productDivision != null">
+			<if test="productValue != null">
+				and ${productDivision} like '%'||#{productValue}||'%'
+			</if>
+		</if>
+		<if test="productOrderby != null">
+			order by ${productOrderby} asc
+		</if>
+		<if test="productOrderby == null">
+			order by p_pdate asc
+		</if>
+    </select>
+
+	<select id="productRetrieve" parameterType="string" resultType="ProductDTO" >
+	select p_id,p_pdate ,p_uploaddate ,p_maxpeople,p_hole,p_caddyyn,p_babyn,p_cartyn,p_price,p_content,user_no,cc_id,p_vcount
+	from  PRODUCT
+	where p_id = #{value}
+	</select>
+
 </mapper>

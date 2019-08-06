@@ -39,7 +39,7 @@ public class GolfccService {
 		return result;
 	}
 
-	public PageDTO<List<CcGolfScoreDTO>> ccGolfScoreList(HashMap<String, Object> searchVal, PageDTO<List<CcGolfScoreDTO>> pageDto) {
+	public PageDTO<CcGolfScoreDTO> ccGolfScoreList(HashMap<String, Object> searchVal, PageDTO<CcGolfScoreDTO> pageDto) {
 		// TODO Auto-generated method stub
 		SqlSession session = MySqlSessionFactory.getSession();
 		GolfccDAO dao = new GolfccDAO();
@@ -51,6 +51,21 @@ public class GolfccService {
 			session.close();
 		}
 		return pageDto;
+	}
+
+	public CcGolfScoreDTO getGolfccScoreOne(String cc_id) {
+		// TODO Auto-generated method stub
+		CcGolfScoreDTO result = null;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			result = new GolfccDAO().getGolfccScoreOne(session,cc_id);
+		} finally {
+			// TODO: handle finally clause
+			session.close();
+		}
+		
+		
+		return result;
 	}
 
 }

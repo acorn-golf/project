@@ -42,11 +42,11 @@ public class GetccList {
 	 * 
 	 * @return
 	 */
-	public PageDTO<List<CcGolfScoreDTO>> CclistGetScore(String cc_name, List<String> loc_list, String orderVal,
+	public PageDTO<CcGolfScoreDTO> CclistGetScore(String cc_name, List<String> loc_list, String orderVal,
 			String descChk, HttpSession session, int curPage, int perPage) {
 		// 페이징 기능 추가. cur페이지는 외부에서 입력받아 처리
 
-		PageDTO<List<CcGolfScoreDTO>> pageDto = new PageDTO<List<CcGolfScoreDTO>>();
+		PageDTO<CcGolfScoreDTO> pageDto = new PageDTO<CcGolfScoreDTO>();
 		HashMap<String, Object> searchVal = setSearchVal(cc_name, loc_list, orderVal, descChk);
 		
 
@@ -78,7 +78,7 @@ public class GetccList {
 
 		// 세션에서 검색값 가져오기 ,page
 		searchVal = (HashMap<String, Object>)session.getAttribute(SessionEeum.CC_LIST_SCORE_SearchVal.name());
-		pageDto = (PageDTO<List<CcGolfScoreDTO>>)session.getAttribute(SessionEeum.CC_LIST_SCORE_Page.name());
+		pageDto = (PageDTO<CcGolfScoreDTO>)session.getAttribute(SessionEeum.CC_LIST_SCORE_Page.name());
 		
 		return new GolfccService().ccGolfScoreList(searchVal, pageDto);
 

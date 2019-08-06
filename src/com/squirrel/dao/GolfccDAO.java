@@ -24,16 +24,22 @@ public class GolfccDAO {
 		return session.selectList("GolfccMapper.ccGolfScoreList", searchVal);
 	}
 
-	public PageDTO<List<CcGolfScoreDTO>> ccGolfScoreList(SqlSession session, HashMap<String, Object> searchVal,
-			PageDTO<List<CcGolfScoreDTO>> pageDto) {
+	public PageDTO<CcGolfScoreDTO> ccGolfScoreList(SqlSession session, HashMap<String, Object> searchVal,
+			PageDTO<CcGolfScoreDTO> pageDto) {
 		// TODO Auto-generated method stub
-		RowBounds bounds = new RowBounds(pageDto.getCurPage(), pageDto.getPerPage());
+		RowBounds bounds = new RowBounds(pageDto.getCurPage()*pageDto.getPerPage(), pageDto.getPerPage());
 		pageDto.setList(session.selectList("GolfccMapper.ccGolfScoreList",searchVal,bounds));
+		System.out.println("신난다  "+pageDto.getList().size());
 		return pageDto;
 	}
 	
 	public int ccGolfScoreListCount(SqlSession session, HashMap<String, Object> searchVal) {
 		return session.selectOne("GolfccMapper.ccGolfScoreListCount",searchVal);
+	}
+
+	public CcGolfScoreDTO getGolfccScoreOne(SqlSession session, String cc_id) {
+		// TODO Auto-generated method stub
+		return session.selectOne("GolfccMapper.getGolfccScoreOne",cc_id);
 	}
 
 }
