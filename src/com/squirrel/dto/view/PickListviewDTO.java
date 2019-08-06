@@ -1,22 +1,11 @@
 package com.squirrel.dto.view;
 
-public class ProductListDTO {
-//	CC_NAME	VARCHAR2(40 CHAR)
-//	CC_IMG	VARCHAR2(40 BYTE)
-//	P_ID	VARCHAR2(5 BYTE)
-//	P_PDATE	DATE
-//	P_UPLOADDATE	DATE
-//	P_MAXPEOPLE	NUMBER(1,0)
-//	P_HOLE	NUMBER(2,0)
-//	P_CADDYYN	CHAR(1 BYTE)
-//	P_BABYN	CHAR(1 BYTE)
-//	P_CARTYN	CHAR(1 BYTE)
-//	P_PRICE	NUMBER(10,0)
-//	P_CONTENT	VARCHAR2(400 CHAR)
-//	USER_NO	NUMBER(5,0)
-//	P_VCOUNT	NUMBER(7,0)
-//	NICKNAME	VARCHAR2(10 CHAR)
-//	PHONE_ID	VARCHAR2(11 BYTE)
+public class PickListviewDTO {
+
+//	CC_NAME,CC_IMG,p.P_ID p_id,P_PDATE,P_UPLOADDATE,P_MAXPEOPLE,P_HOLE,P_CADDYYN,P_BABYN,P_CARTYN,P_PRICE,P_CONTENT,m.USER_NO manager_user_no,P_VCOUNT,NICKNAME,substr(PHONE_ID,1,3)||'-'||substr(PHONE_ID,4,4)||'-'||substr(PHONE_ID,8,4) PHONE_ID,
+//	case when P_PDATE-sysdate <= 0.5 then '긴급'
+//	end emergency,pl.USER_NO user_no
+	
 	private String cc_name;
 	private String cc_img;
 	private String p_id;
@@ -29,22 +18,21 @@ public class ProductListDTO {
 	private String p_cartyn;
 	private int p_price;
 	private String p_content;
-	private int user_no;
+	private int manager_user_no;
 	private int p_vcount;
 	private String nickname;
 	private String phone_id;
-	private String loc_name;
-	private String loc_id;
 	private String emergency;
-
-	public ProductListDTO() {
-
-	}
+	private int user_no;
 	
-	public ProductListDTO(String cc_name, String cc_img, String p_id, String p_pdate, String p_uploaddate,
+	public PickListviewDTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public PickListviewDTO(String cc_name, String cc_img, String p_id, String p_pdate, String p_uploaddate,
 			int p_maxpeople, int p_hole, String p_caddyyn, String p_babyn, String p_cartyn, int p_price,
-			String p_content, int user_no, int p_vcount, String nickname, String phone_id, String loc_name,
-			String loc_id, String emergency) {
+			String p_content, int manager_user_no, int p_vcount, String nickname, String phone_id, String emergency,
+			int user_no) {
 		super();
 		this.cc_name = cc_name;
 		this.cc_img = cc_img;
@@ -58,45 +46,12 @@ public class ProductListDTO {
 		this.p_cartyn = p_cartyn;
 		this.p_price = p_price;
 		this.p_content = p_content;
-		this.user_no = user_no;
+		this.manager_user_no = manager_user_no;
 		this.p_vcount = p_vcount;
 		this.nickname = nickname;
 		this.phone_id = phone_id;
-		this.loc_name = loc_name;
-		this.loc_id = loc_id;
 		this.emergency = emergency;
-	}
-
-	public String getPhone_id() {
-		return phone_id;
-	}
-
-	public void setPhone_id(String phone_id) {
-		this.phone_id = phone_id;
-	}
-
-	public String getEmergency() {
-		return emergency;
-	}
-
-	public void setEmergency(String emergency) {
-		this.emergency = emergency;
-	}
-
-	public String getLoc_name() {
-		return loc_name;
-	}
-
-	public void setLoc_name(String loc_name) {
-		this.loc_name = loc_name;
-	}
-
-	public String getLoc_id() {
-		return loc_id;
-	}
-
-	public void setLoc_id(String loc_id) {
-		this.loc_id = loc_id;
+		this.user_no = user_no;
 	}
 
 	public String getCc_name() {
@@ -195,12 +150,12 @@ public class ProductListDTO {
 		this.p_content = p_content;
 	}
 
-	public int getUser_no() {
-		return user_no;
+	public int getManager_user_no() {
+		return manager_user_no;
 	}
 
-	public void setUser_no(int user_no) {
-		this.user_no = user_no;
+	public void setManager_user_no(int manager_user_no) {
+		this.manager_user_no = manager_user_no;
 	}
 
 	public int getP_vcount() {
@@ -219,4 +174,30 @@ public class ProductListDTO {
 		this.nickname = nickname;
 	}
 
+	public String getPhone_id() {
+		return phone_id;
+	}
+
+	public void setPhone_id(String phone_id) {
+		this.phone_id = phone_id;
+	}
+
+	public String getEmergency() {
+		return emergency;
+	}
+
+	public void setEmergency(String emergency) {
+		this.emergency = emergency;
+	}
+
+	public int getUser_no() {
+		return user_no;
+	}
+
+	public void setUser_no(int user_no) {
+		this.user_no = user_no;
+	}
+	
+	
+	
 }
