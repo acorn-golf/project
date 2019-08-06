@@ -33,6 +33,7 @@ public class ProductListDTO {
 	private String nickname;
 	private String loc_name;
 	private String loc_id;
+	private String emergency;
 	
 	public ProductListDTO() {
 		
@@ -40,7 +41,8 @@ public class ProductListDTO {
 	
 	public ProductListDTO(String cc_name, String cc_img, String p_id, String p_pdate, String p_uploaddate,
 			int p_maxpeople, int p_hole, String p_caddyyn, String p_babyn, String p_cartyn, int p_price,
-			String p_content, int user_no, int p_vcount, String nickname, String loc_name, String loc_id) {
+			String p_content, int user_no, int p_vcount, String nickname, String loc_name, String loc_id,
+			String emergency) {
 		super();
 		this.cc_name = cc_name;
 		this.cc_img = cc_img;
@@ -59,10 +61,19 @@ public class ProductListDTO {
 		this.nickname = nickname;
 		this.loc_name = loc_name;
 		this.loc_id = loc_id;
+		this.emergency = emergency;
 	}
+
 	
 	
-	
+	public String getEmergency() {
+		return emergency;
+	}
+
+	public void setEmergency(String emergency) {
+		this.emergency = emergency;
+	}
+
 	public String getLoc_name() {
 		return loc_name;
 	}
