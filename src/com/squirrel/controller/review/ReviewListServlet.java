@@ -1,6 +1,7 @@
 package com.squirrel.controller.review;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.squirrel.dto.MemberDTO;
 import com.squirrel.dto.PageDTO;
+import com.squirrel.dto.view.CcGolfScoreDTO;
 import com.squirrel.dto.view.ReviewListDTO;
 import com.squirrel.service.ReviewListService;
 import com.squirrel.util.golfcc.GetccList;
@@ -105,8 +107,37 @@ public class ReviewListServlet extends HttpServlet {
 		request.setAttribute("totalPage", totalPage);
 		request.setAttribute("curPage", curPage);
 		request.setAttribute("cc_id", cc_id);
-		
-		request.setAttribute("CcGolfScoreList",new GetccList().CclistGetScore(null, null, null, null, session));
+
+		// GolfCCcurPage
+		{
+			int GolfCCcurPage = -1;
+			List<String> loc_list = null;
+			String tmpGolfCCcurPage = request.getParameter("GolfCCcurPage");
+			
+			if (tmpGolfCCcurPage != null)
+				GolfCCcurPage = Integer.parseInt(tmpGolfCCcurPage);
+			
+			String cc_name = request.getParameter("cc_name");
+			if (request.getParameterValues("loc_list") != null)
+				loc_list = Arrays.asList(request.getParameterValues("loc_list"));
+			String orderVal = request.getParameter("orderVal");
+			String descChk = request.getParameter("descChk");
+			PageDTO<CcGolfScoreDTO> pageCC = new GetccList().CclistGetScore(cc_name, loc_list, orderVal, descChk, session, GolfCCcurPage, 20);
+			request.setAttribute("CcGolfScoreListPage",pageCC);
+			
+			
+			int CCshowBlock = 10; // 보여줄 페이지 1,2,3,4,5 // 6,7,8,9,10
+			int CCminBlock = (pageCC.getCurPage() / (CCshowBlock)) * CCshowBlock;
+			int CCmaxBlock = CCminBlock + CCshowBlock;
+			
+			if ((pageCC.getTotalRecord()/20) < CCmaxBlock) 
+				CCmaxBlock = (pageCC.getTotalRecord()/20)+1;
+			
+			request.setAttribute("CCshowBlock", CCshowBlock);
+			request.setAttribute("CCminBlock", CCminBlock);
+			request.setAttribute("CCmaxBlock", CCmaxBlock);
+			
+		}
 		request.getRequestDispatcher("review/review.jsp").forward(request, response);
 
 	}
@@ -118,3 +149,4 @@ public class ReviewListServlet extends HttpServlet {
 	}
 
 }
+

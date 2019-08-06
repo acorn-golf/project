@@ -18,7 +18,7 @@
 	</select>
 	<select id="myPage" resultType="MemberDTO" parameterType="String">
 		select user_no,phone_id,userpw,username,nickname,userssn,gender,
-		rating,rstartdate,renddate,email,email_chk 
+		rating,to_char(rstartdate,'yyyy/MM/dd') rstartdate,renddate,email,email_chk 
 		from memberList 
 		where nickname = #{nickname}
 	</select>
@@ -41,10 +41,10 @@
 	</select>
 	<select id="adminMemberSelect" resultType="MemberDTO" parameterType="HashMap">
 		select user_no,phone_id,userpw,username,nickname,userssn,gender,
-		rating,rstartdate,renddate,email,email_chk
+		rating,to_char(rstartdate,'yyyy/MM/dd') rstartdate,renddate,email,email_chk
 		from memberList 
 		<if test="adminSearch != ''">
-		where ${member} = #{adminSearch}
+		where ${member} like '%'||#{adminSearch}
 		</if>
 	</select>
 </mapper>

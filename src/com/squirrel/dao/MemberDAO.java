@@ -45,7 +45,7 @@ public class MemberDAO {
 	public List<MemberDTO> adminMemberSelect(SqlSession session, HashMap<String, String> map) {
 			
 		List<MemberDTO> list = session.selectList("MemberMapper.adminMemberSelect",map);
-		System.out.println(list);
+	
 		return list;
 	}
 
