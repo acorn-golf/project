@@ -11,8 +11,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>golf-hi</title>
 
-<link rel="stylesheet" href="/teamSquirrel/show/top/assets/css/style.min.css">
-<link rel="stylesheet" href="/teamSquirrel/show/top/assets/css/modules.css">
+
+<link rel="stylesheet" type="text/css" href="/teamSquirrel/show/top/assets/css/style.min.css" />
+<link rel="stylesheet" type="text/css" href="/teamSquirrel/show/top/assets/css/modules.css" />
 
 <!-- Canonical URL usage -->
 <link rel="canonical" href="https://aperitif.io/">
@@ -142,7 +143,7 @@ START MODULE AREA 2: Menu 1
 END MODULE AREA 2: Menu 1
 -->
 
-	<script src="/teamSquirrel/show/top/assets/js/index.js"></script>
+	<script type="text/javascript" src="/teamSquirrel/show/top/assets/js/index.js"></script>
 </body>
 
 </html>

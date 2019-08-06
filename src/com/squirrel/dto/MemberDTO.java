@@ -69,6 +69,19 @@ public class MemberDTO {
 		this.email = email;
 	}
 
+	public MemberDTO(String phone_id, String username, String nickname, String rating, String rstartdate,
+			String renddate, String email) {
+		super();
+		this.phone_id = phone_id;
+		this.username = username;
+		this.nickname = nickname;
+		this.rating = rating;
+		this.rstartdate = rstartdate;
+		this.renddate = renddate;
+		this.email = email;
+	
+	}
+
 	public int getUser_no() {
 		return user_no;
 	}
