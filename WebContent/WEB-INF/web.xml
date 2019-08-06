@@ -10,7 +10,8 @@
 
 
 /MemberUIServlet,/LoginUIServlet,/LoginServlet,/MultiCheckServlet,/MemberAddServlet,/AdminPageUIServlet
-/AdminModifiedUIServlet,/AdminModifiedServlet
+/AdminModifiedUIServlet,/AdminModifiedServlet,/captcha,/CaptchaServlet
+
         
         
 /ProductServlet

@@ -1,0 +1,66 @@
+package com.squirrel.controller.Member;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import jj.play.ns.nl.captcha.Captcha;
+import jj.play.ns.nl.captcha.backgrounds.GradiatedBackgroundProducer;
+import jj.play.ns.nl.captcha.text.producer.FiveLetterFirstNameTextProducer;
+
+public class CaptchaServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+ 
+        try {
+            // 200 * 50 에해당하는 이미지 사이즈를 지정하고, 자동가입방지 문자 길이를 설정한다.
+            Captcha captcha = new Captcha.Builder(179, 50)
+                                    .addText(new FiveLetterFirstNameTextProducer())
+                                    .addBackground(new GradiatedBackgroundProducer())
+                                    .addBorder()
+                                    .gimp()                                    
+                                    .build();
+ 
+            response.setHeader("Cache-Control", "no-store");
+            response.setHeader("Pragma", "no-cache");
+            // 캐쉬를 지우기 위해 헤더값을 설정
+            response.setDateHeader("Expires", 0);
+            // 리턴값을 image형태로 설정
+            response.setContentType("image/jpeg");
+            // Image를 write 한다
+            CaptchaServletUtil.writeImage(response, captcha.getImage());
+            // 세션에 자동가입방지 문자를 저장한다.
+            request.getSession().setAttribute("correctAnswer", captcha.getAnswer());
+            System.out.println("captcha 자동가입방지 문자 : " + captcha.getAnswer());
+            String userCaptcha = request.getParameter("captcha");
+            String sessionCaptcha = (String)request.getAttribute("correctAnswer");
+            String result;
+            	if( userCaptcha.equals(sessionCaptcha) ) {
+            		result = "true";
+            	}else {
+            		result = "false";
+            	}
+            	PrintWriter out = response.getWriter();
+            	out.print(result);
+            	System.out.println(userCaptcha+sessionCaptcha+result);
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.getStackTrace());
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            return;
+        }
+ 
+    }
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		doGet(request, response);
+	}
+ 
+}

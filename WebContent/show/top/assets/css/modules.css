@@ -230,7 +230,7 @@ p {
   display: none;
 }
 
-a.btn, button {
+a.btn, button:not(.refreshBtn) {
   background-color: #4d36bd;
   color: white;
   text-decoration: none;
