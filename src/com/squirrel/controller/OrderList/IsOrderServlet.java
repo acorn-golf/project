@@ -26,7 +26,9 @@ public class IsOrderServlet extends HttpServlet {
 		
 		OrderListService service = new OrderListService();
 		IsOrderListDTO dto = service.selectIsOrder(map);
-				
+		if(dto==null) System.out.println("dto null");
+		if(g_amount==null) System.out.println("gmount null");
+		
 		request.setAttribute("dto", dto);
 		request.setAttribute("g_amount", g_amount);
 		

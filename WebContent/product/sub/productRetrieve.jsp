@@ -18,7 +18,7 @@
 
 		if (validityF()) {
 			if (action == 'order') {
-				myform.action = "OrderAddServlet";
+				myform.action = "IsOrderServlet";
 			} else if (action == 'cart') {
 				myform.action = "InsertPickListServlet";
 			}
