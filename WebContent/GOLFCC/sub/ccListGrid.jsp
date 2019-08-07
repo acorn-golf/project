@@ -4,6 +4,25 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<script type="text/javascript" src="/teamSquirrel/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	$(".ccGridOne").on("click",function(event){
+		console.log($(this).attr("cc_Id"));
+		var tmphref = location.href.substr(0, location.href.indexOf('?'));
+		location.href = tmphref+"?cc_id="+$(this).attr("cc_Id");
+		
+		
+
+		
+	});
+	
+
+});
+
+
+</script>
 
 <table width="100%" cellspacing="0" cellpadding="0">
 
@@ -24,16 +43,16 @@
 
 				<tr>
 					<c:set var="CcGolfScoreList" value="${CcGolfScoreListPage.list}" />
-
 					<c:forEach items="${CcGolfScoreList}" var="Golfcc"
 						varStatus="status">
 						<td>
-							<table style='padding: 15px'>
+							<table style='padding: 15px' class="ccGridOne" cc_Id="${Golfcc.cc_id}">
 								<tr>
 									<td><a href="GoodsRetrieveServlet?gCode=${Golfcc.cc_id}">
 											<c:if test="${Golfcc.cc_img != null}">
 												<img
 													src="/teamSquirrel/GOLFCC/${Golfcc.loc_id}/${Golfcc.cc_img}"
+													onerror="this.src='/teamSquirrel/GOLFCC/noimg.jpg'"
 													border="0" align="center" width="200">
 											</c:if> <c:if test="${empty Golfcc.cc_img}">
 												<img src="/teamSquirrel/GOLFCC/noimg.jpg" border="0"

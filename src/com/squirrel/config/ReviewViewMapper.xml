@@ -11,7 +11,7 @@
 		c.user_no=m.user_no
 		where '1'='1'
 		<if test="cc_id != null">
-			and g.cc_id=#{cc_id}
+			and g.cc_id='${cc_id}'
 		</if>
 		<if test="searchName != null">
 			<if test="searchValue != null">

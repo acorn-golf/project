@@ -11,5 +11,6 @@
 <jsp:include page="common/menu.jsp" flush="true" /> --%>
 <jsp:include page="/show/main.jsp"/>
 <jsp:include page="sub/productRetrieve.jsp" flush="false" />
+<jsp:include page="sub/productList.jsp" flush="false" />
 </body>
 </html>
