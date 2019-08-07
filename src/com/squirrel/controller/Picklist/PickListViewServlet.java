@@ -60,11 +60,6 @@ public class PickListViewServlet extends HttpServlet {
 		}else {
 			perBlock = totalPage/showBlock;
 		}
-		
-		for (PickListviewDTO p : list) {
-			System.out.println(p.getCc_name()+"\t"+p.getManager_user_no());
-		}
-		
 		request.setAttribute("perBlock", perBlock);
 		request.setAttribute("minBlock", minBlock);
 		request.setAttribute("maxBlock", maxBlock);
@@ -73,7 +68,7 @@ public class PickListViewServlet extends HttpServlet {
 		request.setAttribute("totalPage", totalPage);
 		request.setAttribute("curPage", curPage);
 		
-		request.getRequestDispatcher("").forward(request, response);
+		request.getRequestDispatcher("picklist/picklist.jsp").forward(request, response);
 		
 	}
 

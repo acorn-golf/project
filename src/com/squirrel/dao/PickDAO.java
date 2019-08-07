@@ -37,4 +37,9 @@ public class PickDAO {
 		return pdto;
 	}
 
+	public void deletePick(SqlSession session, List<String> list) {
+		session.delete("PickListMapper.deletePick", list);
+		
+	}
+
 }
