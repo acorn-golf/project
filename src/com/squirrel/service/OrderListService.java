@@ -22,4 +22,17 @@ public class OrderListService {
 		return dto;
 	}
 
+	public int addOrder(HashMap<String, Object> insertVal) {
+		// TODO Auto-generated method stub
+		SqlSession session = MySqlSessionFactory.getSession();
+		int result = 0;
+		OrderListDAO dao = new OrderListDAO();
+		try {
+			result = dao.addOrder(session,insertVal);
+		}finally {
+			session.close();
+		}
+		return result;
+	}
+
 }

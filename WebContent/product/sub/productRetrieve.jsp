@@ -76,6 +76,7 @@
 					<tr>
 						<td rowspan="7"><img
 							src="/teamSquirrel/GOLFCC/${Golfcc.loc_id}/${Golfcc.cc_img}"
+							onerror="this.src='/teamSquirrel/GOLFCC/noimg.jpg'"
 							border="0" align="center" width="300" /> <br>
 
 							<table width="300">

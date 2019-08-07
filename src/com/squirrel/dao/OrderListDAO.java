@@ -13,4 +13,9 @@ public class OrderListDAO {
 		return dto;
 	}
 
+	public int addOrder(SqlSession session, HashMap<String, Object> insertVal) {
+		// TODO Auto-generated method stub
+		return session.insert("OrderListMapper.addOrder", insertVal);
+	}
+
 }

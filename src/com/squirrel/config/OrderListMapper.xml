@@ -13,4 +13,9 @@
 			and PICK_NO=#{}
 		</if>
 	</select>
+	
+	<insert id="addOrder" parameterType="hashmap">
+	INSERT INTO ORDERLIST(O_NO,O_AMOUNT,O_PRICE,P_ID,USER_NO) VALUES
+	(O_NO_SQ.NEXTVAL,#{o_amount},#{o_price},#{p_id},#{user_no})
+	</insert>
 </mapper>
