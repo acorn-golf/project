@@ -67,7 +67,7 @@
 		GROUP by CC_ID
 		) sc
 		on cc.CC_ID =sc.CC_ID
-        where cc.CC_ID = #{value}
+        where cc.CC_ID = '${value}'
 
 	</select>
 

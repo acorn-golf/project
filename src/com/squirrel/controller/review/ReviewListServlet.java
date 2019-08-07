@@ -2,6 +2,7 @@ package com.squirrel.controller.review;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import com.squirrel.dto.MemberDTO;
 import com.squirrel.dto.PageDTO;
 import com.squirrel.dto.view.CcGolfScoreDTO;
 import com.squirrel.dto.view.ReviewListDTO;
+import com.squirrel.service.GolfccService;
 import com.squirrel.service.ReviewListService;
 import com.squirrel.util.golfcc.GetccList;
 
@@ -40,7 +42,11 @@ public class ReviewListServlet extends HttpServlet {
 			}else
 				curPage=Integer.parseInt(curPageStr)-1;
 		}
-		String cc_id = null; // 골프장 자세히 보기에서 받았다고 가정
+		String cc_id = request.getParameter("cc_id"); // 골프장 자세히 보기에서 받았다고 가정
+		if(cc_id!=null)
+			session.setAttribute("Rcc_id", cc_id);
+		else
+			cc_id = (String)session.getAttribute("Rcc_id");
 
 		String searchName = request.getParameter("searchName");
 		String searchValue = request.getParameter("searchValue");
@@ -69,6 +75,7 @@ public class ReviewListServlet extends HttpServlet {
 		map.put("searchName", (String) session.getAttribute("searchName"));
 		map.put("searchValue", (String) session.getAttribute("searchValue"));
 		map.put("orderby", (String) session.getAttribute("orderby"));
+
 
 		ReviewListService service = new ReviewListService();
 		PageDTO<ReviewListDTO> pDTO = service.reviewList(map, curPage);
@@ -138,6 +145,9 @@ public class ReviewListServlet extends HttpServlet {
 			request.setAttribute("CCmaxBlock", CCmaxBlock);
 			
 		}
+		//golfcc 자세히 보기	
+		request.setAttribute("Golfcc", golfccRetrieve(request, response));
+		
 		request.getRequestDispatcher("review/review.jsp").forward(request, response);
 
 	}
@@ -148,5 +158,18 @@ public class ReviewListServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
-}
+	private CcGolfScoreDTO golfccRetrieve(HttpServletRequest request, HttpServletResponse response) {
+		String cc_id = (String)request.getSession().getAttribute("Rcc_id");
 
+		CcGolfScoreDTO golfScoreDTO = null;
+		GolfccService golfccService = new GolfccService();
+
+		if (cc_id != null)
+			golfScoreDTO = golfccService.getGolfccScoreOne(cc_id);
+
+
+		// 리퀘스트반환
+		return golfScoreDTO;
+	}
+
+}
