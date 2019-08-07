@@ -79,7 +79,7 @@
 
 	<Menu> <!-- 찜목록 -->
 		<name>찜목록</name>
-		<url></url>
+		<url>/teamSquirrel/PickListViewServlet</url>
 	</Menu>
 
 	<Menu> <!-- 공지사항 -->

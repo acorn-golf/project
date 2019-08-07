@@ -1,6 +1,7 @@
-package com.squirrel.controller.review;
+package com.squirrel.controller.Picklist;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,23 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.squirrel.dto.LocationDTO;
-import com.squirrel.service.LocationService;
+import com.squirrel.service.PickService;
 
-@WebServlet("/InsertReviewFormServlet")
-public class InsertReviewFormServlet extends HttpServlet {
+@WebServlet("/DeletePickServlet")
+public class DeletePickServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String cc_id = request.getParameter("cc_id");
-//		System.out.println(cc_id);
-//		request.setAttribute("cc_id", cc_id);
+		String [] checks = request.getParameterValues("check");
+		List<String> list = Arrays.asList(checks);
+		PickService service = new PickService();
+		service.deletePick(list);
 		
-		LocationService service = new LocationService();
-		List<LocationDTO> list = service.locationList();
-		request.setAttribute("LocationList", list);
-		
-		request.getRequestDispatcher("review/insertReviewForm.jsp").forward(request, response);
+		response.sendRedirect("PickListViewServlet");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

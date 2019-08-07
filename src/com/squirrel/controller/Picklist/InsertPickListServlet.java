@@ -20,7 +20,7 @@ public class InsertPickListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String p_id = request.getParameter("p_id"); // 상품 자세히 보기에서 찜목록에 추가하였을 시 받을 파라미터
-		String pick_amount = request.getParameter("p_maxpeople");// 예약인원, 상품 자세히 보기에서 찜목록에 추가하였을 시 받을 파라미터
+		String pick_amount = request.getParameter("g_amount");// 예약인원, 상품 자세히 보기에서 찜목록에 추가하였을 시 받을 파라미터
 		MemberDTO user = (MemberDTO)session.getAttribute("login");
 		int user_no = user.getUser_no();
 		System.out.println(user_no);
@@ -31,6 +31,8 @@ public class InsertPickListServlet extends HttpServlet {
 		
 		PickService service = new PickService();
 		service.insertPick(dto);
+		
+		response.sendRedirect("PickListViewServlet");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

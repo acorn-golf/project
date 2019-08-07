@@ -4,12 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 리스트</title>
+<title>찜 목록</title>
 </head>
 <body>
 <%-- <jsp:include page="common/top.jsp" flush="true" /><br>
 <jsp:include page="common/menu.jsp" flush="true" /> --%>
 <jsp:include page="/show/main.jsp" flush="false"/>
-<jsp:include page="sub/productList.jsp" flush="true" />
+
+<jsp:include page="sub/picklist.jsp" flush="true" />
 </body>
 </html>

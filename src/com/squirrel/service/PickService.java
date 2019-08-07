@@ -1,5 +1,7 @@
 package com.squirrel.service;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.squirrel.config.MySqlSessionFactory;
@@ -33,6 +35,17 @@ public class PickService {
 		}
 		
 		return pdto;
+	}
+
+	public void deletePick(List<String> list) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		PickDAO dao = new PickDAO();
+		try {
+			dao.deletePick(session,list);
+			session.commit();
+		}finally {
+			session.close();
+		}
 	}
 
 }
