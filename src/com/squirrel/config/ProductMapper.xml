@@ -67,5 +67,12 @@
 	from  PRODUCT
 	where p_id = #{value}
 	</select>
+	
+	
+	<update id="productDecrease" parameterType="hashmap">
+	UPDATE PRODUCT
+  SET P_MAXPEOPLE = (P_MAXPEOPLE-#{o_amount})
+  WHERE P_ID = #{p_id}
+	</update>
 
 </mapper>

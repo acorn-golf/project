@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.squirrel.config.MySqlSessionFactory;
 import com.squirrel.dao.OrderListDAO;
+import com.squirrel.dao.ProductDAO;
 import com.squirrel.dto.view.IsOrderListDTO;
 
 public class OrderListService {
@@ -27,9 +28,18 @@ public class OrderListService {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int result = 0;
 		OrderListDAO dao = new OrderListDAO();
+		ProductDAO productDAO = new ProductDAO();
 		try {
+			
+			result = productDAO.productDecrease(session,insertVal);
+			if(result<=0)
+				throw new Exception("최대인원 넘음");
 			result = dao.addOrder(session,insertVal);
-		}finally {
+			session.commit();
+		}catch (Exception e) {
+			session.rollback();
+		}
+		finally {
 			session.close();
 		}
 		return result;

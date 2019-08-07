@@ -42,4 +42,9 @@ public class ProductDAO {
 		return session.selectOne("productRetrieve", p_id);
 	}
 
+	public int productDecrease(SqlSession session, HashMap<String, Object> insertVal) {
+		// TODO Auto-generated method stub
+		return session.update("ProductMapper.productDecrease",insertVal);
+	}
+
 }
