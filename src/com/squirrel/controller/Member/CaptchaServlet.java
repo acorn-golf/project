@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,7 @@ import jj.play.ns.nl.captcha.Captcha;
 import jj.play.ns.nl.captcha.backgrounds.GradiatedBackgroundProducer;
 import jj.play.ns.nl.captcha.text.producer.FiveLetterFirstNameTextProducer;
 
+@WebServlet("/CaptchaServlet")
 public class CaptchaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -38,17 +40,7 @@ public class CaptchaServlet extends HttpServlet {
             // 세션에 자동가입방지 문자를 저장한다.
             request.getSession().setAttribute("correctAnswer", captcha.getAnswer());
             System.out.println("captcha 자동가입방지 문자 : " + captcha.getAnswer());
-            String userCaptcha = request.getParameter("captcha");
-            String sessionCaptcha = (String)request.getAttribute("correctAnswer");
-            String result;
-            	if( userCaptcha.equals(sessionCaptcha) ) {
-            		result = "true";
-            	}else {
-            		result = "false";
-            	}
-            	PrintWriter out = response.getWriter();
-            	out.print(result);
-            	System.out.println(userCaptcha+sessionCaptcha+result);
+
             
         } catch (Exception e) {
             System.out.println(e.getMessage());

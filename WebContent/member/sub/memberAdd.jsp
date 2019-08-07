@@ -5,7 +5,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-var multichk = true;
+let multichk = true;
 
 	$(document).ready(function(){
 				
@@ -233,7 +233,7 @@ var multichk = true;
 		
 		$("#refreshBtn").click(function() {
 			
-			$("#captchaImg").attr("src", "/teamSquirrel/captcha?id=" + Math.random());
+			$("#captchaImg").attr("src", "/teamSquirrel/CaptchaServlet?id=" + Math.random());
 			
 		});
 	});
@@ -303,7 +303,7 @@ var multichk = true;
 </tr>
 <tr>
 <td colspan="2" class="text_center">
-<img src="/teamSquirrel/captcha" id="captchaImg" alt="captcha img"></td>
+<img src="/teamSquirrel/CaptchaServlet" id="captchaImg" alt="captcha img"></td>
 </tr>
 <tr>
 <td colspan="2" class="text_center">
