@@ -23,10 +23,10 @@ public class InsertPickListServlet extends HttpServlet {
 		String pick_amount = request.getParameter("g_amount");// 예약인원, 상품 자세히 보기에서 찜목록에 추가하였을 시 받을 파라미터
 		MemberDTO user = (MemberDTO)session.getAttribute("login");
 		int user_no = user.getUser_no();
-		System.out.println(user_no);
+		
 		PickListDTO dto = new PickListDTO();
-		dto.setP_id("p24");
-		dto.setPick_amount(2);
+		dto.setP_id(p_id);
+		dto.setPick_amount(Integer.parseInt(pick_amount));
 		dto.setUser_no(user_no);
 		
 		PickService service = new PickService();

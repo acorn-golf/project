@@ -45,6 +45,7 @@
 	</tr>
 	
 	<c:forEach var="pList" items="${pickList}">
+	<input type="hidden" name="pick_no" value="${pList.pick_no}">
 	<tr>
 		<td><input type="checkbox" name="check" class="check" value="${pList.pick_no}" id="check${pList.pick_no}"></td>
 		<td width="120"><img src="GOLFCC/${pList.loc_id}/${pList.cc_img}" border="0" align="middle" width="120" height="80" />
