@@ -14,25 +14,27 @@
 			tmp.value = 4;
 	}
 
-	function reqCheck(action, myform) {
+	function reqCheck(action, myform,e) {
 
 		if (validityF()) {
 			if (action == 'order') {
 				myform.action = "OrderAddServlet";
 			} else if (action == 'cart') {
-				myform.action = "CartAddServlet";
+				myform.action = "InsertPickListServlet";
 			}
 			alert("예약하였습니다.");
 		} else {
+			e.preventDefault();
 			alert("다시 확인해 주세요");
 		}
 	}
 	function validityF() {
+		var numberchk = /[0-9]{1}/;
+		
 		var validityChk = false;
-		validityChk = (document.getElementById("gsize").value == "사이즈선택");
-		validityChk = (document.getElementById("gcolor").value == "색상선택");
+		validityChk = numberchk.test(document.getElementById("gamount").value);
 
-		return !validityChk;
+		return validityChk;
 	}
 
 	$(document).ready(
@@ -46,7 +48,8 @@
 			});
 </script>
 
-<FORM name="goodRetrieveForm" method="GET" action="#">
+<FORM name="productForm" method="GET" action="#">
+<input type="hidden" name="p_id" value="${productDTO.p_id}">
 
 	<table width="100%" cellspacing="0" cellpadding="0" border="0">
 		<tr>
@@ -177,7 +180,7 @@
 	<hr>
 
 	<br>
-	<button onclick="reqCheck('order',goodRetrieveForm)">구매</button>
+	<button onclick="reqCheck('order',productForm,event)">구매</button>
 	&nbsp;&nbsp;
-	<button onclick="reqCheck('cart',goodRetrieveForm)">장바구니</button>
+	<button onclick="reqCheck('cart',productForm,event)">장바구니</button>
 </FORM>

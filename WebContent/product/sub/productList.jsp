@@ -56,7 +56,7 @@
 		<td> 
 		<table>
 			<tr>
-				<td><a href="#"><b>${pList.cc_name}</b></a></td>
+				<td><a href="ProductRetrieveServlet?p_id=${pList.p_id}"><b>${pList.cc_name}</b></a></td>
 				<td><span>${pList.p_maxpeople}명  ${pList.p_hole}홀</span></td>
 			</tr>
 			<tr>

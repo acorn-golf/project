@@ -43,7 +43,6 @@ public class ProductRetrieveServlet extends HttpServlet {
 	private void productRetrieve(HttpServletRequest request, HttpServletResponse response) {
 		String p_id = request.getParameter("p_id");	
 		
-		p_id = "p0";
 		
 		ProductDTO productDTO = null;
 		CcGolfScoreDTO golfScoreDTO = null;

@@ -12,27 +12,30 @@
 	</Menu>
 	<Menu>
 		<name>전체상품</name>
-		<url></url>
+		<url>/teamSquirrel/ProductListServlet</url>
 		<sub_Menu>
-			<name>경기 북부</name>
-			<url></url>
-		</sub_Menu>
-		<sub_Menu>
-			<name>경기 남부</name>
-			<url></url>
-
+			<name>경기</name>
+			<url>/teamSquirrel/ProductListServlet?loc_id=gg</url>
 		</sub_Menu>
 		<sub_Menu>
 			<name>충청도</name>
-			<url></url>
+			<url>/teamSquirrel/ProductListServlet?loc_id=cc</url>
 		</sub_Menu>
 		<sub_Menu>
 			<name>강원도</name>
-			<url></url>
+			<url>/teamSquirrel/ProductListServlet?loc_id=gw</url>
 		</sub_Menu>
 		<sub_Menu>
 			<name>경상도</name>
-			<url></url>
+			<url>/teamSquirrel/ProductListServlet?loc_id=gs</url>
+		</sub_Menu>
+		<sub_Menu>
+			<name>전라도</name>
+			<url>/teamSquirrel/ProductListServlet?loc_id=jl</url>
+		</sub_Menu>
+		<sub_Menu>
+			<name>제주도</name>
+			<url>/teamSquirrel/ProductListServlet?loc_id=jj</url>
 		</sub_Menu>
 	</Menu>
 	<Menu>
