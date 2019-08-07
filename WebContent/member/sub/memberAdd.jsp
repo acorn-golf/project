@@ -5,10 +5,65 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-let multichk = true;
+var idchk = true;
+var nickchk = true;
+var emailchk = true;
+
+function changeCaptcha() {
+
+	  $('#catpcha').html('<img src="/teamSquirrel/CaptCha?rand='+ Math.random() + '"/>');
+	 }
+
+function winPlayer(objUrl) {
+	  $('#audiocatpch').html(' <bgsound src="' + objUrl + '">');
+	 }
+	 
+function audioCaptcha() {
+
+	   var uAgent = navigator.userAgent;
+	   var soundUrl = '/teamSquirrel/AudioCaptCha';
+	   if (uAgent.indexOf('Trident') > -1 || uAgent.indexOf('MSIE') > -1) {
+	       //IE일 경우 호출
+	       winPlayer(soundUrl+'?agent=msie&rand='+ Math.random());
+	   } else if (!!document.createElement('audio').canPlayType) {
+	       //Chrome일 경우 호출
+	       try { new Audio(soundUrl).play(); } catch(e) { winPlayer(soundUrl); }
+	   } else window.open(soundUrl, '', 'width=1,height=1');
+	 }
 
 	$(document).ready(function(){
-				
+		
+		  changeCaptcha(); //Captcha Image 요청
+		  
+		  $('#reLoad').click(function(){ changeCaptcha(); }); //'새로고침'버튼의 Click 이벤트 발생시 'changeCaptcha()'호출
+		  $('#soundOn').click(function(){ audioCaptcha(); }); //'음성듣기'버튼의 Click 이벤트 발생시 'audioCaptcha()'호출
+			
+		//'확인' 버튼 클릭시
+		  $('#captchaSubmit').click(function(){
+		      if ( !$('#captchaAnswer').val() ) {
+		           alert('이미지에 보이는 숫자 또는 스피커를 통해 들리는 숫자를 입력해 주세요.');
+		      } else {
+		           $.ajax({
+		               url: '/teamSquirrel/CaptchaConfirm',
+		               type: 'POST',
+		               dataType: 'text',
+		               data: 'captchaAnswer=' + $('#captchaAnswer').val(),
+		               async: false,  
+		               success: function(data) {
+		            	   if( data == 0 ){
+		            		   alert("입력값이 일치합니다.");            		  
+		            	   }else{            		   
+		                       alert("입력값이 일치하지않습니다. 다시 입력하셔야합니다.");
+		                       $('#reLoad').click();
+		                       $('#captchaAnswer').val('');
+		                       
+		            	   }
+		            	   
+		              }
+		         });
+		      }
+		 
+		 });
 		var RegexEmail = /\w+\@\w+\.[a-zA-Z\.]{2,5}$/; 
 		var RegexName = /^(가|간|갈|감|강|견|경|계|고|곡|공|곽|관|교|구|국|궉|권|근|금|기|길|김|나|난|남|남궁|낭|내|노|뇌|다|단|담|당|대|도|독|독고|돈|동|동방|두|등|등정|라|란|랑|려|로|뢰|류|리|림|마|만|망절|매|맹|명|모|목|묘|무|무본|묵|문|미|민|박|반|방|배|백|번|범|변|보|복|봉|부|비|빈|빙|사|사공|산|삼|상|서|서문|석|선우|설|섭|성|소|손|송|수|순|승|시|신|심|아|안|애|야|양|어|어금|엄|여|연|염|엽|영|예|오|옥|온|옹|완|왕|요|용|우|운|원|위|유|육|윤|은|음|이|인|임|자|장|전|점|정|제|제갈|조|종|좌|주|증|지|진|차|창|채|천|초|총|최|추|탁|탄|탕|태|판|팽|편|평|포|표|풍|피|필|하|학|한|함|해|허|현|형|호|홍|화|황|황목|황보|후)[가-힣]{1,4}$/; 
 		var RegexNick = /^[a-zA-Z0-9가-힣_-]{2,16}$/; 
@@ -112,8 +167,12 @@ let multichk = true;
 					$("#email").focus();
 					return false;
 					
+				}else if ( $("#captchaAnswer").val() == ""){
+					
+					alert("자동가입 인증 오류.");
+					$("#captchaAnswer").focus();
+					return false;
 				}
-						
 					this.action="/teamSquirrel/MemberAddServlet";
 							 
 		});
@@ -143,12 +202,12 @@ let multichk = true;
 				success : function(data,status,xhr){	
 					if(data == 0){
 						$("#idchk").text("사용 가능").css("color","green");
-						multichk = true;
+						idchk = true;
 					}else{
-						multichk = false;
+						idchk = false;
 						$("#idchk").text("사용 불가").css("color","red");
 							$("form").on("submit",function(event){							
-								if(!multichk){
+								if(!idchk){
 									alert("아이디가 중복입니다.");
 									event.preventDefault();
 									$("#phoneid").val("");
@@ -175,12 +234,12 @@ let multichk = true;
 				success : function(data,status,xhr){	
 					if(data == 0){						
 						$("#nickchk").text("사용 가능").css("color","green");
-						multichk = true;
+						nickchk = true;
 					}else{
-						multichk = false;
+						nickchk = false;
 						$("#nickchk").text("사용 불가").css("color","red");
 							$("form").on("submit",function(event){							
-								if(!multichk){
+								if(!nickchk){
 									alert("별명이 중복입니다.");
 									event.preventDefault();
 									$("#nickname").val("");
@@ -208,12 +267,12 @@ let multichk = true;
 				success : function(data,status,xhr){	
 					if(data == 0){
 						$("#emailchk").text("사용 가능").css("color","green");
-						multichk = true;
+						emailchk = true;
 					}else{
-						multichk = false;
+						emailchk = false;
 						$("#emailchk").text("사용 불가").css("color","red");
 							$("form").on("submit",function(event){							
-								if(!multichk){
+								if(!emailchk){
 									alert("email이 중복입니다.");
 									event.preventDefault();
 									$("#email").val("");
@@ -230,12 +289,7 @@ let multichk = true;
 				}										
 			});				
 		});	
-		
-		$("#refreshBtn").click(function() {
-			
-			$("#captchaImg").attr("src", "/teamSquirrel/CaptchaServlet?id=" + Math.random());
-			
-		});
+				
 	});
 
 </script>
@@ -302,14 +356,20 @@ let multichk = true;
 <td colspan="2" class="m_space"></td>
 </tr>
 <tr>
-<td colspan="2" class="text_center">
-<img src="/teamSquirrel/CaptchaServlet" id="captchaImg" alt="captcha img"></td>
+  <td colspan="2" class="text_center"><div id="catpcha">Wait...</div></td>
+</tr>
+<tr>
+  <td colspan="2" class="text_center"><div id="audiocatpch" style="display: none;"></div></td>
 </tr>
 <tr>
 <td colspan="2" class="text_center">
-	<input style="width: 100px;" type="text" placeholder="보안문자를 입력하세요" id="captcha" name="captcha" value="">
-	<button type="button" class="refreshBtn" id="refreshBtn">새로고침</button>
-</td>
+  <input style="width:80px" id="reLoad" type="button" value="새로고침" />
+  <input style="width:80px" id="soundOn" type="button" value="음성듣기" /></td>
+</tr>
+<tr>
+<td colspan="2" class="text_center">
+  <input style="width:110px" type="text" id="captchaAnswer" name="answer" value="" />
+  <input style="width:50px" type="button" id="captchaSubmit" value="확인" /></td>
 </tr>
 <tr>
 <td colspan="2" class="m_space"></td>
