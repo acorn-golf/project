@@ -10,7 +10,7 @@
 
 
 /MemberUIServlet,/LoginUIServlet,/LoginServlet,/MultiCheckServlet,/MemberAddServlet,/AdminPageUIServlet
-/AdminModifiedUIServlet,/AdminModifiedServlet,/captcha,/CaptchaServlet
+/AdminModifiedUIServlet,/AdminModifiedServlet,/captcha,/CaptchaServlet,/CaptCha,/AudioCaptCha,/CaptchaConfirm
 
         
         
@@ -39,6 +39,6 @@
   </filter>
   <filter-mapping>
     <filter-name>LoginChkF</filter-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>/teamSquirrel/*</url-pattern>
   </filter-mapping>
 </web-app>
