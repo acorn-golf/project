@@ -26,11 +26,11 @@ public class IsOrderServlet extends HttpServlet {
 		
 		OrderListService service = new OrderListService();
 		IsOrderListDTO dto = service.selectIsOrder(map);
-		
+				
 		request.setAttribute("dto", dto);
 		request.setAttribute("g_amount", g_amount);
 		
-		request.getRequestDispatcher("").forward(request, response);
+		request.getRequestDispatcher("orderlist/orderlist.jsp").forward(request, response);
 		
 	}
 

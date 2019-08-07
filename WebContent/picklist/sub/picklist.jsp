@@ -34,7 +34,7 @@
 	});
 </script>
 <h3>찜 목록 상품</h3>
-<form action="OrderServlet" method="post">
+<form action="IsOrderServlet" method="post">
 <table border="1">
 	<tr>
 		<td><input type="checkbox" id="chkall"><font size="2">전체선택</font></td>
