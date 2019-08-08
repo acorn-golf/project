@@ -18,17 +18,16 @@ public class IsOrderListDTO {
 	private String nickname;
 	private String phone_id;
 	private String emergency;
-	private int user_no;
 	private String loc_id;
-	private int pick_no;
 	
 	public IsOrderListDTO() {
 		// TODO Auto-generated constructor stub
 	}
+	
 	public IsOrderListDTO(String cc_name, String cc_img, String p_id, String p_pdate, String p_uploaddate,
 			int p_maxpeople, int p_hole, String p_caddyyn, String p_babyn, String p_cartyn, int p_price,
 			String p_content, int manager_user_no, int p_vcount, String nickname, String phone_id, String emergency,
-			int user_no, String loc_id, int pick_no) {
+			String loc_id) {
 		super();
 		this.cc_name = cc_name;
 		this.cc_img = cc_img;
@@ -47,10 +46,9 @@ public class IsOrderListDTO {
 		this.nickname = nickname;
 		this.phone_id = phone_id;
 		this.emergency = emergency;
-		this.user_no = user_no;
 		this.loc_id = loc_id;
-		this.pick_no = pick_no;
 	}
+
 	public String getCc_name() {
 		return cc_name;
 	}
@@ -153,24 +151,14 @@ public class IsOrderListDTO {
 	public void setEmergency(String emergency) {
 		this.emergency = emergency;
 	}
-	public int getUser_no() {
-		return user_no;
-	}
-	public void setUser_no(int user_no) {
-		this.user_no = user_no;
-	}
+	
 	public String getLoc_id() {
 		return loc_id;
 	}
 	public void setLoc_id(String loc_id) {
 		this.loc_id = loc_id;
 	}
-	public int getPick_no() {
-		return pick_no;
-	}
-	public void setPick_no(int pick_no) {
-		this.pick_no = pick_no;
-	}
+	
 	
 	
 	
