@@ -68,4 +68,14 @@ public class GolfccService {
 		return result;
 	}
 
+	public void LikeGolfccRemove(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void LikeGolfccAdd(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
