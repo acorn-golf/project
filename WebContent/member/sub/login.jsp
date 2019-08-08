@@ -6,10 +6,25 @@
 <script type="text/javascript">
 	
 	$(document).ready(function(){
+
+		$("#phoneid").click(function(){
+			$("#idchk").text("");			
+		});
 		
-		$("form").on("click",function(event){
+		$("#password").click(function(){
+			$("#pwchk").text("");			
+		});
+		
+		$("form").on("submit",function(event){
 			
-			if($("#phoneid").val()==""&&$("#password").val()==""){
+			if( $("#phoneid").val() == "" || $("#password").val() == ""){				
+				if( $("#phoneid").val() == "" ){
+					$("#phoneid").focus();
+					$("#idchk").text("아이디를 입력하세요").css("color","red");
+				}else if( $("#password").val() == "" ){
+					$("#password").focus();
+					$("#pwchk").text("비밀번호를 입력하세요").css("color","red");					
+				}
 				event.preventDefault();
 			}else{
 				this.action="/teamSquirrel/LoginServlet";

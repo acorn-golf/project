@@ -17,7 +17,7 @@
 </tr>
 </c:if>
 <tr>
-<td class="line_td"><a href="/teamSquirrel/AdminModifiedUIServlet?${member.phone_id}">${member.phone_id}</a></td>
+<td class="line_td">${member.phone_id}</td>
 <td class="line_td">${member.username}</td>
 <td class="line_td"><a href="/teamSquirrel/AdminModifiedUIServlet?nickname=${member.nickname}">${member.nickname}</a></td>
 <td class="text_center line_td">${member.rating}</td>
