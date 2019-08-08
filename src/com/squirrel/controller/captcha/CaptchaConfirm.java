@@ -18,10 +18,12 @@ public class CaptchaConfirm extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	   Captcha captcha = (Captcha) request.getSession().getAttribute(Captcha.NAME);
-	   String answer = request.getParameter("answer"); //사용자가 입력한 문자열
+	   String answer = request.getParameter("captchaAnswer"); //사용자가 입력한 문자열
+	   
 	   if ( answer != null && !"".equals(answer) ) {
 	
 		   PrintWriter out = response.getWriter();
+		   
 	       if (captcha.isCorrect(answer)) { //사용자가 입력한 문자열과 CaptCha 클래스가 생성한 문자열
 	           request.getSession().removeAttribute(Captcha.NAME);	           
 	           out.print("0");

@@ -103,7 +103,7 @@
 <th>추가 :</th> 
 <td>
 <select class="text_center" id="Srenddate" name="Srenddate">
-<c:forEach var="month" begin="1" end="12">
+<c:forEach var="month" begin="0" end="12">
 <option>${month} 개월</option>
 </c:forEach>
 </select>
