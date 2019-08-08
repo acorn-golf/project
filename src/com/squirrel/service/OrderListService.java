@@ -7,7 +7,9 @@ import org.apache.ibatis.session.SqlSession;
 import com.squirrel.config.MySqlSessionFactory;
 import com.squirrel.dao.OrderListDAO;
 import com.squirrel.dao.ProductDAO;
+import com.squirrel.dto.PageDTO;
 import com.squirrel.dto.view.IsOrderListDTO;
+import com.squirrel.dto.view.OrderInfoDTO;
 
 public class OrderListService {
 
@@ -43,6 +45,19 @@ public class OrderListService {
 			session.close();
 		}
 		return result;
+	}
+
+	public PageDTO<OrderInfoDTO> selectOrderList(int user_no, int curPage) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		PageDTO<OrderInfoDTO> pdto = null;
+		OrderListDAO dao = new OrderListDAO();
+		try {
+			pdto = dao.selectOrderList(session,user_no,curPage);
+		}finally {
+			session.close();
+		}
+		
+		return pdto;
 	}
 
 }

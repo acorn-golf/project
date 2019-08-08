@@ -20,13 +20,8 @@ public class IsOrderServlet extends HttpServlet {
 		String pick_no = request.getParameter("pick_no");
 		String p_id = request.getParameter("p_id");
 		String g_amount = request.getParameter("g_amount");
-		if(p_id == null) {
-			System.out.println("p_id null");
-		}
-		if(g_amount == null) {
-			System.out.println("g_amount");
-			g_amount = "1";
-		}
+		System.out.println(g_amount);
+		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("pick_no", pick_no);
 		map.put("p_id", p_id);
