@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.squirrel.dto.MemberDTO;
 import com.squirrel.dto.ProductDTO;
 import com.squirrel.service.OrderListService;
 import com.squirrel.service.ProductService;
@@ -24,7 +25,9 @@ public class AddOrderServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int user_no = (int)request.getSession().getAttribute("login");
+		MemberDTO dto = (MemberDTO)request.getSession().getAttribute("login");
+		System.out.println("느낌이 앉좋ㄷ"+dto);
+		int user_no = dto.getUser_no();
 		String p_id = request.getParameter("p_id");
 		int o_amount = Integer.parseInt(request.getParameter("o_amount"));
 		

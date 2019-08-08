@@ -48,7 +48,7 @@ $(document).ready(function() {
 						<td>
 							<table style='padding: 15px' class="ccGridOne" cc_Id="${Golfcc.cc_id}">
 								<tr>
-									<td><a href="GoodsRetrieveServlet?gCode=${Golfcc.cc_id}">
+									<td>
 											<c:if test="${Golfcc.cc_img != null}">
 												<img
 													src="/teamSquirrel/GOLFCC/${Golfcc.loc_id}/${Golfcc.cc_img}"
@@ -58,7 +58,7 @@ $(document).ready(function() {
 												<img src="/teamSquirrel/GOLFCC/noimg.jpg" border="0"
 													align="center" width="200">
 											</c:if>
-									</a></td>
+									</td>
 								</tr>
 								<tr>
 

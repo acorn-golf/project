@@ -6,7 +6,7 @@
 <script type="text/javascript" src="/teamSquirrel/jquery-3.4.1.js"></script>
 <script>
 	function amountUpDown(num) {
-		var tmp = document.getElementById("gamount");
+		var tmp = document.getElementById("g_amount");
 		tmp.value = parseInt(num) + parseInt(tmp.value);
 		if (parseInt(tmp.value) < 1)
 			tmp.value = 1;
@@ -32,7 +32,7 @@
 		var numberchk = /[0-9]{1}/;
 		
 		var validityChk = false;
-		validityChk = numberchk.test(document.getElementById("gamount").value);
+		validityChk = numberchk.test(document.getElementById("g_amount").value);
 
 		return validityChk;
 	}
@@ -152,7 +152,7 @@
 						<font color="red" size="2px">최대 ${productDTO.p_maxpeople} 명</font>
 						</td>
 						<td style="padding-left: 30px"><input type="text"
-							name="gamount" value="1" id="gamount"
+							name="g_amount" value="1" id="g_amount"
 							style="text-align: right; height: 18px"> <img
 							src="/teamSquirrel/product/sub/up.PNG" id="up"
 							onclick="amountUpDown('1')"> <img

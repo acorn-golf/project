@@ -72,7 +72,7 @@
 					<tr>
 
 						<td class="td_title">사이트</td>
-						<td class="td_default" colspan="2" style='padding-left: 30px'><a href="${Golfcc.cc_url}">${Golfcc.cc_url}</a>
+						<td class="td_default" colspan="2" style='padding-left: 30px'><a href="http://${Golfcc.cc_url}">${Golfcc.cc_url}</a>
 						</td>
 					</tr>
 					<tr>
