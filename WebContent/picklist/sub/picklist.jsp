@@ -27,14 +27,23 @@
 				event.preventDefault();
 				alert('하나 이상 체크해라');
 			}else{
-				$("form").attr({"action":"DeletePickServlet","method":"post"});
+				$("form[name='deletePick']").attr({"action":"DeletePickServlet","method":"post"});
 			}
+		});
+		
+		$(".order").on("click",function(){
+			var p_id = $(this).nextAll("input[name='p_id']").val();
+			var g_amount = $(this).nextAll("input[name='g_amount']").val();
+			location.href="IsOrderServlet?p_id="+p_id+"&g_amount="+g_amount;
+			//$("form[name='order']").attr({"action":"IsOrderServlet","method":"post"})
+			console.log($(this).nextAll("input[name='p_id']").val());
+			console.log($(this).nextAll("input[name='g_amount']").val());
 		});
 		
 	});
 </script>
-<h3>찜 목록 상품</h3>
-<form action="IsOrderServlet" method="post">
+<h3>장바구니</h3>
+<form name="deletePick">
 <table border="1">
 	<tr>
 		<td><input type="checkbox" id="chkall"><font size="2">전체선택</font></td>
@@ -54,7 +63,7 @@
 		<table>
 			<tr>
 				<td><a href="#"><b>${pList.cc_name}</b></a></td>
-				<td>${pList.p_maxpeople}명  ${pList.p_hole}홀&nbsp;&nbsp;<span style="color:blue">예약인원 : ${pList.pick_amount} 명<input type="hidden" name="g_amount" value="${pList.pick_amount}"></span></td>
+				<td>${pList.p_maxpeople}명  ${pList.p_hole}홀&nbsp;&nbsp;<span style="color:blue">예약인원 : ${pList.pick_amount} 명</span></td>
 			</tr>
 			<tr>
 				<td><font size="2" color="#4374D9">${pList.p_uploaddate}</font></td>
@@ -66,7 +75,9 @@
 		<td align="center">${pList.p_price} 만원<br>
 		<c:if test="${pList.emergency eq '긴급'}">
 		<b style="color:red">[${pList.emergency}]</b></c:if></td>
-		<td><input type="submit" value="구매하기"><input type="hidden" name="p_id" value="${pList.p_id}"></td>
+		<td class="orderVal"><input type="button" value="구매하기" class="order"> 
+		<input type="hidden" name="p_id" value="${pList.p_id}">
+		<input type="hidden" name="g_amount" value="${pList.pick_amount}"></td>
 	</tr>
 	</c:forEach>
 	

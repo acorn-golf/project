@@ -104,6 +104,7 @@ public class ProductListServlet extends HttpServlet {
 			perBlock = totalPage/showBlock;
 		}
 		
+		
 		request.setAttribute("perBlock", perBlock);
 		request.setAttribute("minBlock", minBlock);
 		request.setAttribute("maxBlock", maxBlock);

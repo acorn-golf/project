@@ -25,6 +25,7 @@
 		<typeAlias type="com.squirrel.dto.view.RecommentViewDTO" alias="RecommentViewDTO"/>
 		<typeAlias type="com.squirrel.dto.view.PickListviewDTO" alias="PickListviewDTO"/>
 		<typeAlias type="com.squirrel.dto.view.IsOrderListDTO" alias="IsOrderListDTO"/>
+		<typeAlias type="com.squirrel.dto.view.OrderInfoDTO" alias="OrderInfoDTO"/>
 	</typeAliases>
 
 	<environments default="development">
