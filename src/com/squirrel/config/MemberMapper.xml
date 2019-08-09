@@ -29,15 +29,18 @@
 	</update>
 	<select id="multiCheck" parameterType="HashMap" resultType="int">
 		select count(*) from memberList 
-		<if test="phone_id != null">
+		<if test="phone_id != null">		
 		where phone_id = #{phone_id}
 		</if>
+		<if test="userpw != null">
+		where userpw = #{userpw}
+		</if>		
 		<if test="nickname != null">
 		where nickname = #{nickname}
 		</if>
 		<if test="email != null">
 		where email = #{email}
-		</if>
+		</if>		
 	</select>
 	<select id="adminMemberSelect" resultType="MemberDTO" parameterType="HashMap">
 		select user_no,phone_id,userpw,username,nickname,userssn,gender,
