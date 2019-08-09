@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>장바구니</title>
+<title>이메일</title>
 </head>
 <body>
 <%-- <jsp:include page="common/top.jsp" flush="true" /><br>
 <jsp:include page="common/menu.jsp" flush="true" /> --%>
 <jsp:include page="/show/main.jsp" flush="false"/>
 
-<%-- <jsp:include page="sub/picklist.jsp" flush="true" /> --%>
+<jsp:include page="sub/sendEmail.jsp" flush="true" />
 </body>
 </html>

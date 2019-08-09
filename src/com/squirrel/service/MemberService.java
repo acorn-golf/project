@@ -121,6 +121,27 @@ public class MemberService {
 		}		
 		return dto;
 	}
+
+	public void updateEmail(int user_no) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			dao.updateEmail(session,user_no);
+			session.commit();
+		}finally {
+			session.close();
+		}
+	}
+
+	public MemberDTO getUser(int user_no) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		MemberDTO dto = null;
+		try {
+			dto = dao.getUser(session,user_no);
+		}finally {
+			session.close();
+		}
+		return dto;
+	}
 	
 	
 	

@@ -1,5 +1,6 @@
 package com.squirrel.util.aes;
 
+import java.io.Console;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -63,7 +64,7 @@ public class AESManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		System.out.println("암호화 문자열 길이"+result.length());
 		return result;
 	}
 	
@@ -96,8 +97,13 @@ public class AESManager {
 			e.printStackTrace();
 		}
 		
-		
+		System.out.println("복호화 문자열 길이"+result.length());
 		return result;
 	}
-
+	
+	public String escapeHtml(String str) {
+		
+		return null;
+	}
+	
 }
