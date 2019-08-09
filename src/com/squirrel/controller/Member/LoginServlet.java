@@ -21,7 +21,8 @@ public class LoginServlet extends HttpServlet {
 		
 		String phone_id = request.getParameter("phoneid");
 		String userpw = request.getParameter("password");
-		
+						
+		System.out.println(phone_id+userpw);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("phone_id", phone_id);
 		map.put("userpw", userpw);

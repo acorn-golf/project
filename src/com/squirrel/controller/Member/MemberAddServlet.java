@@ -20,10 +20,7 @@ public class MemberAddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		request.setCharacterEncoding("utf-8");
-		
+
 		String phone_id = request.getParameter("phoneid");
 		String userpw = request.getParameter("password");
 		String username = request.getParameter("username");
@@ -32,7 +29,6 @@ public class MemberAddServlet extends HttpServlet {
 		String gender = request.getParameter("gender");
 		String email = request.getParameter("email");
 		String rating = request.getParameter("rating");
-		
 
 		if(gender.equals("male")) {
 			gender = "1";
