@@ -6,12 +6,18 @@
 <script type="text/javascript" src="/teamSquirrel/jquery-3.4.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+	
+	
+	
+	
+	
 	$("#likeAdd").on("click", function() { //ajax
 		$.ajax({
 			type : "post",
 			url : "LikeGolfccAddServlet",
 			data:{
-				cc_id:"${Golfcc.cc_id}"
+				cc_id:"${Golfcc.cc_id}",
+				LikeChk: //변수값넣기
 			},
 			dataType : "json", //응답 타입 
 			success : function(data,textStatus,xhr) {

@@ -27,6 +27,7 @@ public class EmailCheckServlet extends HttpServlet {
 		isTime = java.net.URLDecoder.decode(isTime,"UTF-8");
 		//enco = java.net.URLDecoder.decode(enco,"UTF-8");
 		String isCode = request.getParameter("isCode");
+		isTime = isTime.replace(" ", "+");
 		System.out.println("인식한 문자열 : "+isTime);
 		isTime = AESManager.getMyAes().deCodeText(isTime);
 		Date curDate = new Date();
