@@ -47,7 +47,7 @@ public class MemberAddServlet extends HttpServlet {
 		
 			HttpSession session = request.getSession();
 			session.setAttribute("login", dto);				
-			response.sendRedirect("member/memberWelcome.jsp");
+			response.sendRedirect("email/isEmailchk.jsp");
 		
 		}
 				

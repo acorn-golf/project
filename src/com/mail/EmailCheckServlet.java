@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.Session;
 
 import com.squirrel.dto.MemberDTO;
 import com.squirrel.service.MemberService;
@@ -36,7 +37,7 @@ public class EmailCheckServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		try {
 			Date userTime = format.parse(isTime);
-			long chkTime = (curDate.getTime()-userTime.getTime())/(30*1000);
+			long chkTime = (curDate.getTime()-userTime.getTime())/(24*60*60*1000);
 			
 			if(chkTime<1) {
 				HashMap<String , Integer> emailchk = (HashMap<String , Integer>)getServletContext().getAttribute("emailchk");
@@ -49,14 +50,16 @@ public class EmailCheckServlet extends HttpServlet {
 					MemberDTO dto = service.getUser(user_no);
 					request.getSession().setAttribute("login", dto);
 				}
-				out.print("<script>alert('성공')</script>");
+				out.print("<html><script>alert('성공')</script></html>");
+				request.getSession().setAttribute("mesg", "성공");
 				response.sendRedirect("main.jsp"); // 성공페이지
 				
 			}else {
-				out.print("<script>alert('실패')</script>");
-				String mesg = "인증 시간이 지났습니다\n 인증시간 : 24시간\n 마이페이지에서 이메일인증을 진행하세요";
-				request.setAttribute("errormesg", mesg);
-				request.getRequestDispatcher("main.jsp").forward(request, response); // 실패 페이지
+				out.print("<html><script>alert('실패 \n 인증 시간이 지났습니다\n 인증시간 : 24시간\n 마이페이지에서 이메일인증을 진행하세요')</script></html>");
+				request.getSession().setAttribute("mesg", "실패 \n 인증 시간이 지났습니다\n 인증시간 : 24시간\n 마이페이지에서 이메일인증을 진행하세요");
+				String mesg = "";
+				//request.setAttribute("errormesg", mesg);
+				response.sendRedirect("main.jsp"); // 실패 페이지
 			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
