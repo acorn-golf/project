@@ -63,5 +63,17 @@
 		where user_no = #{value}
 	</select>
 	
+	<update id="updateEmail" parameterType="int">
+		update memberList
+		set EMAIL_CHK='Y'
+		where user_no=#{user_no}
+	</update>
+	
+	<select id="getUser" parameterType="int" resultType="MemberDTO">
+		select user_no,phone_id,userpw,username,nickname,userssn,gender,
+		rating,rstartdate,renddate,email,email_chk 
+		from memberList
+		where user_no=#{user_no}
+	</select>
 	
 </mapper>

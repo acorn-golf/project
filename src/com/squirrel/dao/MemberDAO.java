@@ -62,4 +62,14 @@ public class MemberDAO {
 		return dto;
 	}
 
+	public void updateEmail(SqlSession session, int user_no) {
+		session.update("MemberMapper.updateEmail", user_no);
+		
+	}
+
+	public MemberDTO getUser(SqlSession session, int user_no) {
+		MemberDTO dto = session.selectOne("MemberMapper.getUser", user_no);
+		return dto;
+	}
+
 }
