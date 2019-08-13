@@ -101,17 +101,11 @@ public class SendMailServlet extends HttpServlet {
 		String host = "smtp.naver.com";
 		String subject = "GolfHi 이메일 인증";
 		String from = "tlakffja@naver.com"; // 보내는 메일
-		String fromName = "GolfHi관리자";
-		String to = "wlgkssnl@naver.com"; // 받는 메일
+		String fromName = "GolfHi관리자"; 
+		String to = user.getEmail(); // 받는 메일
 		String content = "<h2>안녕하세요 MS :p GolfHi 입니다!</h2><br><br>" + "<h3>" + username + "님</h3>"
 				+"<p>인증하기 버튼을 누르시면 비밀번호 분실 시 이메일을 통해 확인할 수 있습니다</p>"
-				+"<form action='EmailCheckServlet' method='post'>"
-				+"<input type='hidden' name='isTime' value='"+enco+"'>"
-				+"<input type='hidden' name='isCode' value='"+iscode+"'>"
-				+"<input type='submit' value='인증하기'>"
-				+"</form>"
 				+"<a href='localhost:8090/teamSquirrel/EmailCheckServlet?isTime="+enco+"&isCode="+iscode+"'>인증하기</a>"
-
 				+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
 
 		try {

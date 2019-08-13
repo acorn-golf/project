@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("login", dto);
 			
-			request.getRequestDispatcher("main.jsp").forward(request, response);
+			request.getRequestDispatcher("email/isEmailchk.jsp").forward(request, response);
 			
 		}
 				
