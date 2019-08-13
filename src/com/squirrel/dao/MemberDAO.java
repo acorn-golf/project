@@ -72,4 +72,9 @@ public class MemberDAO {
 		return dto;
 	}
 
+	public MemberDTO getPhoneUser(SqlSession session, String phone_id) {
+		MemberDTO dto = session.selectOne("MemberMapper.getPhoneUser", phone_id);
+		return dto;
+	}
+
 }

@@ -142,6 +142,17 @@ public class MemberService {
 		}
 		return dto;
 	}
+
+	public MemberDTO getPhoneUser(String phone_id) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		MemberDTO dto = null;
+		try {
+			dto = dao.getPhoneUser(session,phone_id);
+		}finally {
+			session.close();
+		}
+		return dto;
+	}
 	
 	
 	

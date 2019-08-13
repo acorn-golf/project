@@ -25,7 +25,11 @@
 
 /main.jsp
 
+/FindPWFormServlet
 
+/SendPWMailServlet
+
+/PhoneIdCheckServlet
 
 
 /show/top/assets/js/index.js
