@@ -11,11 +11,11 @@
 
 /MemberUIServlet,/LoginUIServlet,/LoginServlet,/MultiCheckServlet,/MemberAddServlet,/AdminPageUIServlet
 /AdminModifiedUIServlet,/AdminModifiedServlet,/captcha,/CaptchaServlet,/CaptCha,/AudioCaptCha,/CaptchaConfirm
-
+/AdminPageServlet
 
 
         
-/ProductServlet
+/ProductServlet,/ProductListServlet
 
 
 

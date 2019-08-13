@@ -42,7 +42,7 @@ public class MemberDAO {
 		return confirm;
 	}
 
-	public List<MemberDTO> adminMemberSelect(SqlSession session, HashMap<String, String> map) {
+	public List<MemberDTO> adminMemberSelect(SqlSession session, HashMap<String, Object> map) {
 			
 		List<MemberDTO> list = session.selectList("MemberMapper.adminMemberSelect",map);
 	
@@ -70,6 +70,11 @@ public class MemberDAO {
 	public MemberDTO getUser(SqlSession session, int user_no) {
 		MemberDTO dto = session.selectOne("MemberMapper.getUser", user_no);
 		return dto;
+	}
+
+	public int totalRecord(SqlSession session) {
+		int totalRecord = session.selectOne("MemberMapper.totalRecord");
+		return totalRecord;
 	}
 
 }
