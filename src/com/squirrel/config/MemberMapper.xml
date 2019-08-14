@@ -43,11 +43,14 @@
 		</if>		
 	</select>
 	<select id="adminMemberSelect" resultType="MemberDTO" parameterType="HashMap">
+		<![CDATA[
 		select user_no,phone_id,userpw,username,nickname,userssn,gender,
 		rating,to_char(rstartdate,'yyyy/MM/dd') rstartdate, to_char(renddate,'yyyy/MM/dd') renddate,
-		email,email_chk	from memberList 
-		<if test="member != null">
-		where ${member} like '%'||#{adminSearch}
+		email,email_chk	from (select * from 
+		( select rownum rnum, m.* from memberList m) where rnum <= #{end} ) where rnum >= #{start}  	
+		]]>
+  		<if test="member != null">
+		 and ${member} like '%'||#{adminSearch}||'%'
 		</if>
 	</select>
 	<update id="adminModified" parameterType="MemberDTO">
@@ -74,6 +77,9 @@
 		rating,rstartdate,renddate,email,email_chk 
 		from memberList
 		where user_no=#{user_no}
+	</select>
+	<select id="totalRecord" resultType="int">
+		select count(*) from memberList
 	</select>
 	
 	<select id="getPhoneUser" parameterType="string" resultType="MemberDTO">

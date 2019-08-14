@@ -83,7 +83,7 @@ public class MemberService {
 		return confirm;
 	}
 
-	public List<MemberDTO> adminMemberSelect(HashMap<String, String> map) {
+	public List<MemberDTO> adminMemberSelect(HashMap<String, Object> map) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		List<MemberDTO> list = null;
 		try {
@@ -143,6 +143,18 @@ public class MemberService {
 		return dto;
 	}
 
+
+	public int totalRecord() {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int totalRecord = 0;
+		try {
+			totalRecord = dao.totalRecord(session);
+		}finally {
+			session.close();
+		}
+		return totalRecord;
+  }
+
 	public MemberDTO getPhoneUser(String phone_id) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		MemberDTO dto = null;
@@ -152,6 +164,7 @@ public class MemberService {
 			session.close();
 		}
 		return dto;
+
 	}
 	
 	

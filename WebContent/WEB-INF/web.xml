@@ -12,12 +12,16 @@
 /MemberUIServlet,/LoginUIServlet,/LoginServlet,/MultiCheckServlet,/MemberAddServlet,/AdminPageUIServlet
 /AdminModifiedUIServlet,/AdminModifiedServlet,/captcha,/CaptchaServlet,/CaptCha,/AudioCaptCha,/CaptchaConfirm
 
+/AdminPageServlet
+
+
 /Oauth
 
 
 
+
         
-/ProductServlet
+/ProductServlet,/ProductListServlet
 
 
 

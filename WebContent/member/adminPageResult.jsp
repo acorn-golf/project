@@ -12,5 +12,6 @@
 <jsp:include page="../show/main.jsp"/>
 <hr>
 <jsp:include page="sub/adminPage.jsp"/>
+<jsp:include page="sub/adminPageResult.jsp"/>
 </body>
 </html>

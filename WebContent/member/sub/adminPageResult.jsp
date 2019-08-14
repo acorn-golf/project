@@ -6,6 +6,7 @@
 
 <form method="get" class="form_main">
 <table class="line_table">
+<c:if test="${adminSelect eq 'member'}">
 <c:forEach var="member" items="${list}" varStatus="status">
 <c:if test="${status.first}">
 <tr>
@@ -17,12 +18,35 @@
 </tr>
 </c:if>
 <tr>
-<td class="line_td">${member.phone_id}</td>
-<td class="line_td">${member.username}</td>
+<td class="line_td" style="background-color: lightgreen">${member.phone_id}</td>
+<td class="line_td" style="background-color: lightblue">${member.username}</td>
 <td class="line_td"><a href="/teamSquirrel/AdminModifiedUIServlet?nickname=${member.nickname}">${member.nickname}</a></td>
 <td class="text_center line_td">${member.rating}</td>
 <td class="line_td">${member.email}</td>
 </tr>
 </c:forEach>
+</c:if>
+<tr>
+<td colspan="4" class="text_center">
+	<c:if test="${curPage != 1 || curPage != ''}">
+				<a href="AdminPageServlet?adminSelect=${adminSelect}&curPage=1">◀◀</a>&nbsp;&nbsp;
+				<c:if test="${curPage > show}"><a href="AdminPageServlet?adminSelect=${adminSelect}&curPage=${minPage-1}">◁</a>&nbsp;&nbsp;</c:if>			
+			</c:if>	
+		<c:forEach var="i" begin="${minPage}" end="${maxPage}" step="1">	
+				<c:choose>
+					<c:when test="${curPage eq i}">
+						<span style="color:red">${i}</span>
+					</c:when>
+					<c:when test="${curPage != i}">
+						<a href="AdminPageServlet?adminSelect=${adminSelect}&curPage=${i}">${i}</a>&nbsp;
+					</c:when>
+				</c:choose>	
+		</c:forEach>
+			<c:if test="${curPage != endPage}">				
+				<c:if test="${curPage <= show * perBlock}"><a href="AdminPageServlet?adminSelect=${adminSelect}&curPage=${maxPage+1}">▷</a></c:if>
+				&nbsp;&nbsp;<a href="AdminPageServlet?adminSelect=${adminSelect}&curPage=${endPage}">▶▶</a>
+			</c:if>
+</td>
+</tr>
 </table>
 </form>
