@@ -77,6 +77,10 @@
 		}
 		$("[type='radio']").attr("disabled","true");
 		
+		$("input[type='button']").on("click",function(){
+			location.href="SendMailServlet";
+		});
+		
 	});
 
 </script>
@@ -128,7 +132,11 @@
 <tr>
 <th><font class="red">*</font>e-mail:</th>
 <td><input class="myupdate" type="email" id="email" name="email" value="${login.email}"></td>
-<td class="confirm"><span id="emailchk"></span></td>
+<td class="confirm"><span id="emailchk"></span>
+<c:if test="${login.email_chk eq 'N'}">
+	<input type="button" value="인증하기" style="width: 80px" id="emailchk">
+</c:if>
+</td>
 </tr>
 <tr>
 <th colspan="2" class="m_space"><font class="red">*</font> 은 수정가능</th>

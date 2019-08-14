@@ -62,6 +62,10 @@
 			}
 		});
 		
+		$("#findPW").on("click",function(){
+			location.href='FindPWFormServlet';
+		});
+		
 	});
 </script>
 <form method="post" class="form_login">
@@ -80,8 +84,10 @@
 <td colspan="3" class="m_space"></td>
 </tr>
 <tr>
-<td colspan="2" class="text_center">
-<input class="m_sub_re" type="submit" value="로그인">&nbsp;&nbsp;<input class="m_sub_re" type="reset" value="다시입력"></td>
+<td colspan="3" class="text_center">
+<input class="m_sub_re" type="submit" value="로그인">&nbsp;&nbsp;<input class="m_sub_re" type="reset" value="다시입력">&nbsp;
+<input type="button" value="비밀번호찾기" style="width: 110px" id="findPW">
+</td>
 </tr>
 </table>
 </form>
