@@ -166,6 +166,11 @@ public class MemberService {
 		return dto;
 
 	}
+
+	public MemberDTO kakaoLogin(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	

@@ -9,14 +9,18 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.valves.rewrite.RewriteMap;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.HttpVersion;
@@ -27,6 +31,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.squirrel.dto.MemberDTO;
+import com.squirrel.service.MemberService;
+import com.squirrel.util.curl.CurlUtil;
 import com.sun.javafx.collections.MappingChange.Map;
 
 /**
@@ -36,6 +43,7 @@ import com.sun.javafx.collections.MappingChange.Map;
 public class OauthServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	MemberService memberService = new MemberService();
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -50,121 +58,100 @@ public class OauthServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		Enumeration<String> keyVal = request.getParameterNames();
 
+		Enumeration<String> keyVal = request.getParameterNames();
 		while (keyVal.hasMoreElements())
 			System.out.println("키값 : " + keyVal.nextElement());
 
-		// response.setContentType("text/html;charset=UTF-8");
+		String kakaoLoginInfo = null;
 
-		ObjectMapper mapper = new ObjectMapper();
-		// mapper.readValue(src, valueType)
+		HashMap<String, String> parmeterMap = new HashMap<String, String>();
+		parmeterMap.put("access_token", request.getParameter("access_token"));
 
-		// 테스트 부분
+		kakaoLoginInfo = CurlUtil.Getmy().curlReturnJsonStr("https://kapi.kakao.com/v1/user/access_token_info", false,
+				parmeterMap, (code, resultparmeter) -> {
 
-		BufferedReader br = null;
-		URL url = new URL("https://kapi.kakao.com/v1/user/access_token_info?access_token="
-				+ request.getParameter("access_token"));
-		HttpURLConnection con = (HttpURLConnection) url.openConnection();
-		con.setRequestMethod("GET");
-		if (con.getResponseCode() == 200)
-			br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-		String inputLine;
-		StringBuffer res = new StringBuffer();
-		while ((inputLine = br.readLine()) != null) {
-			res.append(inputLine);
-		}
-		br.close();
-		System.out.println(res.toString());
+					
+					ObjectMapper mapper2 = new ObjectMapper();
+					MemberDTO dto = null;
+					
+					java.util.Map<String, String> resultmap = new HashMap<String, String>();
+					int errer_code = 0;
+					boolean login_success;
+					boolean refresh_chk;
+					String err_mesg = null;
 
-		java.util.Map<String, String> kakaoLoginInfo = new HashMap<String, String>();
+					HttpSession httpSession = request.getSession();
 
-		kakaoLoginInfo = mapper.readValue(res.toString(), new TypeReference<java.util.Map<String, String>>() {
-		});
+					switch (code) {
+					case 200:
+						login_success = true;
+						refresh_chk = false;
+						dto = memberService.kakaoLogin(resultparmeter.get("id"));
+						
+						if(dto ==null) {
+							kakaoMemberAdd("Bearer "+request.getParameter("access_token"));
+						}
+						
+						
+						break;
 
-		for (String string : kakaoLoginInfo.keySet())
-			System.out.println(string + ":" + kakaoLoginInfo.get(string));
+					case -401:
+						login_success = false;
+						refresh_chk = true;
+						errer_code = -401;
+						break;
 
-		// 토큰값에 따라
-		int errer_code;
-		boolean login_success;
-		boolean refresh_chk;
-		if (Integer.parseInt(kakaoLoginInfo.get("expiresInMillis")) <= 0) {
-			// 제인증 토큰 요청
+					case -2:
+						login_success = false;
+						refresh_chk = false;
+						errer_code = -2;
+						err_mesg = "잘못된 토큰 형식";
+						break;
 
-		}
+					case -1:
+						login_success = false;
+						refresh_chk = false;
+						errer_code = -1;
+						err_mesg = "카카오 서버 오류 잠시후에 다시 시도해주세요.";
+						break;
 
-		java.util.Map<String, String> kakaoLoginResult = new HashMap<String, String>();
-		kakaoLoginResult.put("login_success", "");
-		kakaoLoginResult.put("refresh_chk", "");
-		kakaoLoginResult.put("errer_code", "");
+					default:
+						errer_code = code;
+						login_success = false;
+						refresh_chk = false;
+						err_mesg = "알수 없는 오류. 관리자에게 문의해주세요";
+						break;
+					}
 
-		String kakaoLoginResultS = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(kakaoLoginResult);
+					resultmap.put("errer_code", String.valueOf(errer_code));
+					resultmap.put("login_success", String.valueOf(login_success));
+					resultmap.put("refresh_chk", String.valueOf(refresh_chk));
+					if (err_mesg != null)
+						resultmap.put("err_mesg", err_mesg);
 
-		//
+					httpSession.setAttribute("resultmap", resultmap);
+
+					return resultmap;
+				});
 
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
-	private void curl(String urlStr, boolean postChk, java.util.Map<String, String> parameter,
-			Consumer<Integer> action) throws IOException {
-
-		ObjectMapper mapper = new ObjectMapper();
+	
+	private void kakaoMemberAdd(String access_token) {
+		HashMap<String, String> inValue = new HashMap<String, String>();
+		inValue.put("Authorization", access_token);
 		
-		BufferedReader br = null;
-		StringBuffer urlBuffer = new StringBuffer();
-		urlBuffer.append(urlStr);
-
-		boolean firstChk = true;
-
-		for (String parameterName : parameter.keySet()) {
-
-			if (firstChk) {
-				urlBuffer.append("?");
-				firstChk = !firstChk;
-			} else
-				urlBuffer.append("&");
-
-			urlBuffer.append(parameterName);
-			urlBuffer.append("=");
-			urlBuffer.append(parameter.get(parameterName));
-
-		}
-		URL url = new URL(urlBuffer.toString());
-		HttpURLConnection con = (HttpURLConnection) url.openConnection();
-
-		if (postChk)
-			con.setRequestMethod("POST");
-		else
-			con.setRequestMethod("GET");
+		java.util.Map<String, String> resultMap = null;
+		resultMap= CurlUtil.Getmy().curlReturnMap("https://kapi.kakao.com/v2/user/me", true, inValue, null);
 		
-		if (con.getResponseCode() == 200)
-			br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-		String inputLine;
-		StringBuffer res = new StringBuffer();
-		while ((inputLine = br.readLine()) != null) {
-			res.append(inputLine);
+		for (String string : resultMap.keySet()) {
+			System.out.println(">>"+string+"="+resultMap.get(string));
 		}
-		br.close();
-		System.out.println(res.toString());
-
-		java.util.Map<String, String> kakaoLoginInfo = new HashMap<String, String>();
-
-		kakaoLoginInfo = mapper.readValue(res.toString(), new TypeReference<java.util.Map<String, String>>() {
-		});
-
-		for (String string : kakaoLoginInfo.keySet())
-			System.out.println(string + ":" + kakaoLoginInfo.get(string));
 	}
-
 }
