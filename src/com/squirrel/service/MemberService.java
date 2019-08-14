@@ -143,6 +143,7 @@ public class MemberService {
 		return dto;
 	}
 
+
 	public int totalRecord() {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int totalRecord = 0;
@@ -152,6 +153,18 @@ public class MemberService {
 			session.close();
 		}
 		return totalRecord;
+  }
+
+	public MemberDTO getPhoneUser(String phone_id) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		MemberDTO dto = null;
+		try {
+			dto = dao.getPhoneUser(session,phone_id);
+		}finally {
+			session.close();
+		}
+		return dto;
+
 	}
 	
 	

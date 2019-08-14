@@ -25,6 +25,19 @@
 			container : '#kakao-login-btn',
 			success : function(authObj) {
 				alert(JSON.stringify(authObj));
+				console.dir(authObj);
+				
+				$.ajax({
+					type : "post",
+					url : "/teamSquirrel/Oauth",
+					data : authObj,
+					datatype : "json",
+					success : function(data){
+						 var tesdt = JSON.parse(data);
+						alert(data['test']);
+						console.dir(tesdt);
+					}
+				});
 			},
 			fail : function(err) {
 				alert(JSON.stringify(err));

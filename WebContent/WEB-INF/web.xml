@@ -11,7 +11,13 @@
 
 /MemberUIServlet,/LoginUIServlet,/LoginServlet,/MultiCheckServlet,/MemberAddServlet,/AdminPageUIServlet
 /AdminModifiedUIServlet,/AdminModifiedServlet,/captcha,/CaptchaServlet,/CaptCha,/AudioCaptCha,/CaptchaConfirm
+
 /AdminPageServlet
+
+
+/Oauth
+
+
 
 
         
@@ -25,7 +31,11 @@
 
 /main.jsp
 
+/FindPWFormServlet
 
+/SendPWMailServlet
+
+/PhoneIdCheckServlet
 
 
 /show/top/assets/js/index.js

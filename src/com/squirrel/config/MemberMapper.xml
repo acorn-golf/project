@@ -82,4 +82,11 @@
 		select count(*) from memberList
 	</select>
 	
+	<select id="getPhoneUser" parameterType="string" resultType="MemberDTO">
+		select user_no,phone_id,userpw,username,nickname,userssn,gender,
+		rating,rstartdate,renddate,email,email_chk 
+		from memberList
+		where phone_id=#{phone_id}
+	</select>
+	
 </mapper>

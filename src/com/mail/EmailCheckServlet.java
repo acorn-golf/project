@@ -51,7 +51,7 @@ public class EmailCheckServlet extends HttpServlet {
 					request.getSession().setAttribute("login", dto);
 				}
 				out.print("<html><script>alert('성공')</script></html>");
-				request.getSession().setAttribute("mesg", "성공");
+				request.getSession().setAttribute("mesg", "인증되었습니다");
 				response.sendRedirect("main.jsp"); // 성공페이지
 				
 			}else {
