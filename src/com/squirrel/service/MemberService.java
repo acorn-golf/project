@@ -167,9 +167,27 @@ public class MemberService {
 
 	}
 
+//지한뉘-08/14 카카오 로그인 체크 및 로그인 용 생성
 	public MemberDTO kakaoLogin(String string) {
 		// TODO Auto-generated method stub
 		return null;
+}
+
+	public void updatePW(HashMap<String, String> map) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int confirm = 0;
+		try {
+			confirm = dao.updatePW(session,map);
+			if(confirm != 0) {
+				session.commit();
+			}else {
+				session.rollback();
+			}
+		}finally {
+			session.close();
+		}
+		
+
 	}
 	
 	

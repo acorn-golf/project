@@ -20,13 +20,14 @@
 					phoneid = data.phoneid;
 					email = data.email;
 					email_chk = data.email_chk;
-					console.log(phoneid+email+email_chk);
-					if(phoneid=='정보없음'){
-						$("#idchk").text(data.phoneid);
+					
+					if(phoneid == $("#phoneid").val()){
+						$("#idchk").text("정보확인");
+						$("#email_chkYN").val(email_chk);
+					}else{
+						$("#idchk").text(phoneid);
 					}
 					
-					$("#emailchk").val(data.email);
-					$("#emailchkYN").val(data.email_chk);
 				},
 				error : function(xhr,status,error){
 					console.log(error);
@@ -34,20 +35,41 @@
 				}
 			});
 		});
-		console.log(phoneid+email+email_chk);
+		
+		$("#email").on("keyup",function(){
+			if(email == $("#email").val()){
+				$("#emailchk").text("정보확인");
+			}else{
+				$("#emailchk").text("정보없음");
+			}
+		});
+		
 		$("#find").on("click",function(event){
 			event.preventDefault();
-			if(phoneid == '정보없음' || $("#phoneid").val().length == 0){
-				alert('아이디를 확인하세요');
-			}
-			if(email == '정보없음' || $("#email").val().length == 0){
-				alert('이메일을 확인하세요');
-			}
-			if(email_chk == 'N'){
-				alert('인증되지 않은 이메일입니다.');
-			}
-			if(email_chk == '정보없음'){
-				alert('정보가 없는 이메일입니다')
+			if(phoneid == $("#phoneid").val() && email == $("#email").val() && email_chk == 'Y'){
+				myForm.submit();
+			}else{
+				if($("#phoneid").val().length==0 || $("#email").val().length==0){
+					if($("#phoneid").val().length==0 && $("#email").val().length==0){
+						alert('입력란이 비었습니다');
+					}else if($("#phoneid").val().length==0){
+						alert('아이디를 입력하시오');
+					}else if($("#email").val().length==0){
+						alert('이메일 입력하시오');
+					}
+				}else{
+					if($("#phoneid").val()!=phoneid){
+						alert('정보가 없는 아이디 입니다');
+					}else{
+						if($("#emailchk").text() == '정보없음'){
+							alert('정보가 없는 이메일 입니다');
+						}else{
+							if($("#email_chkYN").val() == 'N'){
+								alert('인증되지 않은 이메일 입니다');
+							}
+						}
+					}
+				}
 			}
 		});
 	});
@@ -56,16 +78,18 @@
 		
 </script>
 
-<form action="../SendPWMailServlet" method="get">
+<form action="../SendPWMailServlet" method="post" name="myForm" class="form_login">
+<input type="hidden" id="email_chkYN" name="email_chkYN">
 <table>
 <tr>
 <th> 아이디: </th>
-<td><input type="text" class="login" id="phoneid" name="phoneid" placeholder="핸드폰번호 일껄요?" maxlength="11"><span id="idchk"></span>
-</td>
+<td><input type="text" class="login" id="phoneid" name="phoneid" placeholder="핸드폰번호 일껄요?" maxlength="11"></td>
+<td><span id="idchk"></span></td>
 </tr>
 <tr>
 <th> 이메일: </th>
 <td><input type="email" class="login" id="email" name="email"></td>
+<td><span id="emailchk"></span></td>
 </tr>
 <tr>
 <td colspan="2" align="right"><input type="submit" value="찾기" id="find" style="width: 50px"></td>

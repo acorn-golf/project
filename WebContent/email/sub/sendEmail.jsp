@@ -8,6 +8,6 @@
 	</c:when>
 	<c:otherwise>
 		<h2>${email} 로 임시비밀번호를 보냈습니다</h2>
-		<a href="member/loginForm.jsp">로그인</a>
+		<a href="LoginUIServlet">로그인</a>
 	</c:otherwise>
 </c:choose>
