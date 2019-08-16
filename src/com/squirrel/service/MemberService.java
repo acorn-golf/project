@@ -166,6 +166,22 @@ public class MemberService {
 		return dto;
 
 	}
+
+	public void updatePW(HashMap<String, String> map) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int confirm = 0;
+		try {
+			confirm = dao.updatePW(session,map);
+			if(confirm != 0) {
+				session.commit();
+			}else {
+				session.rollback();
+			}
+		}finally {
+			session.close();
+		}
+		
+	}
 	
 	
 	

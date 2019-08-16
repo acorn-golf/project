@@ -1,6 +1,7 @@
 package com.mail;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Properties;
 import java.util.Random;
 
@@ -17,6 +18,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.squirrel.service.MemberService;
 
 /**
  * Servlet implementation class SendMailServlet
@@ -37,12 +40,17 @@ public class SendPWMailServlet extends HttpServlet {
 		}
 		
 		// Member테이블에서 phoneid로 해당 검색을해서 비밀번호를 pw 로 update 하는 구문 적어야함
+		MemberService service = new MemberService();
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("userpw", pw);
+		map.put("phone_id", phoneid);
+		service.updatePW(map);
 	
 		String host = "smtp.naver.com";
 	    String subject = "GolfHi 임시비밀번호 발송";
 	    String from = "tlakffja@naver.com"; //보내는 메일
 	   String fromName = "GolfHi";
-	    String to = "tlakffja@naver.com"; //받는 메일
+	    String to = email; //받는 메일
 	    String content ="<h2>안녕하세요 MS :p GolfHi 입니다!</h2><br><br>" 
 	    		+"임시비밀번호: "+pw;
 

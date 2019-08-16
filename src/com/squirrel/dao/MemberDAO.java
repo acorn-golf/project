@@ -84,4 +84,9 @@ public class MemberDAO {
 
 	}
 
+	public int updatePW(SqlSession session, HashMap<String, String> map) {
+		int confirm = session.update("MemberMapper.updatePW", map);
+		return confirm;
+	}
+
 }

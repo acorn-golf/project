@@ -89,4 +89,10 @@
 		where phone_id=#{phone_id}
 	</select>
 	
+	<update id="updatePW" parameterType="hashmap">
+		update memberList
+		set userpw = #{userpw}
+		where phone_id = #{phone_id}
+	</update>
+	
 </mapper>
