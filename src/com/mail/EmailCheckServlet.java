@@ -18,6 +18,7 @@ import javax.websocket.Session;
 import com.squirrel.dto.MemberDTO;
 import com.squirrel.service.MemberService;
 import com.squirrel.util.aes.AESManager;
+import com.squirrel.util.curl.CurlUtil;
 
 @WebServlet("/EmailCheckServlet")
 public class EmailCheckServlet extends HttpServlet {
@@ -70,6 +71,7 @@ public class EmailCheckServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
 	}
 
 }
