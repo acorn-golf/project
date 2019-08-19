@@ -40,6 +40,10 @@ public class AdminPageServlet extends HttpServlet {
 			String product = request.getParameter("product");
 			String currPage = request.getParameter("curPage");	
 			
+			if( adminSelect.equals("none") ) {
+				adminSelect = "member";				
+			}		
+			
 			if(currPage == null) {
 				currPage = "1";
 			}
@@ -65,12 +69,12 @@ public class AdminPageServlet extends HttpServlet {
 				pService = new ProductService();
 				map.put("adminSearch", adminSearch);
 				map.put("product",product);
-				/*
-				 * list = pService.adminProductSelect(map); totalRecord =
-				 * pService.totalRecord();
-				 */
+				
+				//list = pService.adminProductSelect(map); 
+				//totalRecord = pService.totalRecord();
+				
 			}
-			System.out.println(list.size());
+			
 			int endPage = totalRecord / perPage;
 			if(totalRecord % perPage != 0) {
 				endPage++;

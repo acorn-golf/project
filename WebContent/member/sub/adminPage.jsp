@@ -10,7 +10,8 @@
 	$(document).ready(function(){
 				
 		$("#adminSelect, #adminSearch").on("click",function(){
-			if( $("select").val() == "member" ){				
+			
+			if( $("select").val() == "member" || $("select").val() == "none" ){				
 				$("#memberSelect").html(`
 				<td style="width: 80px;">아이디<input type="radio" id="memberId" name="member" value="phone_id"></td>
 				<td style="width: 80px;">이름<input type="radio" id="memberName" name="member" value="username"></td>
@@ -37,6 +38,7 @@
 <tr>
 <th>
 <select style="size: 40px;" id="adminSelect" name="adminSelect">
+<option id="none" value="none">조건</option> 
 <option id="member" value="member">회원</option>
 <option id="product" value="product">상품</option>
 <option id="location" value="location">지역</option>

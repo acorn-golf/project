@@ -1,5 +1,8 @@
 package com.squirrel.dto;
 
+import lombok.Data;
+
+@Data
 public class MemberDTO {
 //	user_no	number(5,0)
 //	phone_id	varchar2(15 byte)
@@ -80,102 +83,6 @@ public class MemberDTO {
 		this.renddate = renddate;
 		this.email = email;
 	
-	}
-
-	public int getUser_no() {
-		return user_no;
-	}
-
-	public void setUser_no(int user_no) {
-		this.user_no = user_no;
-	}
-
-	public String getPhone_id() {
-		return phone_id;
-	}
-
-	public void setPhone_id(String phone_id) {
-		this.phone_id = phone_id;
-	}
-
-	public String getUserpw() {
-		return userpw;
-	}
-
-	public void setUserpw(String userpw) {
-		this.userpw = userpw;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
-	public String getUserssn() {
-		return userssn;
-	}
-
-	public void setUserssn(String userssn) {
-		this.userssn = userssn;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getRating() {
-		return rating;
-	}
-
-	public void setRating(String rating) {
-		this.rating = rating;
-	}
-
-	public String getRstartdate() {
-		return rstartdate;
-	}
-
-	public void setRstartdate(String rstartdate) {
-		this.rstartdate = rstartdate;
-	}
-
-	public String getRenddate() {
-		return renddate;
-	}
-
-	public void setRenddate(String renddate) {
-		this.renddate = renddate;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getEmail_chk() {
-		return email_chk;
-	}
-
-	public void setEmail_chk(String email_chk) {
-		this.email_chk = email_chk;
 	}
 
 }
