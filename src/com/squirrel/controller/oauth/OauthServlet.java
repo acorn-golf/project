@@ -75,7 +75,7 @@ public class OauthServlet extends HttpServlet {
 					ObjectMapper mapper2 = new ObjectMapper();
 					MemberDTO dto = null;
 					
-					java.util.Map<String, String> resultmap = new HashMap<String, String>();
+					java.util.Map<String, Object> resultmap = new HashMap<String, Object>();
 					int errer_code = 0;
 					boolean login_success;
 					boolean refresh_chk;
@@ -87,7 +87,8 @@ public class OauthServlet extends HttpServlet {
 					case 200:
 						login_success = true;
 						refresh_chk = false;
-						dto = memberService.kakaoLogin(resultparmeter.get("id"));
+						System.out.println(resultparmeter.get("id"));
+						dto = memberService.kakaoLogin(resultparmeter.get("id").toString());
 						
 						if(dto ==null) {
 							kakaoMemberAdd("Bearer "+request.getParameter("access_token"));
@@ -147,7 +148,7 @@ public class OauthServlet extends HttpServlet {
 		HashMap<String, String> inValue = new HashMap<String, String>();
 		inValue.put("Authorization", access_token);
 		
-		java.util.Map<String, String> resultMap = null;
+		java.util.Map<String, Object> resultMap = null;
 		resultMap= CurlUtil.Getmy().curlReturnMap("https://kapi.kakao.com/v2/user/me", true, inValue, null);
 		
 		for (String string : resultMap.keySet()) {

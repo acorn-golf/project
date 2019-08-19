@@ -24,8 +24,8 @@ public class CurlUtil {
 	}
 
 	public String curlReturnJsonStr(String urlStr, boolean postChk, Map<String, String> parameter,
-			BiFunction<Integer, Map<String, String>, Map<String, String>> resultFun) {
-		Map<String, String> result = null;
+			BiFunction<Integer, Map<String, Object>, Map<String, Object>> resultFun) {
+		Map<String, Object> result = null;
 		try {
 
 			if (resultFun != null)
@@ -50,9 +50,9 @@ public class CurlUtil {
 		return JsonStr;
 	}
 
-	public Map<String, String> curlReturnMap(String urlStr, boolean postChk, Map<String, String> parameter,
-			BiFunction<Integer, Map<String, String>, Map<String, String>> resultFun) {
-		Map<String, String> result = null;
+	public Map<String, Object> curlReturnMap(String urlStr, boolean postChk, Map<String, String> parameter,
+			BiFunction<Integer, Map<String, Object>, Map<String, Object>> resultFun) {
+		Map<String, Object> result = null;
 		try {
 
 			if (resultFun != null)
@@ -68,67 +68,11 @@ public class CurlUtil {
 
 		return result;
 	}
-	/*
-	 * private java.util.Map<String, String> curl(String urlStr, boolean postChk,
-	 * java.util.Map<String, String> parameter, BiFunction<Integer,
-	 * java.util.Map<String, String>, java.util.Map<String, String>> resultFun)
-	 * throws IOException {
-	 * 
-	 * BufferedReader br = null; StringBuffer paramBuffer = new StringBuffer(); //
-	 * urlBuffer.append(urlStr);
-	 * 
-	 * boolean firstChk = true;
-	 * 
-	 * for (String parameterName : parameter.keySet()) {
-	 * 
-	 * if (firstChk) { // urlBuffer.append("?"); firstChk = !firstChk; } else
-	 * paramBuffer.append("&");
-	 * 
-	 * paramBuffer.append(parameterName); paramBuffer.append("=");
-	 * paramBuffer.append(parameter.get(parameterName));
-	 * 
-	 * }
-	 * 
-	 * System.out.println("으아아"+paramBuffer.toString()); System.out.println("ddd");
-	 * 
-	 * URL url = null; HttpURLConnection con = null;
-	 * 
-	 * if (postChk) { url = new URL(urlStr); con = (HttpURLConnection)
-	 * url.openConnection(); con.setRequestMethod("POST"); con.setDoOutput(true);
-	 * con.setDoInput(true); con.setUseCaches(false);
-	 * con.setDefaultUseCaches(false); con.setRequestProperty("Content-Type",
-	 * "application/x-www-form-urlencoded;charset=utf-8");
-	 * 
-	 * 
-	 * OutputStream outputStream = con.getOutputStream();
-	 * 
-	 * outputStream.write(paramBuffer.toString().getBytes()); outputStream.flush();
-	 * outputStream.close();
-	 * 
-	 * System.out.println("qqqq"); System.out.println(paramBuffer.toString());
-	 * 
-	 * } else { url = new URL(urlStr+"?"+paramBuffer.toString()); con =
-	 * (HttpURLConnection) url.openConnection(); con.setRequestMethod("GET"); }
-	 * 
-	 * 
-	 * //결과값 출력
-	 * 
-	 * StringBuffer res = null; { // 결과값 문자열로 바꿔놓기 br = new BufferedReader(new
-	 * InputStreamReader(con.getInputStream())); String inputLine; res = new
-	 * StringBuffer(); while ((inputLine = br.readLine()) != null)
-	 * res.append(inputLine); }
-	 * 
-	 * java.util.Map<String, String> returnParmeter =
-	 * mapper.readValue(res.toString(), new TypeReference<java.util.Map<String,
-	 * String>>() { });
-	 * 
-	 * return resultFun.apply(con.getResponseCode(), returnParmeter);
-	 * 
-	 * }
-	 */
 
-	private java.util.Map<String, String> curl(String urlStr, boolean postChk, java.util.Map<String, String> parameter,
-			BiFunction<Integer, java.util.Map<String, String>, java.util.Map<String, String>> resultFun)
+	
+
+	private java.util.Map<String, Object> curl(String urlStr, boolean postChk, java.util.Map<String, String> parameter,
+			BiFunction<Integer, java.util.Map<String, Object>, java.util.Map<String, Object>> resultFun)
 			throws IOException {
 
 		BufferedReader br = null;
@@ -176,8 +120,8 @@ public class CurlUtil {
 				res.append(inputLine);
 		}
 
-		java.util.Map<String, String> returnParmeter = mapper.readValue(res.toString(),
-				new TypeReference<java.util.Map<String, String>>() {
+		java.util.Map<String, Object> returnParmeter = mapper.readValue(res.toString(),
+				new TypeReference<java.util.Map<String, Object>>() {
 				});
 
 		return resultFun.apply(con.getResponseCode(), returnParmeter);
