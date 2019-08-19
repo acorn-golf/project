@@ -30,7 +30,7 @@
 <td colspan="4" class="text_center">
 	<c:if test="${curPage != 1 || curPage != ''}">
 				<a href="AdminPageServlet?adminSelect=${adminSelect}&curPage=1">◀◀</a>&nbsp;&nbsp;
-				<c:if test="${curPage > show}"><a href="AdminPageServlet?adminSelect=${adminSelect}&curPage=${minPage-1}">◁</a>&nbsp;&nbsp;</c:if>			
+				<c:if test="${curPage > show}"><a href="AdminPageServlet?adminSelect=${adminSelect}&curPage=${minPage-2}">◁</a>&nbsp;&nbsp;</c:if>			
 			</c:if>	
 		<c:forEach var="i" begin="${minPage}" end="${maxPage}" step="1">	
 				<c:choose>
