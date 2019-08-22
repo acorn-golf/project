@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.squirrel.dto.MemberDTO;
-import com.squirrel.dto.PageDTO;
+import com.squirrel.dto.view.ProductListDTO;
 import com.squirrel.service.MemberService;
 import com.squirrel.service.ProductService;
 
@@ -38,12 +38,9 @@ public class AdminPageServlet extends HttpServlet {
 			String adminSearch = request.getParameter("adminSearch");
 			String member = request.getParameter("member");
 			String product = request.getParameter("product");
-			String currPage = request.getParameter("curPage");	
-			
-			if( adminSelect.equals("none") ) {
-				adminSelect = "member";				
-			}		
-			
+			String location = request.getParameter("location");
+			String currPage = request.getParameter("curPage");
+
 			if(currPage == null) {
 				currPage = "1";
 			}
@@ -54,18 +51,42 @@ public class AdminPageServlet extends HttpServlet {
 			int totalRecord = 0;
 			
 			List<MemberDTO> list = null;
+			List<ProductListDTO> pList= null;
 			HashMap<String, Object> map = new HashMap<String, Object>();
 				map.put("start", start);
 				map.put("end", end);
 			
-			ProductService pService;
+			ProductService pService = new ProductService();
 			
-			if( adminSelect.equals("member") ){					
+			switch (adminSelect) {
+			case "product":				 
+				map.put("adminSearch", adminSearch);
+				map.put("product", product);
+				pList = pService.adminProductSelect(map);
+				totalRecord = pService.totalRecord();
+				request.setAttribute("pList",pList);				
+				break;
+				
+			case "location":				 
+				map.put("adminSearch", adminSearch);
+				map.put("location", location);
+				pList = pService.adminProductSelect(map);
+				totalRecord = pService.totalRecord();
+				request.setAttribute("pList",pList);				
+				break;
+			
+
+			default:
 				map.put("adminSearch",adminSearch);
 				map.put("member",member);
 				list = mService.adminMemberSelect(map);	
-				totalRecord = mService.totalRecord();			
-			}else if( adminSelect.equals("product") ){
+				totalRecord = mService.totalRecord();
+				request.setAttribute("list", list);
+				break;
+			}
+		
+				
+			if( adminSelect.equals("product") ){
 				pService = new ProductService();
 				map.put("adminSearch", adminSearch);
 				map.put("product",product);
@@ -79,32 +100,30 @@ public class AdminPageServlet extends HttpServlet {
 			if(totalRecord % perPage != 0) {
 				endPage++;
 			}
-			int show = 10; 
-			int minPage = ((curPage-1) / (show)) * show + 1;
-			int maxPage = 0;
 			
-			if (list.size() < show) {
-				maxPage = 0;
-			}else if (curPage == endPage || endPage < minPage + show) {
-				maxPage = endPage;
+			int showPage = 10;
+			int startPage = (curPage-1) / showPage * showPage + 1;
+			int lastPage = startPage + showPage - 1;
+			if (curPage == endPage || endPage < startPage + showPage) {
+				lastPage = endPage;
 			} else if (curPage < endPage) {
-				maxPage = minPage + show - 1;
-			} 
+				lastPage = (startPage + showPage)-1;
+			}
 			
-			int perBlock = 0;//totalPage/showBlock; 
-			if(endPage%show==0) { 
-				perBlock = (endPage/show)-1; 
-			}else { 
-				perBlock = endPage/show;
-		    }		 
+			int beforeShow = curPage - showPage;
+				if(beforeShow < 1) beforeShow = 1; //0 또는 음수값이 될 경우
+			int afterShow = beforeShow + showPage;
+				if(afterShow>totalRecord) afterShow=totalRecord; // 총개시물을 초과할 경우
+			
 			request.setAttribute("adminSelect", adminSelect);
-			request.setAttribute("list", list);
+			request.setAttribute("adminSearch", adminSearch);			
 			request.setAttribute("curPage", curPage);
-			request.setAttribute("perBlock", perBlock);
 			request.setAttribute("endPage", endPage);
-			request.setAttribute("show", show);
-			request.setAttribute("maxPage", maxPage);
-			request.setAttribute("minPage", minPage);
+			request.setAttribute("showPage", showPage);
+			request.setAttribute("startPage", startPage);
+			request.setAttribute("lastPage", lastPage);
+			request.setAttribute("beforeShow", beforeShow);
+			request.setAttribute("afterShow", afterShow);
 			
 			destination = "member/adminPageResult.jsp";
 			

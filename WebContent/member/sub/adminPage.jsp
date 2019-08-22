@@ -9,9 +9,10 @@
 
 	$(document).ready(function(){
 				
-		$("#adminSelect, #adminSearch").on("click",function(){
-			
-			if( $("select").val() == "member" || $("select").val() == "none" ){				
+		$("#adminSelect").on("click",function(){
+			if( $("select").val() == "none"){
+				$("#memberSelect").html("");
+			}else if( $("select").val() == "member" ){				
 				$("#memberSelect").html(`
 				<td style="width: 80px;">아이디<input type="radio" id="memberId" name="member" value="phone_id"></td>
 				<td style="width: 80px;">이름<input type="radio" id="memberName" name="member" value="username"></td>
@@ -24,13 +25,10 @@
 			} 
 		
 		});
-		$("#adminPage").on("click",function(){
-			
+		$("#adminPage").on("click",function(){			
 			this.action="/teamSquirrel/AdminPageServlet";
 		});
-		if( "${adminSelect}" != ""){
-			$("#${adminSelect}").attr("selected","selected");
-		}
+
 	});
 </script>
 <form id="adminPage" method="get">
@@ -46,7 +44,7 @@
 <option id="notice" value="notice">공지사항</option>
 <option id="order" value="order">주문목록</option>
 </select></th>
-<td style="width: 280px;"><input type="text" id="adminSearch" name="adminSearch" placeholder="검색조건이 없으면 전체"></td>
+<td style="width: 280px;"><input type="text" id="adminSearch" name="adminSearch" placeholder="검색조건이 없으면 회원전체"></td>
 <td><input type="submit" id="adminSubmit" value="검색"></td>
 </tr>
 </table>

@@ -28,10 +28,10 @@ public class AdminModifiedUIServlet extends HttpServlet {
 			MemberService service = new MemberService();
 			dto = service.myPage(nickname);						
 			session.setAttribute("login", dto);
-			String usernick = request.getParameter("nickname");
-			if( usernick != "" ) {
+			String phone_id = request.getParameter("phoneid");
+			if( phone_id != "" ) {
 				MemberDTO userinfo = new MemberDTO();
-				userinfo = service.myPage(usernick);
+				userinfo = service.getPhoneUser(phone_id);
 				request.setAttribute("userinfo", userinfo);
 			}
 			

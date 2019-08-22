@@ -1,6 +1,7 @@
 package com.squirrel.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -52,6 +53,36 @@ public class ProductService {
 			session.close();
 		}
 		return pdto;
+	}
+
+
+
+
+	public List<ProductListDTO> adminProductSelect(HashMap<String, Object> map) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		List<ProductListDTO> dto = null;
+		ProductDAO dao = new ProductDAO();
+		try {
+			dto = dao.adminProductSelect(session,map);
+		}finally {
+			session.close();
+		}
+		return dto;
+	}
+
+
+
+
+	public int totalRecord() {
+		SqlSession session = MySqlSessionFactory.getSession();
+		ProductDAO dao = new ProductDAO();
+		int totalRecord = 0;
+		try {
+			totalRecord = dao.totalRecord(session);
+		}finally {
+			session.close();
+		}
+		return totalRecord;
 	}
 
 }
