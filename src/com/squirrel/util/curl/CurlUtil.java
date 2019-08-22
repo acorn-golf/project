@@ -9,8 +9,11 @@ import java.net.URL;
 import java.util.Map;
 import java.util.function.BiFunction;
 
+import org.apache.http.HttpConnection;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class CurlUtil {
@@ -23,44 +26,80 @@ public class CurlUtil {
 		return my;
 	}
 
-	public String curlReturnJsonStr(String urlStr, boolean postChk, Map<String, String> parameter,
-			BiFunction<Integer, Map<String, Object>, Map<String, Object>> resultFun) {
-		Map<String, Object> result = null;
-		try {
+//	public String curlReturnJsonStr(String urlStr, boolean postChk, Map<String, String> parameter,
+//			BiFunction<Integer, Map<String, Object>, Map<String, Object>> resultFun) {
+//		Map<String, Object> result = null;
+//		HttpURLConnection con = null;
+//		try {
+//
+//			if (resultFun != null)
+//				result = curl(urlStr, postChk, parameter, resultFun);
+//			else
+//				result = curl(urlStr, postChk, parameter, (code, returnparameter) -> {
+//					return returnparameter;
+//				});
+//		} catch (IOException e) {
+//
+//			e.printStackTrace();
+//		}
+//
+//		String JsonStr = null;
+//		try {
+//			JsonStr = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(result);
+//		} catch (JsonProcessingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//		return JsonStr;
+//	}
 
-			if (resultFun != null)
-				result = curl(urlStr, postChk, parameter, resultFun);
-			else
-				result = curl(urlStr, postChk, parameter, (code, returnparameter) -> {
-					return returnparameter;
-				});
+	
+	
+	
+	public <T> T curlReturnClass(String urlStr, boolean postChk, Map<String, String> parameter,
+			BiFunction<Integer,T, T> resultFun,Class<T> requiredType) {
+		T result = null;
+		StringBuffer buffer = null;
+		HttpURLConnection con = null;
+		
+		try {
+			con = curl(urlStr, postChk, parameter);
+			buffer = connectionStrBuffer(con);
+			result = mapper.readValue(buffer.toString(),requiredType);
+			
+			
 		} catch (IOException e) {
-
-			e.printStackTrace();
+			// TODO: handle exception
+			//직접 만든 에러 추가하여, 에러 파라미터 넘길것 ( 통신코드, 반환값 그거)
 		}
-
-		String JsonStr = null;
-		try {
-			JsonStr = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(result);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return JsonStr;
+		
+		
+		
+		return result;
 	}
-
+	
+	
+	
 	public Map<String, Object> curlReturnMap(String urlStr, boolean postChk, Map<String, String> parameter,
 			BiFunction<Integer, Map<String, Object>, Map<String, Object>> resultFun) {
 		Map<String, Object> result = null;
+		StringBuffer buffer = null;
+		HttpURLConnection con = null;
 		try {
 
-			if (resultFun != null)
-				result = curl(urlStr, postChk, parameter, resultFun);
-			else
-				result = curl(urlStr, postChk, parameter, (code, returnparameter) -> {
-					return returnparameter;
-				});
+			con = curl(urlStr, postChk, parameter);
+			buffer = connectionStrBuffer(con);
+
+			java.util.Map<String, Object> returnParmeter = mapper.readValue(buffer.toString(),
+					new TypeReference<java.util.Map<String, Object>>() {
+					});
+			
+			result = resultFun.apply(con.getResponseCode(), returnParmeter);
+//
+//	return 
+
+//				});
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,9 +109,12 @@ public class CurlUtil {
 	}
 
 	
-
-	private java.util.Map<String, Object> curl(String urlStr, boolean postChk, java.util.Map<String, String> parameter,
-			BiFunction<Integer, java.util.Map<String, Object>, java.util.Map<String, Object>> resultFun)
+	
+	
+	
+	
+	
+	private HttpURLConnection curl(String urlStr, boolean postChk, java.util.Map<String, String> parameter)
 			throws IOException {
 
 		BufferedReader br = null;
@@ -104,27 +146,62 @@ public class CurlUtil {
 
 			}
 
-			url = new URL(urlStr+"?"+paramBuffer.toString());
+			url = new URL(urlStr + "?" + paramBuffer.toString());
 			con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
 		}
 
 		// 결과값 출력
 
-		StringBuffer res = null;
-		{ // 결과값 문자열로 바꿔놓기
-			br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-			String inputLine;
-			res = new StringBuffer();
-			while ((inputLine = br.readLine()) != null)
-				res.append(inputLine);
-		}
-
-		java.util.Map<String, Object> returnParmeter = mapper.readValue(res.toString(),
-				new TypeReference<java.util.Map<String, Object>>() {
-				});
-
-		return resultFun.apply(con.getResponseCode(), returnParmeter);
+		return con;
 
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	private <T> T changeClass(StringBuffer buffer, Class<T> requiredType) {
+		T result = null;
+		try {
+			result = mapper.readValue(buffer.toString(), requiredType);
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	private StringBuffer connectionStrBuffer(HttpURLConnection con) {
+		BufferedReader bufferedreader = null;
+		StringBuffer buffer = new StringBuffer();
+		try {
+			bufferedreader  = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			String inputLine;
+			while((inputLine = bufferedreader.readLine()) != null)
+			{
+				buffer.append(inputLine);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return buffer;
+	}
+
+
 }
