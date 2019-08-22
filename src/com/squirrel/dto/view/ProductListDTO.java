@@ -41,6 +41,17 @@ public class ProductListDTO {
 
 	}
 	
+	public ProductListDTO(String cc_name, String p_pdate, int p_price, String nickname, String phone_id,
+			String loc_name) {
+		super();
+		this.cc_name = cc_name;
+		this.p_pdate = p_pdate;
+		this.p_price = p_price;
+		this.nickname = nickname;
+		this.phone_id = phone_id;
+		this.loc_name = loc_name;
+	}
+
 	public ProductListDTO(String cc_name, String cc_img, String p_id, String p_pdate, String p_uploaddate,
 			int p_maxpeople, int p_hole, String p_caddyyn, String p_babyn, String p_cartyn, int p_price,
 			String p_content, int user_no, int p_vcount, String nickname, String phone_id, String loc_name,

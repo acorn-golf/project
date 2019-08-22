@@ -47,4 +47,14 @@ public class ProductDAO {
 		return session.update("ProductMapper.productDecrease",insertVal);
 	}
 
+	public List<ProductListDTO> adminProductSelect(SqlSession session, HashMap<String, Object> map) {
+		/* int totalRecord = totalRecord(session); */
+		return session.selectList("ProductMapper.adminProductSelect",map);
+	}
+
+	public int totalRecord(SqlSession session) {
+		int totalRecord = session.selectOne("ProductMapper.adminTotalRecord");
+		return totalRecord;
+	}
+
 }

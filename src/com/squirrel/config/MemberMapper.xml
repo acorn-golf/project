@@ -51,7 +51,7 @@
 		]]>
   		<if test="member != null">
 		 and ${member} like '%'||#{adminSearch}||'%'
-		</if>
+		</if>		
 	</select>
 	<update id="adminModified" parameterType="MemberDTO">
 		update memberList
