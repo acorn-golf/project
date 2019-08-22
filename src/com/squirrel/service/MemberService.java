@@ -189,6 +189,11 @@ public class MemberService {
 		
 
 	}
+
+	public void kakaoMemberAdd(MemberDTO dto) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	

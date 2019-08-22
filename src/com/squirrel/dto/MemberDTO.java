@@ -29,6 +29,7 @@ public class MemberDTO {
 	private String renddate;
 	private String email;
 	private String email_chk;
+	private String kakao_id;
 
 	public MemberDTO(int user_no, String phone_id, String userpw, String username, String nickname, String userssn,
 			String gender, String rating, String rstartdate, String renddate, String email, String email_chk) {

@@ -111,8 +111,10 @@ public class CurlUtil {
 			java.util.Map<String, Object> returnParmeter = mapper.readValue(buffer.toString(),
 					new TypeReference<java.util.Map<String, Object>>() {
 					});
-			
+			if(resultFun!=null)
 			result = resultFun.apply(con.getResponseCode(), returnParmeter);
+			else
+				result = returnParmeter;
 //
 //	return 
 

@@ -151,8 +151,27 @@ public class OauthServlet extends HttpServlet {
 		java.util.Map<String, Object> resultMap = null;
 		resultMap= CurlUtil.Getmy().curlReturnMap("https://kapi.kakao.com/v2/user/me", true, inValue, null);
 		
-		for (String string : resultMap.keySet()) {
-			System.out.println(">>"+string+"="+resultMap.get(string));
-		}
+
+		HashMap<String, Object> properties = (HashMap<String, Object>)resultMap.get("properties");
+		HashMap<String, Object> kakao_account = (HashMap<String, Object>)resultMap.get("kakao_account");
+		
+		MemberDTO dto = new MemberDTO();
+		if((boolean)kakao_account.get("has_email"));
+		
+		dto.setEmail((String)kakao_account.get("email"));
+		System.out.println(dto.getEmail());
+		
+		String email_chk=((boolean)kakao_account.get("is_email_verified"))?"Y":"N";
+		dto.setEmail_chk(email_chk);
+		
+		dto.setUsername((String)properties.get("nickname"));
+		dto.setNickname((String)properties.get("nickname"));
+		
+		dto.setKakao_id((String)resultMap.get("id"));
+		
+		memberService.kakaoMemberAdd(dto);
+
+		
 	}
+	
 }
