@@ -63,12 +63,12 @@ public class OauthServlet extends HttpServlet {
 		while (keyVal.hasMoreElements())
 			System.out.println("키값 : " + keyVal.nextElement());
 
-		String kakaoLoginInfo = null;
+		java.util.Map<String, Object> kakaoLoginInfo = null;
 
 		HashMap<String, String> parmeterMap = new HashMap<String, String>();
 		parmeterMap.put("access_token", request.getParameter("access_token"));
 
-		kakaoLoginInfo = CurlUtil.Getmy().curlReturnJsonStr("https://kapi.kakao.com/v1/user/access_token_info", false,
+		kakaoLoginInfo = CurlUtil.Getmy().curlReturnMap("https://kapi.kakao.com/v1/user/access_token_info", false,
 				parmeterMap, (code, resultparmeter) -> {
 
 					

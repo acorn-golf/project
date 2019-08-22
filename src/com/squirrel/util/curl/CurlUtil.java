@@ -58,20 +58,37 @@ public class CurlUtil {
 	
 	
 	public <T> T curlReturnClass(String urlStr, boolean postChk, Map<String, String> parameter,
-			BiFunction<Integer,T, T> resultFun,Class<T> requiredType) {
+			BiFunction<Integer,T, T> resultFun,Class<T> requiredType) throws CurlException {
 		T result = null;
 		StringBuffer buffer = null;
 		HttpURLConnection con = null;
+		int ResponseCode = 0;
 		
 		try {
 			con = curl(urlStr, postChk, parameter);
+			ResponseCode = con.getResponseCode();
 			buffer = connectionStrBuffer(con);
 			result = mapper.readValue(buffer.toString(),requiredType);
+			
+			result = resultFun.apply(con.getResponseCode(), result);
 			
 			
 		} catch (IOException e) {
 			// TODO: handle exception
 			//직접 만든 에러 추가하여, 에러 파라미터 넘길것 ( 통신코드, 반환값 그거)
+			java.util.Map<String, Object> returnParmeter = null;
+			try {
+				returnParmeter = mapper.readValue(buffer.toString(),
+						new TypeReference<java.util.Map<String, Object>>() {
+						});
+			} catch (JsonMappingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (JsonProcessingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			throw new CurlException("잘못된 전송", ResponseCode,returnParmeter);
 		}
 		
 		
@@ -159,28 +176,7 @@ public class CurlUtil {
 
 	
 	
-	
-	
-	
-	
-	
-	
-	private <T> T changeClass(StringBuffer buffer, Class<T> requiredType) {
-		T result = null;
-		try {
-			result = mapper.readValue(buffer.toString(), requiredType);
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
-		return result;
-	}
-	
-	
 	
 	
 	
