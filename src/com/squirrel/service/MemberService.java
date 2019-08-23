@@ -10,7 +10,7 @@ import com.squirrel.dao.MemberDAO;
 import com.squirrel.dto.MemberDTO;
 
 public class MemberService {
-	
+
 	MemberDAO dao;
 
 	public MemberService() {
@@ -22,15 +22,15 @@ public class MemberService {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int confirm = 0;
 		try {
-			confirm = dao.MemberAdd(session,dto);
-			if(confirm != 0) {
+			confirm = dao.MemberAdd(session, dto);
+			if (confirm != 0) {
 				session.commit();
-			}else {	
-				session.rollback();				
+			} else {
+				session.rollback();
 			}
-		}finally {
+		} finally {
 			session.close();
-		}		
+		}
 		return confirm;
 	}
 
@@ -38,10 +38,10 @@ public class MemberService {
 		SqlSession session = MySqlSessionFactory.getSession();
 		MemberDTO dto = null;
 		try {
-			dto = dao.login(session,map);
-		}finally {
+			dto = dao.login(session, map);
+		} finally {
 			session.close();
-		}		
+		}
 		return dto;
 	}
 
@@ -49,8 +49,8 @@ public class MemberService {
 		SqlSession session = MySqlSessionFactory.getSession();
 		MemberDTO dto = null;
 		try {
-			dto = dao.myPage(session,nickname);
-		}finally {
+			dto = dao.myPage(session, nickname);
+		} finally {
 			session.close();
 		}
 		return dto;
@@ -60,15 +60,15 @@ public class MemberService {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int confirm = 0;
 		try {
-			confirm = dao.myPageUpdate(session,dto);
-			if(confirm != 0) {
+			confirm = dao.myPageUpdate(session, dto);
+			if (confirm != 0) {
 				session.commit();
-			}else {	
-				session.rollback();				
+			} else {
+				session.rollback();
 			}
-		}finally {
+		} finally {
 			session.close();
-		}		
+		}
 		return confirm;
 	}
 
@@ -76,8 +76,8 @@ public class MemberService {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int confirm;
 		try {
-			confirm = dao.multiCheck(session,map);
-		}finally {
+			confirm = dao.multiCheck(session, map);
+		} finally {
 			session.close();
 		}
 		return confirm;
@@ -87,10 +87,10 @@ public class MemberService {
 		SqlSession session = MySqlSessionFactory.getSession();
 		List<MemberDTO> list = null;
 		try {
-			list = dao.adminMemberSelect(session,map);
-		}finally {
+			list = dao.adminMemberSelect(session, map);
+		} finally {
 			session.close();
-		}		
+		}
 		return list;
 	}
 
@@ -98,15 +98,15 @@ public class MemberService {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int confirm = 0;
 		try {
-			confirm = dao.adminModified(session,userdto);
-			if(confirm != 0) {
+			confirm = dao.adminModified(session, userdto);
+			if (confirm != 0) {
 				session.commit();
-			}else {	
-				session.rollback();				
+			} else {
+				session.rollback();
 			}
-		}finally {
+		} finally {
 			session.close();
-		}		
+		}
 		return confirm;
 	}
 
@@ -115,19 +115,19 @@ public class MemberService {
 		SqlSession session = MySqlSessionFactory.getSession();
 		MemberDTO dto = null;
 		try {
-			dto = dao.getMemberInfo(session,user_no);
-		}finally {
+			dto = dao.getMemberInfo(session, user_no);
+		} finally {
 			session.close();
-		}		
+		}
 		return dto;
 	}
 
 	public void updateEmail(int user_no) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
-			dao.updateEmail(session,user_no);
+			dao.updateEmail(session, user_no);
 			session.commit();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
@@ -136,31 +136,30 @@ public class MemberService {
 		SqlSession session = MySqlSessionFactory.getSession();
 		MemberDTO dto = null;
 		try {
-			dto = dao.getUser(session,user_no);
-		}finally {
+			dto = dao.getUser(session, user_no);
+		} finally {
 			session.close();
 		}
 		return dto;
 	}
-
 
 	public int totalRecord() {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int totalRecord = 0;
 		try {
 			totalRecord = dao.totalRecord(session);
-		}finally {
+		} finally {
 			session.close();
 		}
 		return totalRecord;
-  }
+	}
 
 	public MemberDTO getPhoneUser(String phone_id) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		MemberDTO dto = null;
 		try {
-			dto = dao.getPhoneUser(session,phone_id);
-		}finally {
+			dto = dao.getPhoneUser(session, phone_id);
+		} finally {
 			session.close();
 		}
 		return dto;
@@ -170,31 +169,47 @@ public class MemberService {
 //지한뉘-08/14 카카오 로그인 체크 및 로그인 용 생성
 	public MemberDTO kakaoLogin(String string) {
 		// TODO Auto-generated method stub
-		return null;
-}
+		SqlSession session = MySqlSessionFactory.getSession();
+		MemberDTO dto = null;
+		try {
+			dto = dao.kakaoLogin(session, string);
+		} finally {
+			session.close();
+		}
+		return dto;
+	}
 
 	public void updatePW(HashMap<String, String> map) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int confirm = 0;
 		try {
-			confirm = dao.updatePW(session,map);
-			if(confirm != 0) {
+			confirm = dao.updatePW(session, map);
+			if (confirm != 0) {
 				session.commit();
-			}else {
+			} else {
 				session.rollback();
 			}
-		}finally {
+		} finally {
 			session.close();
 		}
-		
 
 	}
 
-	public void kakaoMemberAdd(MemberDTO dto) {
+	public int kakaoMemberAdd(MemberDTO dto) {
 		// TODO Auto-generated method stub
-		
+		SqlSession session = MySqlSessionFactory.getSession();
+		int confirm = 0;
+		try {
+			confirm = dao.kakaoMemberAdd(session, dto);
+			if (confirm != 0) {
+				session.commit();
+			} else {
+				session.rollback();
+			}
+		} finally {
+			session.close();
+		}
+		return confirm;
 	}
-	
-	
-	
+
 }

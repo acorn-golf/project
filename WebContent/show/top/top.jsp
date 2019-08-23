@@ -1,3 +1,4 @@
+<%@page import="com.squirrel.dto.MemberDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -12,8 +13,10 @@
 <title>golf-hi</title>
 
 
-<link rel="stylesheet" type="text/css" href="/teamSquirrel/show/top/assets/css/style.min.css" />
-<link rel="stylesheet" type="text/css" href="/teamSquirrel/show/top/assets/css/modules.css" />
+<link rel="stylesheet" type="text/css"
+	href="/teamSquirrel/show/top/assets/css/style.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="/teamSquirrel/show/top/assets/css/modules.css" />
 
 <!-- Canonical URL usage -->
 <link rel="canonical" href="https://aperitif.io/">
@@ -68,8 +71,8 @@ START MODULE AREA 1: header1
 		<div data-layout="_r">
 			<div data-layout="al16 de10" class="MOD_HEADER1_Title">
 				<h1 class="MOD_HEADER1_TextLogo">GolfHi</h1>
-				<p class="MOD_HEADER1_Slogan"> 
-				<c:if test="${login != null}">
+				<p class="MOD_HEADER1_Slogan">
+					<c:if test="${login != null}">
 				안녕하세요 ${login.nickname} 님
 				</c:if>
 				</p>
@@ -98,6 +101,16 @@ START MODULE AREA 2: Menu 1
 				<ul class="AP_Menu_List">
 
 					<!-- 반복 준비    -->
+					<%
+					{
+						Object test = session.getAttribute("login");
+						MemberDTO tmpdto = null;
+						if (test != null)
+							tmpdto = (MemberDTO) test;
+						if (tmpdto != null)
+							System.out.print("으아아 좀 : " + tmpdto.getRating());
+					}
+					%>
 					<c:choose>
 						<c:when test="${empty login}">
 							<c:import var="menuInfo" url="/show/top/sub/mainNot_login.xml"
@@ -143,7 +156,8 @@ START MODULE AREA 2: Menu 1
 END MODULE AREA 2: Menu 1
 -->
 
-	<script type="text/javascript" src="/teamSquirrel/show/top/assets/js/index.js"></script>
+	<script type="text/javascript"
+		src="/teamSquirrel/show/top/assets/js/index.js"></script>
 </body>
 
 </html>

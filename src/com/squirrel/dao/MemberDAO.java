@@ -89,4 +89,14 @@ public class MemberDAO {
 		return confirm;
 	}
 
+	public MemberDTO kakaoLogin(SqlSession session, String string) {
+		// TODO Auto-generated method stub
+		return session.selectOne("kakaoLogin",string);
+	}
+
+	public int kakaoMemberAdd(SqlSession session, MemberDTO dto) {
+		// TODO Auto-generated method stub
+		return session.insert("kakaoMemberAdd", dto);
+	}
+
 }

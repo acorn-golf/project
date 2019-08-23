@@ -24,18 +24,27 @@
 		Kakao.Auth.createLoginButton({
 			container : '#kakao-login-btn',
 			success : function(authObj) {
-				alert(JSON.stringify(authObj));
 				console.dir(authObj);
-				
+
 				$.ajax({
 					type : "post",
 					url : "/teamSquirrel/Oauth",
-					data : authObj,
+					data : {
+						access_token : authObj.access_token
+					},
 					datatype : "json",
-					success : function(data){
-						 var tesdt = JSON.parse(data);
-						alert(data['test']);
-						console.dir(tesdt);
+					success : function(data) {
+						var loginInfo = JSON.parse(data);
+						console.dir(data);
+						if (loginInfo.errer_code == 0) {
+							alert("정상적으로 로그인 되었습니다.");
+							location.href = "/teamSquirrel/main.jsp";
+						}
+						else //-401일 경우 재발급 진행해야되니 나중에 유의할것.
+							{
+							alert("에러 발생 :"+loginInfo.errer_code+"\n"
+									+loginInfo.err_mesg);
+							}
 					}
 				});
 			},
