@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.squirrel.dto.GolfCcDTO;
 import com.squirrel.dto.MemberDTO;
+import com.squirrel.dto.PageDTO;
 import com.squirrel.dto.view.ProductListDTO;
+import com.squirrel.service.GolfccService;
 import com.squirrel.service.MemberService;
 import com.squirrel.service.ProductService;
 
@@ -35,10 +38,7 @@ public class AdminPageServlet extends HttpServlet {
 			dto = mService.myPage(nickname);
 			
 			String adminSelect = request.getParameter("adminSelect");
-			String adminSearch = request.getParameter("adminSearch");
-			String member = request.getParameter("member");
-			String product = request.getParameter("product");
-			String location = request.getParameter("location");
+			String adminSearch = request.getParameter("adminSearch");			
 			String currPage = request.getParameter("curPage");
 
 			if(currPage == null) {
@@ -50,50 +50,47 @@ public class AdminPageServlet extends HttpServlet {
 			int end = perPage-1 + start;
 			int totalRecord = 0;
 			
-			List<MemberDTO> list = null;
-			List<ProductListDTO> pList= null;
+			List<MemberDTO> list;
+			List<ProductListDTO> pList;
+			List<GolfCcDTO> gList;
+			
 			HashMap<String, Object> map = new HashMap<String, Object>();
 				map.put("start", start);
 				map.put("end", end);
 			
-			ProductService pService = new ProductService();
-			
+			ProductService pService;
+			GolfccService gService;
 			switch (adminSelect) {
-			case "product":				 
+			case "product":	
+				pService = new ProductService();
+				String product = request.getParameter("product");
 				map.put("adminSearch", adminSearch);
 				map.put("product", product);
 				pList = pService.adminProductSelect(map);
 				totalRecord = pService.totalRecord();
-				request.setAttribute("pList",pList);				
+				request.setAttribute("pList",pList);
 				break;
 				
-			case "location":				 
+			case "ccinfo":
+				gService = new GolfccService();
+				String ccinfo = request.getParameter("ccinfo");
 				map.put("adminSearch", adminSearch);
-				map.put("location", location);
-				pList = pService.adminProductSelect(map);
-				totalRecord = pService.totalRecord();
-				request.setAttribute("pList",pList);				
+				map.put("ccinfo", ccinfo);
+				gList = gService.adminGolfSelect(map);
+				totalRecord = gService.totalRecord();
+				request.setAttribute("gList",gList);
+				System.out.println(totalRecord);
 				break;
 			
 
 			default:
+				String member = request.getParameter("member");
 				map.put("adminSearch",adminSearch);
 				map.put("member",member);
 				list = mService.adminMemberSelect(map);	
 				totalRecord = mService.totalRecord();
 				request.setAttribute("list", list);
 				break;
-			}
-		
-				
-			if( adminSelect.equals("product") ){
-				pService = new ProductService();
-				map.put("adminSearch", adminSearch);
-				map.put("product",product);
-				
-				//list = pService.adminProductSelect(map); 
-				//totalRecord = pService.totalRecord();
-				
 			}
 			
 			int endPage = totalRecord / perPage;

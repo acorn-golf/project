@@ -70,5 +70,14 @@
         where cc.CC_ID = '${value}'
 
 	</select>
-
+	<select id="totalRecord" resultType="int">
+		select count(*) from GolfCC	
+	</select>
+	<select id="adminGolfSelect" resultType="GolfCcDTO" parameterType="HashMap">
+		<![CDATA[
+		select cc_id, cc_name, cc_addr1, cc_addr2, cc_phone, cc_url, cc_img
+		from (select * from (select rownum rnum, g.* from golfcc g) 
+		 where rnum <= #{end} ) where rnum >= #{start} 
+		 ]]>
+	</select>
 </mapper>
