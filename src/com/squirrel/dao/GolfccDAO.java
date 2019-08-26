@@ -42,4 +42,17 @@ public class GolfccDAO {
 		return session.selectOne("GolfccMapper.getGolfccScoreOne",cc_id);
 	}
 
+	public int totalRecord(SqlSession session) {
+		
+		int totalRecord = session.selectOne("GolfccMapper.totalRecord");
+		
+		return totalRecord;
+	}
+	public List<GolfCcDTO> adminGolfSelect(SqlSession session,HashMap<String, Object> map) {
+		
+		List<GolfCcDTO> list = session.selectList("GolfccMapper.adminGolfSelect",map);
+		
+		return list;
+	}
+
 }

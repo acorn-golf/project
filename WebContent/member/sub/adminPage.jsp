@@ -14,16 +14,20 @@
 				$("#memberSelect").html("");
 			}else if( $("select").val() == "member" ){				
 				$("#memberSelect").html(`
-				<td style="width: 80px;">아이디<input type="radio" id="memberId" name="member" value="phone_id"></td>
-				<td style="width: 80px;">이름<input type="radio" id="memberName" name="member" value="username"></td>
-				<td style="width: 80px;">닉네임<input type="radio" id="memberNick" name="member" value="nickname"></td>`);
+					<td style="width: 90px;">아이디<input type="radio" id="memberId" name="member" value="phone_id"></td>
+					<td style="width: 90px;">이름<input type="radio" id="memberName" name="member" value="username"></td>
+					<td style="width: 90px;">닉네임<input type="radio" id="memberNick" name="member" value="nickname"></td>`);
 			}else if( $("select").val() == "product" ){				
 				$("#memberSelect").html(`
-				<td style="width: 80px;">골프장<input type="radio" id="ccname" name="product" value="cc_name"></td>
-				<td style="width: 80px;">날짜<input type="radio" id="uploaddate" name="product" value="p_uploaddate"></td>
-				<td style="width: 80px;">가격<input type="radio" id="price" name="product" value="p_price"></td>`);
-			} 
-		
+					<td style="width: 90px;">골프장<input type="radio" id="ccname" name="product" value="cc_name"></td>
+					<td style="width: 90px;">날짜<input type="radio" id="uploaddate" name="product" value="p_uploaddate"></td>
+					<td style="width: 90px;">가격<input type="radio" id="price" name="product" value="p_price"></td>`);
+			}else if( $("select").val() == "ccinfo" ){				
+				$("#memberSelect").html(`
+					<td style="width: 90px;">골프장<input type="radio" id="ccname" name="ccinfo" value="ccname"></td>
+					<td style="width: 90px;">주소<input type="radio" id="ccaddress" name="ccinfo" value="ccaddress"></td>
+					<td style="width: 90px;">전화번호<input type="radio" id="ccphone" name="ccinfo" value="ccphone"></td>`);
+			}
 		});
 		$("#adminPage").on("click",function(){			
 			this.action="/teamSquirrel/AdminPageServlet";
@@ -39,8 +43,7 @@
 <option id="none" value="none">조건</option> 
 <option id="member" value="member">회원</option>
 <option id="product" value="product">상품</option>
-<option id="location" value="location">지역</option>
-<option id="ccname" value="ccname">골프장명</option>
+<option id="ccname" value="ccinfo">골프장</option>
 <option id="notice" value="notice">공지사항</option>
 <option id="order" value="order">주문목록</option>
 </select></th>

@@ -22,7 +22,7 @@
 <td class="line_td" style="background-color: lightblue">${member.username}</td>
 <td class="line_td" style="background-color: lightgreen">${member.nickname}</td>
 <td class="text_center line_td" 
-<c:if test="${member.rating eq 'A'}">style="background-color: black"</c:if>
+<c:if test="${member.rating eq 'A'}">style="background-color: #00ff00"</c:if>
 <c:if test="${member.rating eq 'M'}">style="background-color: #7fffd4"</c:if>>${member.rating}</td>
 <td class="line_td">${member.email}</td>
 </tr>
@@ -50,7 +50,25 @@
 </tr>
 </c:forEach>
 </c:if>
-<c:if test="${adminSearch eq '' || adminSearch eq null}">
+<c:if test="${adminSelect eq 'ccinfo'}">
+<c:forEach var="gList" items="${gList}" varStatus="status">
+<c:if test="${status.first}">
+<tr>
+<th class="line_th">골프장명</th>
+<th class="line_th">주소</th>
+<th class="line_th">전화번호</th>
+<th class="line_th">url</th>
+</tr>
+</c:if>
+<tr>
+<td class="line_td">${gList.cc_name}</td>
+<td class="line_td" style="background-color: lightblue">${gList.cc_addr2}</td>
+<td class="line_td" style="background-color: lightgreen">${gList.cc_phone}</td>
+<td class="text_center line_td">${gList.cc_url}</td>
+</tr>
+</c:forEach>
+</c:if>
+<c:if test="${adminSearch eq '' || adminSearch eq null }">
 <tr>
 <td colspan="4" class="text_center">
 	<c:if test="${curPage != 1}">
@@ -72,7 +90,7 @@
 				<a href="AdminPageServlet?adminSelect=${adminSelect}&curPage=${lastPage+1}">▷</a>&nbsp;&nbsp;</c:if>
 				<%-- test="${endPage == lastPage || curPage < endPage}">
 				<a href="AdminPageServlet?adminSelect=${adminSelect}&curPage=${startPage+lastPage-1}">▷</a> --%>
-				<c:if test="${curPage != endPage && curPage == 0}">	<a href="AdminPageServlet?adminSelect=${adminSelect}&curPage=${endPage}">▶▶</a></c:if>
+				<c:if test="${curPage != endPage && curPage != 0}">	<a href="AdminPageServlet?adminSelect=${adminSelect}&curPage=${endPage}">▶▶</a></c:if>
 </tr>
 </c:if>
 </table>

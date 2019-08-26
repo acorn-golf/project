@@ -12,11 +12,17 @@ import com.squirrel.dto.PageDTO;
 import com.squirrel.dto.view.CcGolfScoreDTO;
 
 public class GolfccService {
+	
+	GolfccDAO dao;
+
+	public GolfccService() {
+		
+		dao = new GolfccDAO();
+	}
 
 	public List<GolfCcDTO> selectGolfccName(String loc_id) {
 		List<GolfCcDTO> list = null;
 		SqlSession session = MySqlSessionFactory.getSession();
-		GolfccDAO dao = new GolfccDAO();
 		try {
 			list = dao.selectGolfccName(session,loc_id);
 		}finally {
@@ -42,7 +48,6 @@ public class GolfccService {
 	public PageDTO<CcGolfScoreDTO> ccGolfScoreList(HashMap<String, Object> searchVal, PageDTO<CcGolfScoreDTO> pageDto) {
 		// TODO Auto-generated method stub
 		SqlSession session = MySqlSessionFactory.getSession();
-		GolfccDAO dao = new GolfccDAO();
 		try {
 			pageDto.setTotalRecord(dao.ccGolfScoreListCount(session, searchVal));
 			pageDto = dao.ccGolfScoreList(session,searchVal,pageDto);
@@ -76,6 +81,28 @@ public class GolfccService {
 	public void LikeGolfccAdd(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public List<GolfCcDTO> adminGolfSelect(HashMap<String, Object> map) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		List<GolfCcDTO> list = null;
+		try {
+			list = dao.adminGolfSelect(session,map);
+		}finally {
+			session.close();
+		}		
+		return list;
+	}
+
+	public int totalRecord() {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int totalRecord = 0;
+		try {
+			totalRecord = dao.totalRecord(session);
+		}finally {
+			session.close();
+		}
+		return totalRecord;
 	}
 
 }
